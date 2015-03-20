@@ -1,0 +1,490 @@
+2015-02-07 08:11:30 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:11:25 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423271485.3328
+    'REQUEST_TIME' => 1423271485
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:21:53 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:21:50 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272110.4327
+    'REQUEST_TIME' => 1423272110
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:22:00 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:21:55 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272115.7234
+    'REQUEST_TIME' => 1423272115
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:22:19 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:22:17 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272137.2996
+    'REQUEST_TIME' => 1423272137
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:22:44 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:22:42 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272162.3998
+    'REQUEST_TIME' => 1423272162
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:22:50 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:22:46 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272166.2883
+    'REQUEST_TIME' => 1423272166
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2015-02-07 08:22:58 [-][-][-][error][yii\base\ErrorException:2] exception 'yii\base\ErrorException' with message 'The use statement with non-compound name 'yii' has no effect' in E:\xampp\htdocs\dhdc\console\migrations\m150207_010207_up_structure.php:3
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\base\ErrorHandler->handleError(2, 'The use stateme...', 'E:\\xampp\\htdocs...', 3, Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\MigrateController.php(116): yii\console\controllers\MigrateController::createMigration()
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(488): yii\console\controllers\MigrateController->createMigration('m150207_010207_...')
+#3 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(126): yii\console\controllers\BaseMigrateController->migrateUp('m150207_010207_...')
+#4 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#5 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\InlineAction.php(55): call_user_func_array(Array, Array)
+#6 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Controller.php(151): yii\base\InlineAction->runWithParams(Array)
+#7 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Controller.php(91): yii\base\Controller->runAction('', Array)
+#8 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php(455): yii\console\Controller->runAction('', Array)
+#9 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(161): yii\base\Module->runAction('migrate', Array)
+#10 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(137): yii\console\Application->runAction('migrate', Array)
+#11 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#12 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#13 {main}
+2015-02-07 08:22:57 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\UTEHN\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'UTEHN-NB'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\UTEHN'
+    'LOCALAPPDATA' => 'C:\\Users\\UTEHN\\AppData\\Local'
+    'LOGONSERVER' => '\\\\UTEHN-NB'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\xampp\\php\\;E:\\composer;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;.;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 42 Stepping 7, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '2a07'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\UTEHN\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'UTEHN-NB'
+    'USERNAME' => 'UTEHN'
+    'USERPROFILE' => 'C:\\Users\\UTEHN'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1423272177.0431
+    'REQUEST_TIME' => 1423272177
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
