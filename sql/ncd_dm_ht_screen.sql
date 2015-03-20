@@ -1,3 +1,4 @@
+#คิวรี่ very load 
 set @start='2014-10-01';
 set @end='2015-03-31';
 set @bdg_date = '2014-09-30';
@@ -66,6 +67,4 @@ where  t.hospcode = h.hoscode
 where r.hospcode = h.hoscode
 ) as DMresult 
 
-from chospital_amp h
-where h.provcode = '65' and h.distcode = '01' and hostype  in ('03','04','05','07','08','09','12','13')
-order by distcode,hoscode asc) as ncdscreen_all;
+from chospital_amp h) as ncdscreen_all;
