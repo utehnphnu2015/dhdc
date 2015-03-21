@@ -6,11 +6,11 @@ $this->params['breadcrumbs'][] = 'รายงาน Individual ด้วย sti
 <?php
 
 
-$rpt_name1= 'rpt1.mrt';
-$route1 = "http://localhost:8080/dhdc/?report=$rpt_name1&" . http_build_query(['h' =>'03','date1'=>'2014-09-30','date2'=>date('Y-m-d')]);
+$rpt_name1= 'hospital.mrt';
+$route1 = "http://localhost:8080/custom/gen.jsp?report=$rpt_name1&" . http_build_query(['h' =>'03','date1'=>'2014-09-30','date2'=>date('Y-m-d')]);
 
 $rpt_name2= 'newborn2500.mrt';
-$route2 = "http://localhost:8080/dhdc/?report=$rpt_name2&" . http_build_query(['start'=>'2014-09-30','end'=>date('Y-m-d')]);
+$route2 = "http://localhost:8080/custom/gen.jsp?report=$rpt_name2&" . http_build_query(['start'=>'2014-09-30','end'=>date('Y-m-d')]);
 
 
 ?>
