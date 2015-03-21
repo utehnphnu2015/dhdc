@@ -25,12 +25,11 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     protected function run_sys_count_all($ym) {
-      
+
         $sql = "call cal_sys_count_all($ym)";
         $this->exec_sql($sql);
-        
     }
-    
+
     public function actionIndex() {
         $sql = "show processlist;";
         $rawData = $this->query_all($sql);
@@ -50,8 +49,8 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionFilecount() {
-        
-          //$this->call("start_process",NULL);
+
+        //$this->call("start_process",NULL);
 
         $this->call("merge_newborncare", NULL);
         $sql = "truncate sys_count_all";
@@ -63,7 +62,7 @@ class ExecuteController extends \yii\web\Controller {
                 $this->run_sys_count_all($m->month);
             }
         }
-          //$this->call("end_process",NULL);
+        //$this->call("end_process",NULL);
     }
 
     public function actionProcessreport() {
@@ -73,7 +72,7 @@ class ExecuteController extends \yii\web\Controller {
             //$running->is_running = 'true';
             //$running->update();
             //ใส่  store;
-             $this->call("start_process",NULL);
+            $this->call("start_process", NULL);
 
             $bdg = '2014-09-30';
             $model = \backend\models\Sysconfigmain::find()->one();
@@ -82,7 +81,9 @@ class ExecuteController extends \yii\web\Controller {
             }
             $bdg = "'" . $bdg . "'";
 
+
             $this->call("merge_newborncare", NULL);
+            $this->call("clear_import_not_success", NULL);
             $this->call("clear_null_hospcode", NULL);
             $this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
@@ -109,19 +110,19 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_visit_oldman", $y);
 
             //รายงานแผนไทย-knott
-            $this->call("cal_rpt_panth_visit_ratio",$y-1);
-            $this->call("cal_rpt_panth_visit_ratio",$y);
-            $this->call("cal_rpt_panth_drug_value",$y-1);
-            $this->call("cal_rpt_panth_drug_value",$y);
-            $this->call("cal_rpt_cervical_cancer_screening",$y-1);
-            $this->call("cal_rpt_cervical_cancer_screening",$y);
-            
-            
-             $this->call("end_process",NULL);
+            $this->call("cal_rpt_panth_visit_ratio", $y - 1);
+            $this->call("cal_rpt_panth_visit_ratio", $y);
+            $this->call("cal_rpt_panth_drug_value", $y - 1);
+            $this->call("cal_rpt_panth_drug_value", $y);
+            $this->call("cal_rpt_cervical_cancer_screening", $y - 1);
+            $this->call("cal_rpt_cervical_cancer_screening", $y);
+
+
+            $this->call("end_process", NULL);
             //
             //จบใส่ store
             //$running->is_running = 'false';
-           // $running->update();
+            // $running->update();
         }
     }
 

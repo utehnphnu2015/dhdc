@@ -71,9 +71,13 @@ class SyssettimeController extends Controller {
             ON SCHEDULE EVERY '$days' DAY
             STARTS '$date $time'
             DO BEGIN\n\n";
+            
             $sql .= $this->call("start_process", NULL);
 
-            $sql .= $this->call("merge_newborncare",NULL);
+            $sql .= $this->call("clear_import_not_success", NULL);
+            $sql .= $this->call("clear_null_hospcode", NULL);
+
+            $sql .= $this->call("merge_newborncare", NULL);
             $sql .= $this->call("cal_chart_dial_1", $bdg);
             $sql .= $this->call("cal_chart_dial_2", $bdg);
             $sql .= $this->call("cal_chart_dial_3", $bdg);
@@ -97,15 +101,15 @@ class SyssettimeController extends Controller {
             $sql .=$this->call("cal_rpt_visit_oldman", $y);
 
             //รายงานแผนไทย-knott
-            $sql .=$this->call("cal_rpt_panth_visit_ratio",$y - 1);
-            $sql .=$this->call("cal_rpt_panth_visit_ratio",$y);
-            $sql .=$this->call("cal_rpt_panth_drug_value",$y - 1);
-            $sql .=$this->call("cal_rpt_panth_drug_value",$y);
-            $sql .=$this->call("cal_rpt_cervical_cancer_screening",$y - 1);
-            $sql .=$this->call("cal_rpt_cervical_cancer_screening",$y);
+            $sql .=$this->call("cal_rpt_panth_visit_ratio", $y - 1);
+            $sql .=$this->call("cal_rpt_panth_visit_ratio", $y);
+            $sql .=$this->call("cal_rpt_panth_drug_value", $y - 1);
+            $sql .=$this->call("cal_rpt_panth_drug_value", $y);
+            $sql .=$this->call("cal_rpt_cervical_cancer_screening", $y - 1);
+            $sql .=$this->call("cal_rpt_cervical_cancer_screening", $y);
 
 
-            //
+            //จบ ใส่ store
 
             $sql .= $this->call("end_process", NULL);
 
