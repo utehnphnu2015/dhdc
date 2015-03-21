@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = 'มูลค่าการจ่ายยา�
         </div>
     </form>
 </div>
+
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?=$sql ?></div>
 
