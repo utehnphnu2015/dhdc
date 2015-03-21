@@ -1,7 +1,6 @@
 <?php
 
 use miloschuman\highcharts\Highcharts;
-
 ?>
 
 <div style="display: none">
@@ -11,8 +10,8 @@ use miloschuman\highcharts\Highcharts;
             'highcharts-more', // enables supplementary chart types (gauge, arearange, columnrange, etc.)
             'modules/exporting', // adds Exporting button/menu to chart
             //'themes/grid'        // applies global 'grid' theme to all charts
-             'highcharts-3d',
-            ]
+            'highcharts-3d',
+        ]
     ]);
     ?>
 </div>
@@ -20,7 +19,8 @@ use miloschuman\highcharts\Highcharts;
 <div id="container"></div>
 <?php
 $this->registerJs("
-    $(function () {
+    
+    $(function () {    
     $('#container').highcharts({
         chart: {
             type: 'pie',
@@ -30,6 +30,7 @@ $this->registerJs("
                 beta: 0
             }
         },
+        credits:{'enabled':false},
         title: {
             text: 'Browser market shares at a specific website, 2014'
         },
@@ -66,6 +67,6 @@ $this->registerJs("
         }]
     });
 });
-");
+", yii\web\View::POS_END);
 
 ?>
