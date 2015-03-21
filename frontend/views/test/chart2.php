@@ -7,7 +7,7 @@ use miloschuman\highcharts\Highcharts;
         'scripts' => [
             'highcharts-more', // enables supplementary chart types (gauge, arearange, columnrange, etc.)
             //'modules/exporting', // adds Exporting button/menu to chart
-            //'themes/grid',       // applies global 'grid' theme to all charts
+            'themes/grid',       // applies global 'grid' theme to all charts
             'highcharts-3d',
             'modules/drilldown'
         ]
