@@ -113,6 +113,9 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_panth_visit_ratio",$y);
             $this->call("cal_rpt_panth_drug_value",$y-1);
             $this->call("cal_rpt_panth_drug_value",$y);
+            $this->call("cal_rpt_cervical_cancer_screening",$y-1);
+            $this->call("cal_rpt_cervical_cancer_screening",$y);
+            
             
              $this->call("end_process",NULL);
             //
