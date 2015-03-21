@@ -23,6 +23,10 @@ class TestController extends \yii\web\Controller {
      public function actionChart2() {
         return $this->render('chart2');
     }
+    
+    public function actionChart3(){
+        return $this->render('chart3');
+    }
 
     public function actionMap1() {
 
