@@ -46,17 +46,17 @@ $this->title="DHDC";
         $y = substr($y, 2, 2);
         $py = $y - 1;
 
-        echo yii\grid\GridView::widget([
-        //echo \kartik\grid\GridView::widget([
+        //echo yii\grid\GridView::widget([
+        echo \kartik\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            /*'responsive' => true,
+            'responsive' => true,
             'hover' => true,
              'floatHeader' => true,
               'panel' => [
               'before' => '',
               'type' => \kartik\grid\GridView::TYPE_SUCCESS,
               'after' => 'โดย ' . $dev
-              ], */
+              ], 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -69,59 +69,59 @@ $this->title="DHDC";
             ],
             [
                 'attribute' => 'target',
-                'header' => 'เป้าหมาย (คน)'
+                'header' => 'เป้าหมาย<br>(คน)'
             ],
             [
                 'attribute' => 'pt_all',
-                'header' => 'ผลงานทั้งหมด (คน)'
+                'header' => 'ผลงานทั้งหมด<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m10',
-                'header' => 'ผลงาน<br>ตุลาคม (คน)'
+                'header' => 'ผลงาน<br>ต.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m11',
-                'header' => 'ผลงาน<br>พฤศจิกายน (คน)'
+                'header' => 'ผลงาน<br>พ.ย.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m12',
-                'header' => 'ผลงาน<br>ธันวาคม (คน)'
+                'header' => 'ผลงาน<br>ธ.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m01',
-                'header' => 'ผลงาน<br>มกราคม (คน)'
+                'header' => 'ผลงาน<br>ม.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m02',
-                'header' => 'ผลงาน<br>กุมภาพันธ์ (คน)'
+                'header' => 'ผลงาน<br>ก.พ.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m03',
-                'header' => 'ผลงาน<br>มีนาคม (คน)'
+                'header' => 'ผลงาน<br>มี.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m04',
-                'header' => 'ผลงาน<br>เมษายน (คน)'
+                'header' => 'ผลงาน<br>เม.ย.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m05',
-                'header' => 'ผลงาน<br>พฤษภาคม (คน)'
+                'header' => 'ผลงาน<br>พ.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m06',
-                'header' => 'ผลงาน<br>มิถุนายน (คน)'
+                'header' => 'ผลงาน<br>มิ.ย.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m07',
-                'header' => 'ผลงาน<br>กรกฎาคม (คน)'
+                'header' => 'ผลงาน<br>ก.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m08',
-                'header' => 'ผลงาน<br>สิงหาคม (คน)'
+                'header' => 'ผลงาน<br>ส.ค.<br>(คน)'
             ],
             [
                 'attribute' => 'pt_m09',
-                'header' => 'ผลงาน<br>กันยายน (คน)'
+                'header' => 'ผลงาน<br>ก.ย.<br>(คน)'
             ],
             ],
             
