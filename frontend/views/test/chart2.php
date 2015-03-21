@@ -1,5 +1,4 @@
 <?php
-
 use miloschuman\highcharts\Highcharts;
 ?>
 <div style="display: none">
@@ -15,49 +14,45 @@ use miloschuman\highcharts\Highcharts;
     ]);
     ?>
 </div>
-
 <div id="container"></div>
 <?php
-$main = "{
-                name: 'Animals',
-                y: 5,
-                drilldown: 'animals'
-            }, {
-                name: 'Fruits',
-                y: 2,
-                drilldown: 'fruits'
-            }, {
-                name: 'Cars',
-                y: 4,
-                drilldown: 'cars'
-            }";
+$sql = "SELECT h.hoscode,h.hosname
+,(select COUNT(DISTINCT p.HOSPCODE,p.PID) from person p where p.HOSPCODE = h.hoscode ) as total
+ from chospital_amp h";
+$rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
-$sub = "  {                
-                id: 'animals',
-                name: 'animals',
-                data: [
-                    ['Cats', 4],
-                    ['Dogs', 2],
-                    ['Cows', 1],
-                    ['Sheep', 2],
-                    ['Pigs', 1]
-                ]
-            }, {
-                id: 'fruits',
-                 name: 'fruits',
-                data: [
-                    ['Apples', 4],
-                    ['Oranges', 2]
-                ]
-            }, {
-                id: 'cars',
-                name: 'cars',
-                data: [
-                    ['Toyota', 4],
-                    ['Opel', 2],
-                    ['Volkswagen', 2]
-                ]
-            }";
+$main_data=[];
+foreach ($rawData as $data) {   
+    $main_data[] = [ 'name' => $data['hosname'], 'y' => $data['total']*1, 'drilldown' => $data['hoscode']];    
+}
+$main = json_encode($main_data);
+
+$sql = "SELECT h.hoscode,h.hosname
+,(select COUNT(DISTINCT p.HOSPCODE,p.PID) from person p 
+where p.HOSPCODE = h.hoscode and p.TYPEAREA=1) as type1
+,(select COUNT(DISTINCT p.HOSPCODE,p.PID) from person p 
+where p.HOSPCODE = h.hoscode and p.TYPEAREA=2) as type2
+,(select COUNT(DISTINCT p.HOSPCODE,p.PID) from person p 
+where p.HOSPCODE = h.hoscode and p.TYPEAREA=3) as type3
+,(select COUNT(DISTINCT p.HOSPCODE,p.PID) from person p 
+where p.HOSPCODE = h.hoscode and p.TYPEAREA=4) as type4
+ from chospital_amp h";
+
+$rawData = Yii::$app->db->createCommand($sql)->queryAll();
+
+$sub_data=[];
+foreach ($rawData as $data) {
+   
+    $sub_data[] = [
+    'id' => $data['hoscode'],
+    'name' => $data['hosname'],
+    'data' => [['type1',$data['type1']*1],['type2', $data['type2']*1],['type3',$data['type3']*1],['type4',$data['type4']*1]]
+];
+    
+}
+
+$sub = json_encode($sub_data);
+
 $this->registerJs("$(function () {
 
     $('#container').highcharts({
@@ -65,10 +60,15 @@ $this->registerJs("$(function () {
             type: 'column'
         },
         title: {
-            text: 'Basic drilldown'
+            text: 'แผนภูมิแท่งเปรียบเทียบประชากร'
         },
         xAxis: {
             type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: '<b>คน</b>'
+            },
         },
 
         legend: {
@@ -86,17 +86,15 @@ $this->registerJs("$(function () {
 
         series: [
         {
-            name: 'Things',
+            name: 'ประชากร',
             colorByPoint: true,
-            data: [
-                $main
-            ]
+            data:$main
+            
         }
         ],
         drilldown: {
-            series: [
-                $sub
-            ]
+            series:$sub
+            
         }
     });
 });", yii\web\View::POS_END);
