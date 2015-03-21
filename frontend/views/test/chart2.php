@@ -19,10 +19,9 @@ use miloschuman\highcharts\Highcharts;
 <?php
 $this->registerJs("$(function () {
 
-    // Create the chart
     $('#container').highcharts({
         chart: {
-            type: 'column'
+            type: 'pie'
         },
         title: {
             text: 'Basic drilldown'
