@@ -1,4 +1,5 @@
 <?php
+
 use miloschuman\highcharts\Highcharts;
 ?>
 <div style="display: none">
@@ -7,7 +8,7 @@ use miloschuman\highcharts\Highcharts;
         'scripts' => [
             'highcharts-more', // enables supplementary chart types (gauge, arearange, columnrange, etc.)
             //'modules/exporting', // adds Exporting button/menu to chart
-            //'themes/grid',        // applies global 'grid' theme to all charts
+            //'themes/grid',       // applies global 'grid' theme to all charts
             'highcharts-3d',
             'modules/drilldown'
         ]
@@ -17,36 +18,7 @@ use miloschuman\highcharts\Highcharts;
 
 <div id="container"></div>
 <?php
-$this->registerJs("$(function () {
-
-    $('#container').highcharts({
-        chart: {
-            type: 'pie'
-        },
-        title: {
-            text: 'Basic drilldown'
-        },
-        xAxis: {
-            type: 'category'
-        },
-
-        legend: {
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-
-        series: [{
-            name: 'Things',
-            colorByPoint: true,
-            data: [{
+$main = "{
                 name: 'Animals',
                 y: 5,
                 drilldown: 'animals'
@@ -58,11 +30,11 @@ $this->registerJs("$(function () {
                 name: 'Cars',
                 y: 4,
                 drilldown: 'cars'
-            }]
-        }],
-        drilldown: {
-            series: [{
+            }";
+
+$sub = "  {                
                 id: 'animals',
+                name: 'animals',
                 data: [
                     ['Cats', 4],
                     ['Dogs', 2],
@@ -72,20 +44,61 @@ $this->registerJs("$(function () {
                 ]
             }, {
                 id: 'fruits',
+                 name: 'fruits',
                 data: [
                     ['Apples', 4],
                     ['Oranges', 2]
                 ]
             }, {
                 id: 'cars',
+                name: 'cars',
                 data: [
                     ['Toyota', 4],
                     ['Opel', 2],
                     ['Volkswagen', 2]
                 ]
-            }]
+            }";
+$this->registerJs("$(function () {
+
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Basic drilldown'
+        },
+        xAxis: {
+            type: 'category'
+        },
+
+        legend: {
+            enabled: true
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+
+        series: [
+        {
+            name: 'Things',
+            colorByPoint: true,
+            data: [
+                $main
+            ]
+        }
+        ],
+        drilldown: {
+            series: [
+                $sub
+            ]
         }
     });
-});",  yii\web\View::POS_END);
+});", yii\web\View::POS_END);
 ?>
 
