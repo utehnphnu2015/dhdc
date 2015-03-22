@@ -17,6 +17,7 @@ $resultData = [
 
 function filter($item) {
     $mailfilter = Yii::$app->request->getQueryParam('filteremail', '');
+    
     if (strlen($mailfilter) > 0) {
         if (strpos($item['email'], $mailfilter) != false) {
             return true;
@@ -47,6 +48,7 @@ $dataProvider = new ArrayDataProvider([
 echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'panel'=>['before'=>''],
 
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
