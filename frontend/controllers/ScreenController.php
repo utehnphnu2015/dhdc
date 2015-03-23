@@ -145,7 +145,13 @@ order by hoscode asc;
         ]);
     }
     
-    public function actionReport3() {
+    public function actionIndivreport2($hospcode=null){
+        
+        
+        
+    }
+
+        public function actionReport3() {
 
         $selyear = date('Y');
 
