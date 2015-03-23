@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'การคัดกรอง', 'url' => ['screen/index']];
-$this->params['breadcrumbs'][] = 'ความครอบคลุมการตรวจคัดกรองมะเร็งปากมดลูกในสตรี 30-60 ปี';
+$this->params['breadcrumbs'][] = 'ความครอบคลุมการตรวจคัดกรองมะเร็งเต้านมในสตรี 30-60 ปี';
 $this->title="DHDC";
 ?>
 

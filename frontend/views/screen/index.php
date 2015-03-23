@@ -22,6 +22,12 @@
     echo \yii\helpers\Html::a('2) ความครอบคลุมการตรวจคัดกรองมะเร็งปากมดลูกในสตรี 30-60 ปี', ['screen/report2']);
     ?>
 </p>
+<p>
+    <?php
+    echo \yii\helpers\Html::a('3) ความครอบคลุมการตรวจคัดกรองมะเร็งเต้านมในสตรี 30-60 ปี', ['screen/report3']);
+    ?>
+</p>
+
 
 
 <div class="footerrow" style="padding-top: 60px">
