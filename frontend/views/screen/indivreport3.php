@@ -29,6 +29,7 @@ $searchModel = ['result' => Yii::$app->request->getQueryParam('$filterresult', '
 $dataProvider = new ArrayDataProvider([
 
     'allModels' => $filteredData,
+    'pagination' => false,
     'sort' => [
         'attributes' => count($rawData[0]) > 0 ? array_keys($rawData[0]) : array()
         ]]);
