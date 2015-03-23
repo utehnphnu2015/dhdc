@@ -18,7 +18,12 @@ class TestController extends \yii\web\Controller {
     }
 
     public function actionRpt2() {
-        return $this->render('rpt2');
+        $sql = "select cid ,name,lname,sex from person limit 100 ";
+
+$rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        return $this->render('rpt2',[
+            'rawData'=>$rawData
+        ]);
     }
 
     public function actionChart1() {

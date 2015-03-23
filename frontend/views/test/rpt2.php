@@ -4,15 +4,12 @@ use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 
-$sql = "select cid ,name,lname,sex from person limit 100 ";
 
-$rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
 $filtersex = Yii::$app->request->getQueryParam('filtersex', '');
 
 function filter($sex='') {
-    $filtersex = Yii::$app->request->getQueryParam('filtersex', '');
-  
+    $filtersex = Yii::$app->request->getQueryParam('filtersex', '');  
 
     if (strlen($filtersex) > 0) {
         if (strpos($sex['sex'], $filtersex) !== false) {
@@ -26,7 +23,6 @@ function filter($sex='') {
    
 }
 $filteredData = array_filter($rawData, 'filter');
-
 $searchModel = ['sex' => $filtersex];
 
 $dataProvider = new ArrayDataProvider([
