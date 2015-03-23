@@ -39,6 +39,7 @@ echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'panel' => ['before' => ''],
+    'floatHeader' => true,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         'hospcode',

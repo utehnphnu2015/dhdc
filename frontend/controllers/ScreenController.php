@@ -149,44 +149,7 @@ order by hoscode asc;
             throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
         }
 
-        $sql = "select p.hospcode,p.pid,concat(cp.prename,p.name,' ',p.lname) as fullname,
-if(p.sex=1,'ชาย','หญิง') as sex,
-TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
-'y' as result
-from person p
-LEFT JOIN cprename cp on cp.id_prename=p.prename 
-LEFT JOIN diagnosis_opd d on d.PID = p.PID and d.HOSPCODE = p.HOSPCODE 
-where p.typearea in ('1', '3') and p.nation ='099' 
-and (TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) 
-and p.sex = '2' and p.HOSPCODE=$hospcode
-and d.DIAGCODE  in ('Z014','Z124')
-
-UNION ALL
-
-select a.hospcode,a.pid,a.fullname,a.sex,a.age_y,'n' as result from (
-select p.hospcode,p.pid,concat(cp.prename,p.name,' ',p.lname) as fullname,
-if(p.sex=1,'ชาย','หญิง') as sex,
-TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) as age_y
-from person p
-LEFT JOIN cprename cp on cp.id_prename=p.prename  
-where p.typearea in ('1', '3') and p.nation ='099' 
-and (TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) 
-and p.sex = '2' and p.HOSPCODE=$hospcode) a LEFT JOIN (
-
-select p.hospcode,p.pid,concat(cp.prename,p.name,' ',p.lname) as fullname,
-if(p.sex=1,'ชาย','หญิง') as sex,
-TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) as age_y
-from person p
-LEFT JOIN cprename cp on cp.id_prename=p.prename 
-LEFT JOIN diagnosis_opd d on d.PID = p.PID and d.HOSPCODE = p.HOSPCODE 
-where p.typearea in ('1', '3') and p.nation ='099' 
-and (TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) 
-and p.sex = '2' and p.HOSPCODE=$hospcode
-and d.DIAGCODE  in ('Z014','Z124')) b
-
-on a.pid = b.pid where b.pid is NULL
-
-ORDER BY pid asc";
+        $sql = "select * from rpt_indiv_screen_report2 where selyear=$selyear and hospcode=$hospcode group by pid";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();

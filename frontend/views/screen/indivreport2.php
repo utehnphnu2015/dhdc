@@ -1,3 +1,4 @@
+
 <a href="#" id="btn_sql">ชุดคำสั่ง</a>
 <div id="sql" style="display: none"><?= $sql ?></div>
 <?php
@@ -9,6 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => 'การคัดกรอง', '
 $this->params['breadcrumbs'][] = ['label' => 'ความครอบคลุมการตรวจคัดกรองมะเร็งปากมดลูกในสตรี 30-60 ปี', 'url' => ['screen/report2']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
+if(!isset($rawData[0])){
+    return;
+}
 
 function filter($col) {
     $filterresult = Yii::$app->request->getQueryParam('filterresult', '');
@@ -39,6 +43,7 @@ echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'panel' => ['before' => ''],
+    'floatHeader' => true,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         'hospcode',
