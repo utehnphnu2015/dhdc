@@ -17,14 +17,19 @@ class TestController extends \yii\web\Controller {
         return $this->render('rpt1');
     }
 
+    public function actionRpt2() {
+        return $this->render('rpt2');
+    }
+
     public function actionChart1() {
         return $this->render('chart1');
     }
-     public function actionChart2() {
+
+    public function actionChart2() {
         return $this->render('chart2');
     }
-    
-    public function actionChart3(){
+
+    public function actionChart3() {
         return $this->render('chart3');
     }
 
@@ -41,9 +46,11 @@ class TestController extends \yii\web\Controller {
         $rawdata = \Yii::$app->db2->createCommand("select * from test2")->execute();
         print_r($rawdata);
     }
-    
-    public function actionFilter(){
-       
+
+    public function actionFilter() {
+
+      
+
         return $this->render('filter');
     }
 
