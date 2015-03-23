@@ -146,6 +146,12 @@ order by hoscode asc;
     }
     
     public function actionIndivreport2($hospcode=null,$selyear='2015'){
+        
+       $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+       if($role==99){
+           throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+       }
+        
         $sql = "select person.hospcode ,person.pid ,concat(pre.prename,person.name,' ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
 TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
 if(d.DIAGCODE in ('Z014','Z124'),'y','n') as result
