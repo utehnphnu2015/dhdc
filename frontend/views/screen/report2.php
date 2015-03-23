@@ -65,7 +65,13 @@ $this->title="DHDC";
             ],
             [
                 'attribute' => 'hospname',
-                'label' => 'สถานบริการ'
+                'label' => 'สถานบริการ',
+                'format' => 'raw',
+                'value'=>function($model){
+                    return Html::a(Html::encode($model['hospname']), ['screen/indivreport2','hospcode'=>$model['hospcode']]);
+                
+                    
+                }
             ],
             [
                 'attribute' => 'percentage',
