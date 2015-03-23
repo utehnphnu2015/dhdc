@@ -6,11 +6,8 @@ use yii\helpers\Html;
 
 
 
-$filtersex = Yii::$app->request->getQueryParam('filtersex', '');
-
-function filter($sex='') {
-    $filtersex = Yii::$app->request->getQueryParam('filtersex', '');  
-
+function filter($sex) {
+    $filtersex = Yii::$app->request->getQueryParam('filtersex', ''); 
     if (strlen($filtersex) > 0) {
         if (strpos($sex['sex'], $filtersex) !== false) {
             return true;
@@ -23,7 +20,7 @@ function filter($sex='') {
    
 }
 $filteredData = array_filter($rawData, 'filter');
-$searchModel = ['sex' => $filtersex];
+$searchModel = ['sex' => Yii::$app->request->getQueryParam('filtersex', '')];
 
 $dataProvider = new ArrayDataProvider([
 
