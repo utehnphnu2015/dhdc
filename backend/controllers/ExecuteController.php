@@ -1,6 +1,7 @@
 <?php
 
 namespace backend\controllers;
+use backend\models\ChospitalAmp;
 
 class ExecuteController extends \yii\web\Controller {
 
@@ -10,6 +11,14 @@ class ExecuteController extends \yii\web\Controller {
             $sql = "call " . $store_name . "(" . $arg . ");";
         } else {
             $sql = "call " . $store_name . "();";
+        }
+        $this->exec_sql($sql);
+    }
+
+    protected function call2($store_name, $arg1 = NULL, $arg2 = NULL) {
+        $sql = "";
+        if ($arg1 != NULL and $arg2 != NULL) {
+            $sql = "call  $store_name ($arg1,$arg2);";
         }
         $this->exec_sql($sql);
     }
@@ -25,12 +34,11 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     protected function run_sys_count_all($ym) {
-      
+
         $sql = "call cal_sys_count_all($ym)";
         $this->exec_sql($sql);
-        
     }
-    
+
     public function actionIndex() {
         $sql = "show processlist;";
         $rawData = $this->query_all($sql);
@@ -50,8 +58,8 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionFilecount() {
-        
-          //$this->call("start_process",NULL);
+
+        //$this->call("start_process",NULL);
 
         $this->call("merge_newborncare", NULL);
         $sql = "truncate sys_count_all";
@@ -63,7 +71,7 @@ class ExecuteController extends \yii\web\Controller {
                 $this->run_sys_count_all($m->month);
             }
         }
-          //$this->call("end_process",NULL);
+        //$this->call("end_process",NULL);
     }
 
     public function actionProcessreport() {
@@ -73,7 +81,7 @@ class ExecuteController extends \yii\web\Controller {
             //$running->is_running = 'true';
             //$running->update();
             //ใส่  store;
-             $this->call("start_process",NULL);
+            $this->call("start_process", NULL);
 
             $bdg = '2014-09-30';
             $model = \backend\models\Sysconfigmain::find()->one();
@@ -109,21 +117,29 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_visit_oldman", $y);
 
             //รายงานแผนไทย-knott
-            $this->call("cal_rpt_panth_visit_ratio",$y-1);
-            $this->call("cal_rpt_panth_visit_ratio",$y);
-            $this->call("cal_rpt_panth_drug_value",$y-1);
-            $this->call("cal_rpt_panth_drug_value",$y);
-            $this->call("cal_rpt_cervical_cancer_screening",$y-1);
-            $this->call("cal_rpt_cervical_cancer_screening",$y);
-            $this->call("cal_rpt_breast_cancer_screening",$y-1);
-            $this->call("cal_rpt_breast_cancer_screening",$y);
+            $this->call("cal_rpt_panth_visit_ratio", $y - 1);
+            $this->call("cal_rpt_panth_visit_ratio", $y);
+            $this->call("cal_rpt_panth_drug_value", $y - 1);
+            $this->call("cal_rpt_panth_drug_value", $y);
+            $this->call("cal_rpt_cervical_cancer_screening", $y - 1);
+            $this->call("cal_rpt_cervical_cancer_screening", $y);
+            $this->call("cal_rpt_breast_cancer_screening", $y - 1);
+            $this->call("cal_rpt_breast_cancer_screening", $y);
+
+            //รายงาน indiv
+            $hos = ChospitalAmp::find()->all();
+            foreach ($hos as $value) {
+                $hospcode = $value->hoscode;
+                $this->call2("cal_indiv_screen_report2", "2015", $hospcode);
+            }
             
             
-             $this->call("end_process",NULL);
+            
+            $this->call("end_process", NULL);
             //
             //จบใส่ store
             //$running->is_running = 'false';
-           // $running->update();
+            // $running->update();
         }
     }
 
