@@ -33,7 +33,7 @@ $dataProvider = new ArrayDataProvider([
 
     'allModels' => $filteredData,
      'sort' => [
-            'attributes' => ['cid', 'name', 'lname','sex'],
+         'attributes' => count($rawData[0])>0?array_keys($rawData[0]):array()
         ],
 ]);
 
@@ -55,7 +55,7 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'sex',            
-            'value' => 'sex',
+            //'value' => 'sex',
             'label'=>'เพศ',
             'filter'=>  Html::dropDownList('filtersex',  isset($_GET['filtersex'])?$_GET['filtersex']:'', [''=>'','1'=>'ชาย','2'=>'หญิง'],['class'=>'form-control'])
         ]
