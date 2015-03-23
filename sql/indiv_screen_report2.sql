@@ -6,7 +6,7 @@ set @hospcode='07579';
 
 select person.hospcode ,person.pid ,pre.prename,person.`NAME`,person.LNAME,if(person.sex=1,'ชาย','หญิง') as sex,
 TIMESTAMPDIFF(YEAR,person.birth,CONCAT((@selyear-1),'-09-30')) as age_y,
-if(d.DIAGCODE in ('Z014','Z124'),'ผ่าน','ไม่ผ่าน') as result
+if(d.DIAGCODE in ('Z014','Z124'),'Y','N') as result
 
 from person  
 LEFT JOIN diagnosis_opd d on person.PID = d.PID and person.HOSPCODE = d.HOSPCODE
