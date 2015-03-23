@@ -41,5 +41,10 @@ class TestController extends \yii\web\Controller {
         $rawdata = \Yii::$app->db2->createCommand("select * from test2")->execute();
         print_r($rawdata);
     }
+    
+    public function actionFilter(){
+       
+        return $this->render('filter');
+    }
 
 }
