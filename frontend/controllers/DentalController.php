@@ -1,0 +1,230 @@
+<?php
+
+namespace frontend\controllers;
+
+use Yii;
+
+class DentalController extends \yii\web\Controller {
+
+    public $enableCsrfValidation = false;
+
+    public function actionIndex() {
+        return $this->render('index');
+    }
+
+    public function actionReport1() { //anc ตรวจสุขภาพช่องปาก
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as num
+from
+anc as a,
+person as p 
+where a.PID = p.PID 
+and p.HOSPCODE = a.HOSPCODE
+and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3') 
+and a.DATE_SERV between '$date1' and '$date2'  
+and p.HOSPCODE=h.hoscode) as target,
+(select
+count(distinct p.CID)
+from
+procedure_opd as pd ,
+anc as a ,
+person as p ,
+dental as d
+where 
+a.PID = p.PID 
+and p.HOSPCODE = a.HOSPCODE 
+and pd.PROCEDCODE='2330011'
+and d.PID=a.PID
+and d.HOSPCODE=a.HOSPCODE 
+and d.SEQ = pd.SEQ  
+and d.PID=pd.PID 
+and d.HOSPCODE = pd.HOSPCODE 
+and a.DATE_SERV between '$date1' and '$date2' 
+and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3')  
+and p.HOSPCODE=h.hoscode) as output
+from
+chospital_amp AS h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report1', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
+
+    public function actionReport2() { //เด็ก 0-2ปี  ตรวจสุขภาพช่องปาก
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "SELECT
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 ) 
+and h.hoscode=p.HOSPCODE ) as numA,
+(select count(distinct p.CID) as nump
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <3 ) 
+and dg.DIAGCODE='Z012'
+and pd.PROCEDCODE='2330011'
+and d.DATE_SERV between '$date1' and '$date2'
+and h.hoscode=p.HOSPCODE ) as numB
+from
+chospital_amp as h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report2', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
+    
+    
+    
+        public function actionReport3() { //เด็ก 0-2ปี  ทา Fluoride
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "SELECT
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2' ) <3 ) 
+#and dg.DIAGCODE='Z012'
+#and pd.PROCEDCODE='2330011'
+and d.NEED_FLUORIDE='1'
+and d.DATE_SERV between '$date1' and '$date2' 
+and h.hoscode=p.HOSPCODE ) as numA,
+(select count(distinct p.CID) as nump
+from person as p,
+dental as d,
+procedure_opd as pd
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2' ) <3 ) 
+and pd.PROCEDCODE in ('2377020','2377021')
+and d.NEED_FLUORIDE='1'
+and d.DATE_SERV between '$date1' and '$date2' 
+and h.hoscode=p.HOSPCODE ) as 'Fluolide'
+from
+chospital_amp as h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report3', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
+
+}

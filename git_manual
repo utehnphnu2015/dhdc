@@ -1,0 +1,12 @@
+[initial DHDC source code]
+1) clone https://github.com/utehnphnu2015/dhdc.git
+2) copy @vender  to DHDC project
+3) copy another dependency file or folder to DHDC project
+
+
+[commit code]
+1)git-commit
+2)git-remote-pull / rebase
+3)git-remote-push
+4)check on https://github.com/utehnphnu2015/dhdc/
+
