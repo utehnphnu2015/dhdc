@@ -56,7 +56,8 @@ echo \kartik\grid\GridView::widget([
         [
             'attribute' => 'sex',            
             'value' => 'sex',
-            'filter'=>  Html::dropDownList('filtersex',  isset($_GET['filtersex'])?$_GET['filtersex']:'', ['1'=>'ชาย','2'=>'หญิง'],['class'=>'form-control'])
+            'label'=>'เพศ',
+            'filter'=>  Html::dropDownList('filtersex',  isset($_GET['filtersex'])?$_GET['filtersex']:'', [''=>'','1'=>'ชาย','2'=>'หญิง'],['class'=>'form-control'])
         ]
     ]
 ]);
