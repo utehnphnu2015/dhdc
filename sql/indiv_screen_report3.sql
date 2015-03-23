@@ -3,7 +3,8 @@
 set @selyear_rep='2015';
 
 
-select person.hospcode ,person.pid ,pre.prename,person.`NAME`,person.LNAME,if(person.sex=1,'ชาย','หญิง') as sex,
+select person.hospcode ,person.pid ,pre.prename,contat(person.name,' ',person.lname) as fullname,
+if(person.sex=1,'ชาย','หญิง') as sex,
 TIMESTAMPDIFF(YEAR,person.birth,CONCAT((@selyear-1),'-09-30')) as age_y,
 if(d.DIAGCODE ='Z123','y','n') as result
 
