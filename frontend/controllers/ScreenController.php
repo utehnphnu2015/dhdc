@@ -1,28 +1,28 @@
 <?php
 
 namespace frontend\controllers;
+
 use yii;
 
-class ScreenController extends \yii\web\Controller
-{
-   public $enableCsrfValidation = false;
-    public function actionIndex()
-    {
+class ScreenController extends \yii\web\Controller {
+
+    public $enableCsrfValidation = false;
+
+    public function actionIndex() {
         return $this->render('index');
     }
-    
-    public function  actionReport1()
-    {
-        $model=  \backend\models\Sysconfigmain::find()->one();
-        $bdg=$model->note2;
+
+    public function actionReport1() {
+        $model = \backend\models\Sysconfigmain::find()->one();
+        $bdg = $model->note2;
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
             $date1 = $_POST['date1'];
             $date2 = $_POST['date2'];
         }
-        
-        $sql="select  h.hoscode as hospcode ,h.hosname as hospname,
+
+        $sql = "select  h.hoscode as hospcode ,h.hosname as hospname,
 (SELECT hos_target from
  (select person.hospcode , count(distinct person.pid) as hos_target from person  
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
@@ -45,8 +45,8 @@ where r.hospcode = h.hoscode
 ) as result 
 from chospital_amp h
 order by distcode,hoscode asc";
-        
-        
+
+
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         } catch (\yii\db\Exception $e) {
@@ -57,19 +57,16 @@ order by distcode,hoscode asc";
             'allModels' => $rawData,
             'pagination' => FALSE,
         ]);
-       
+
         return $this->render('report1', [
-                   
+
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
                     'date1' => $date1,
                     'date2' => $date2
         ]);
-        
-        
-        
     }
-    
+
     public function actionReport2() {
 
         $selyear = date('Y');
@@ -144,14 +141,14 @@ order by hoscode asc;
                     'selyear' => $selyear
         ]);
     }
-    
-    public function actionIndivreport2($hospcode=null,$selyear='2015'){
-        
-       $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
-       if($role==99){
-           throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
-       }
-        
+
+    public function actionIndivreport2($hospcode = null, $selyear = '2015') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
         $sql = "select person.hospcode ,person.pid ,concat(pre.prename,person.name,' ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
 TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
 if(d.DIAGCODE in ('Z014','Z124'),'y','n') as result
@@ -164,26 +161,20 @@ and person.nation ='099'
 and (TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) and sex = 2
 and person.HOSPCODE = $hospcode
 GROUP BY person.HOSPCODE,person.PID";
-        
-         try {
+
+        try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
-        
-         return $this->render('indivreport2', [
+
+        return $this->render('indivreport2', [
                     'rawData' => $rawData,
                     'sql' => $sql,
-                    
         ]);
-
-        
-        
-        
-        
     }
 
-        public function actionReport3() {
+    public function actionReport3() {
 
         $selyear = date('Y');
 
@@ -259,8 +250,14 @@ order by distcode,hoscode asc;
                     'selyear' => $selyear
         ]);
     }
-    
-    public function actionIndivreport3($hospcode=null,$selyear='2015'){
+
+    public function actionIndivreport3($hospcode = null, $selyear = '2015') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
         $sql = "select person.hospcode ,person.pid ,concat(pre.prename,person.name,' ',person.lname) as fullname,
 if(person.sex=1,'ชาย','หญิง') as sex,
 TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
@@ -275,27 +272,20 @@ and (TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) between 30 a
 and person.HOSPCODE = $hospcode
 GROUP BY person.HOSPCODE,person.PID
 ";
-        
+
         #$rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         #return;
-        
-         try {
+
+        try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
-        
-         return $this->render('indivreport3', [
+
+        return $this->render('indivreport3', [
                     'rawData' => $rawData,
                     'sql' => $sql,
-                    
         ]);
-
-        
-        
-        
-        
     }
-    
-    
+
 }
