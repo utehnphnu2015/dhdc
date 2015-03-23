@@ -2,16 +2,20 @@
 
 use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Html;
 
 $sql = "select cid ,name,lname,sex from person limit 100 ";
 
 $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
-function filter($item) {
-    $sexfilter = Yii::$app->request->getQueryParam('filtersex', '');
+$filtersex = Yii::$app->request->getQueryParam('filtersex', '');
 
-    if (strlen($sexfilter) > 0) {
-        if (strpos($item['sex'], $sexfilter) != false) {
+function filter($sex='') {
+    $filtersex = Yii::$app->request->getQueryParam('filtersex', '');
+  
+
+    if (strlen($filtersex) > 0) {
+        if (strpos($sex['sex'], $filtersex) !== false) {
             return true;
         } else {
             return false;
@@ -19,21 +23,19 @@ function filter($item) {
     } else {
         return true;
     }
+   
 }
-
 $filteredData = array_filter($rawData, 'filter');
 
-
-$sexfilter = Yii::$app->request->getQueryParam('filtersex', '');
-$namefilter = Yii::$app->request->getQueryParam('filtername', '');
-
-$searchModel = [ 'name' => $namefilter, 'sex' => $sexfilter];
-
+$searchModel = ['sex' => $filtersex];
 
 $dataProvider = new ArrayDataProvider([
-    //'key'=>'id',
+
     'allModels' => $filteredData,
-        ]);
+     'sort' => [
+            'attributes' => ['cid', 'name', 'lname','sex'],
+        ],
+]);
 
 
 echo \kartik\grid\GridView::widget([
@@ -52,11 +54,12 @@ echo \kartik\grid\GridView::widget([
             'value' => 'lname',
         ],
         [
-            "attribute" => "sex",
-            'filter' => '<input class="form-control" name="filtersex" value="' . $searchModel['sex'] . '" type="text">',
+            'attribute' => 'sex',            
             'value' => 'sex',
+            'filter'=>  Html::dropDownList('filtersex',  isset($_GET['filtersex'])?$_GET['filtersex']:'', ['1'=>'ชาย','2'=>'หญิง'],['class'=>'form-control'])
         ]
     ]
 ]);
+
 
 
