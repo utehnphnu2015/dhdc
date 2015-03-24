@@ -261,19 +261,21 @@ order by distcode,hoscode asc;
             throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
         }
 
-        $sql = "select person.hospcode ,person.pid ,concat(pre.prename,person.name,' ',person.lname) as fullname,
-if(person.sex=1,'ชาย','หญิง') as sex,
-TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
-if(d.DIAGCODE ='Z123','y','n') as result
-
-from person  
-LEFT JOIN diagnosis_opd d on person.PID = d.PID and person.HOSPCODE = d.HOSPCODE
-LEFT JOIN cprename pre on pre.id_prename=person.PRENAME
-where person.typearea in ('1', '3') 
-and person.nation ='099' 
-and (TIMESTAMPDIFF(YEAR,person.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) and sex = 2
-and person.HOSPCODE = $hospcode
-GROUP BY person.HOSPCODE,person.PID
+        $sql = "select p.hospcode,p.pid,concat(cp.prename,p.name,' ',p.lname) as fullname,
+if(p.sex=1,'ชาย','หญิง') as sex,
+TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) as age_y,
+if(p.pid in (select p2.PID
+from person p2
+LEFT JOIN diagnosis_opd d2 on d2.PID = p2.PID and d2.HOSPCODE = p2.HOSPCODE 
+where p2.typearea in ('1', '3') and p2.nation ='099' 
+and (TIMESTAMPDIFF(YEAR,p2.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) 
+and p2.sex = '2' and p2.HOSPCODE=$hospcode
+and d2.DIAGCODE='Z123'),'y','n') as result
+from person p
+LEFT JOIN cprename cp on cp.id_prename=p.prename  
+where p.typearea in ('1', '3') and p.nation ='099' 
+and (TIMESTAMPDIFF(YEAR,p.birth,CONCAT(($selyear-1),'-09-30')) between 30 and 60) 
+and p.sex = '2' and p.HOSPCODE=$hospcode
 ";
 
         #$rawData = \Yii::$app->db->createCommand($sql)->queryAll();
