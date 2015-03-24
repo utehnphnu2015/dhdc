@@ -193,7 +193,7 @@ $this->title = 'DHDC Backend';
                 $route = yii\helpers\Url::to(['site/checkfile','param'=>'value']);
                 ?>
                 <a class="btn btn-success btn-xlarge" href="#" id="btn_indiv"> 
-                    <i class="glyphicon glyphicon-user"></i> รายบุคคล  
+                    <i class="glyphicon glyphicon-user"></i> ประมวลผลรายบุคคล  
                 </a>
 
             </div>
