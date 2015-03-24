@@ -42,6 +42,15 @@ class SyssettimeController extends Controller {
         return $sql;
     }
 
+    protected function call2($store_name, $arg1 = NULL, $arg2 = NULL) {
+        $sql = "";
+        if ($arg1 != NULL and $arg2 != NULL) {
+            $sql = "call $store_name($arg1,$arg2);\n";
+        }
+        //$this->exec_sql($sql);
+        return $sql;
+    }
+
     public function create_event() {
 
         $this->exec_sql("SET GLOBAL event_scheduler = ON;");
@@ -71,7 +80,7 @@ class SyssettimeController extends Controller {
             ON SCHEDULE EVERY '$days' DAY
             STARTS '$date $time'
             DO BEGIN\n\n";
-            
+
             $sql .= $this->call("start_process", NULL);
 
             $sql .= $this->call("clear_import_not_success", NULL);
@@ -107,6 +116,22 @@ class SyssettimeController extends Controller {
             $sql .=$this->call("cal_rpt_panth_drug_value", $y);
             $sql .=$this->call("cal_rpt_cervical_cancer_screening", $y - 1);
             $sql .=$this->call("cal_rpt_cervical_cancer_screening", $y);
+
+
+            //เริ่ม indiv
+            $sql.="#เริ่ม cal_indiv_screen_report2\n";
+            $hos = \backend\models\ChospitalAmp::find()->all();
+            foreach ($hos as $value) {
+                $hospcode = $value->hoscode;
+                $sql.=$this->call2("cal_indiv_screen_report2", "2014", $hospcode);
+            }
+            foreach ($hos as $value) {
+                $hospcode = $value->hoscode;
+                $sql.=$this->call2("cal_indiv_screen_report2", "2015", $hospcode);
+            }
+
+            $sql.="#จบ cal_indiv_screen_report2\n";
+            //จบ indiv
 
 
             //จบ ใส่ store
