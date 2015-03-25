@@ -72,11 +72,13 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'all_visit',
-            'header' => 'รับบริการทุกสิทธิ (ครั้ง)'
+            'header' => 'รับบริการทุกสิทธิ (ครั้ง)',
+            'format'=>['decimal',0]
         ],
         [
             'attribute' => 'uc_visit',
-            'header' => 'สิทธิ UC (ครั้ง)'
+            'header' => 'สิทธิ UC (ครั้ง)',
+            'format'=>['decimal',0]
         ],
     ],
 ]);
