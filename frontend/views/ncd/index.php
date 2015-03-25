@@ -43,6 +43,28 @@ use yii\helpers\Html;
     echo Html::a('6) ผู้ป่วยความดันโลหิตสูงควบคุมความดันโลหิตได้ดี (ปรับ 20150217)', ['ncd/report6']);
     ?>
 </p>
+<p>
+    <?php
+    echo Html::a('7) ผู้ป่วยความดันที่ได้ทำการตรวจไต', ['ncd/report7']);
+    ?>
+</p>
+<p>
+    <?php
+    echo Html::a('8) ผู้ป่วยความดันที่เป็นโรคเบาหวาน', ['ncd/report8']);
+    ?>
+</p>
+<p>
+    <?php
+    echo Html::a('9) ผู้ป่วยความดันที่มารับบริการ', ['ncd/report9']);
+    ?>
+</p>
+<p>
+    <?php
+    echo Html::a('10) ผู้ป่วยความดันที่ควบคุมความดันได้ดี', ['ncd/report10']);
+    ?>
+</p>
+
+
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
