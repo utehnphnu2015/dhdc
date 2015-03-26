@@ -205,6 +205,21 @@ class UploadfortythreeController extends Controller {
         }
     }
     
+      public function actionDetail2($filename) {
+
+        $model = \frontend\models\SysCountImport::find()
+                ->where(['filename' => $filename])
+                ->one();
+        if ($model) {
+
+            return $this->render('detail2', [
+                        'model' => $model,
+            ]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
     public function actionImportall(){
         return $this->render('importall');
     }

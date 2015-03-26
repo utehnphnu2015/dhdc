@@ -297,6 +297,7 @@ class AjaxController extends \yii\web\Controller {
 
         $rootpath = \Yii::getAlias('@webroot') . "/fortythree/";
         $filefortythree = $rootpath . $fortythree;
+        $file_size= filesize($filefortythree);
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
             $zip->extractTo($rootpath);
@@ -313,6 +314,7 @@ class AjaxController extends \yii\web\Controller {
 
         $cfmodel = new SysCountImport();
         $cfmodel->import_date = date('YmdHis');
+       
         $cfmodel->filename = $fortythree;
         $cfmodel->upload_date = $upload_date;
         $cfmodel->upload_time = $upload_time;
@@ -350,6 +352,7 @@ class AjaxController extends \yii\web\Controller {
 
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
+        $upload->file_size = $file_size;
         $fff = explode('_', $fortythree);
         $upload->hospcode = $fff[1];
         $upload->upload_date = date('Ymd');
