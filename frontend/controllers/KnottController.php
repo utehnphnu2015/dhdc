@@ -410,6 +410,162 @@ order by o.hoscode,all_visit desc";
     }
 
 // จบ action 5
+    
+        public function actionPanthai6() {
+
+        $selyear = date('Y');
+
+        if (!empty($_POST['selyear'])) {
+            $selyear = $_POST['selyear'];
+        }
+
+        $sql = "SELECT 
+o.hoscode hospcode,o.hosname,
+IF(e.INSTYPE='0100','สิทธิ UC','สิทธิอื่นๆ') instype,
+year_rep,
+e.pt_all,e.service_all,
+e.pt_m10,e.service_m10,e.pt_m11,e.service_m11,e.pt_m12,e.service_m12,e.pt_m01,e.service_m01,
+e.pt_m02,e.service_m02,e.pt_m03,e.service_m03,e.pt_m04,e.service_m04,e.pt_m05,e.service_m05,
+e.pt_m06,e.service_m06,e.pt_m07,e.service_m07,e.pt_m08,e.service_m08,e.pt_m09,e.service_m09
+FROM chospital_amp o
+LEFT JOIN 
+(
+SELECT 
+e.HOSPCODE, 
+s.INSTYPE,
+s.SERVPLACE,
+$selyear year_rep,
+COUNT(DISTINCT e.PID) pt_all,
+COUNT(DISTINCT e.SEQ) service_all,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (10),e.PID,NULL)) pt_m10,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (10),e.SEQ,NULL)) service_m10,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (11),e.PID,NULL)) pt_m11,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (11),e.SEQ,NULL)) service_m11,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (12),e.PID,NULL)) pt_m12,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (12),e.SEQ,NULL)) service_m12,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (01),e.PID,NULL)) pt_m01,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (01),e.SEQ,NULL)) service_m01,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (02),e.PID,NULL)) pt_m02,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (02),e.SEQ,NULL)) service_m02,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (03),e.PID,NULL)) pt_m03,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (03),e.SEQ,NULL)) service_m03,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (04),e.PID,NULL)) pt_m04,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (04),e.SEQ,NULL)) service_m04,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (05),e.PID,NULL)) pt_m05,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (05),e.SEQ,NULL)) service_m05,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (06),e.PID,NULL)) pt_m06,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (06),e.SEQ,NULL)) service_m06,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (07),e.PID,NULL)) pt_m07,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (07),e.SEQ,NULL)) service_m07,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (08),e.PID,NULL)) pt_m08,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (08),e.SEQ,NULL)) service_m08,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (09),e.PID,NULL)) pt_m09,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (09),e.SEQ,NULL)) service_m09
+FROM 
+(
+SELECT 
+e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV, 
+e.PROCEDCODE, 
+icd.tmtype 
+FROM 
+procedure_opd e 
+LEFT JOIN cicd9ttm_planthai icd ON icd.`code` = e.PROCEDCODE 
+WHERE icd.tmtype in (1,2,3) and DATE(e.DATE_SERV) BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND icd.`code`IS NOT NULL 
+) e 
+LEFT JOIN service s ON s.HOSPCODE = e.HOSPCODE AND s.PID = e.PID AND s.SEQ = e.SEQ 
+GROUP BY e.HOSPCODE,  IF(s.INSTYPE='0100','UC','OTHER') 
+) e ON e.HOSPCODE = o.hoscode  ";
+
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+
+        $sql = "SELECT 
+o.hoscode hospcode,o.hosname,
+IF(e.INSTYPE='0100','สิทธิ UC','สิทธิอื่นๆ') instype,
+year_rep,
+e.pt_all,e.service_all,
+e.pt_m10,e.service_m10,e.pt_m11,e.service_m11,e.pt_m12,e.service_m12,e.pt_m01,e.service_m01,
+e.pt_m02,e.service_m02,e.pt_m03,e.service_m03,e.pt_m04,e.service_m04,e.pt_m05,e.service_m05,
+e.pt_m06,e.service_m06,e.pt_m07,e.service_m07,e.pt_m08,e.service_m08,e.pt_m09,e.service_m09
+FROM chospital_amp o
+LEFT JOIN 
+(
+SELECT 
+e.HOSPCODE, 
+s.INSTYPE,
+s.SERVPLACE,
+$selyear year_rep,
+COUNT(DISTINCT e.PID) pt_all,
+COUNT(DISTINCT e.SEQ) service_all,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (10),e.PID,NULL)) pt_m10,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (10),e.SEQ,NULL)) service_m10,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (11),e.PID,NULL)) pt_m11,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (11),e.SEQ,NULL)) service_m11,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (12),e.PID,NULL)) pt_m12,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (12),e.SEQ,NULL)) service_m12,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (01),e.PID,NULL)) pt_m01,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (01),e.SEQ,NULL)) service_m01,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (02),e.PID,NULL)) pt_m02,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (02),e.SEQ,NULL)) service_m02,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (03),e.PID,NULL)) pt_m03,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (03),e.SEQ,NULL)) service_m03,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (04),e.PID,NULL)) pt_m04,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (04),e.SEQ,NULL)) service_m04,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (05),e.PID,NULL)) pt_m05,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (05),e.SEQ,NULL)) service_m05,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (06),e.PID,NULL)) pt_m06,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (06),e.SEQ,NULL)) service_m06,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (07),e.PID,NULL)) pt_m07,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (07),e.SEQ,NULL)) service_m07,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (08),e.PID,NULL)) pt_m08,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (08),e.SEQ,NULL)) service_m08,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (09),e.PID,NULL)) pt_m09,
+COUNT(DISTINCT IF(MONTH(e.DATE_SERV) IN (09),e.SEQ,NULL)) service_m09
+FROM 
+(
+SELECT 
+e.HOSPCODE, 
+e.PID, 
+e.SEQ, 
+e.DATE_SERV, 
+e.PROCEDCODE, 
+icd.tmtype 
+FROM 
+procedure_opd e 
+LEFT JOIN cicd9ttm_planthai icd ON icd.`code` = e.PROCEDCODE 
+WHERE icd.tmtype in (1,2,3) and DATE(e.DATE_SERV) BETWEEN CONCAT(($selyear-1),'-10-01') AND CONCAT($selyear,'-09-30') 
+AND icd.`code`IS NOT NULL 
+) e 
+LEFT JOIN service s ON s.HOSPCODE = e.HOSPCODE AND s.PID = e.PID AND s.SEQ = e.SEQ 
+GROUP BY e.HOSPCODE,  IF(s.INSTYPE='0100','UC','OTHER') 
+) e ON e.HOSPCODE = o.hoscode ";
+
+        return $this->render('panthai6', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'selyear' => $selyear
+        ]);
+    } //จบ action 6
+
 }
+
+
 
 //จบ controller

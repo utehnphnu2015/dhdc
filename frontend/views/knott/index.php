@@ -1,5 +1,6 @@
 <?php
 /* @var $this yii\web\View */
+$this->title = 'DHDC-รายงานแพทย์แผนไทย';
 ?>
 
 <h3>หมวดรายงาน-แพทย์แผนไทย</h3>
@@ -40,6 +41,12 @@
 <p>
     <?php
     echo \yii\helpers\Html::a('5) รายงานอันดับการจ่ายยาสมุนไพร', ['knott/panthai5']);
+    ?>
+</p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('6) รายงานการให้บริการ นวด อบ ประคบ', ['knott/panthai6']);
     ?>
 </p>
 

@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 $this->params['breadcrumbs'][] = ['label' => 'แพทย์แผนไทย', 'url' => ['knott/index']];
 $this->params['breadcrumbs'][] = 'รายงานสรุปสัดส่วนการให้บริการแพทย์แผนไทย';
+$this->title = 'DHDC-รายงานแพทย์แผนไทย';
 ?>
 
 <div class='well'>
