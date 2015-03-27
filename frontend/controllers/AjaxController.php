@@ -201,7 +201,7 @@ class AjaxController extends \yii\web\Controller {
 
         $filefortythree = "fortythree/$fortythree";
      
-        $file_size = number_format(filesize($filefortythree)/(1024*1024),2);
+        $file_size = number_format(filesize($filefortythree)/(1024*1024),3);
         $file_size = strval($file_size);
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
@@ -304,7 +304,7 @@ class AjaxController extends \yii\web\Controller {
         $rootpath = \Yii::getAlias('@webroot') . "/fortythree/";
         $filefortythree = $rootpath . $fortythree;
         
-        $file_size = number_format(filesize($filefortythree)/(1024*1024),2);
+        $file_size = number_format(filesize($filefortythree)/(1024*1024),3);
         $file_size = strval($file_size);
         
         $zip = new \ZipArchive();
