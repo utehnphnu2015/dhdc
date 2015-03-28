@@ -45,8 +45,7 @@ echo DynaGrid::widget([
 ]);
 ?>
 <button id="save">save</button>
-<?php
-    
+<?php    
     $this->registerJs("
         var chks=[];
         $('#save').click(function () {
@@ -61,8 +60,7 @@ echo DynaGrid::widget([
             alert(chks);
         });
 
-    ");
-    
+    ");  
     
     ?>
   
