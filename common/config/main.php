@@ -8,8 +8,13 @@ return [
         ],
     ],
     'modules' => [
+        'dynagrid' => [
+            'class' => '\kartik\dynagrid\Module',
+        // other settings (refer documentation)
+        ],
         'gridview' => [
-            'class' => '\kartik\grid\Module'
-        ]
+            'class' => '\kartik\grid\Module',
+        // other module settings
+        ],
     ],
 ];
