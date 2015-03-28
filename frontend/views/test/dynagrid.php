@@ -48,14 +48,17 @@ echo DynaGrid::widget([
 <?php
     
     $this->registerJs("
+        var chks=[];
         $('#save').click(function () {
             $('.kv-grid-table').find('tr').each(function () {
                 var row = $(this);
                 if (row.find('input[type=\"checkbox\"]').is(':checked')) 
                 {
-                    alert(row.find('input[type=\"checkbox\"]').val());
+                    //alert(row.find('input[type=\"checkbox\"]').val());
+                    chks.push(row.find('input[type=\"checkbox\"]').val());
                 }
             });
+            alert(chks);
         });
 
     ");
