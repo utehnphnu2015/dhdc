@@ -61,7 +61,7 @@ $rawData = Yii::$app->db->createCommand($sql)->queryAll();
     
     public function actionDynagrid(){
         
-        $sql = "select hospcode,pid,birth,sex,name,lname from person limit 100";
+        $sql = "select hospcode,pid,sex,name,lname from person limit 100";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
         
         return $this->render('dynagrid',[
