@@ -4,6 +4,7 @@ use yii\data\ArrayDataProvider;
 use kartik\dynagrid\DynaGrid;
 use kartik\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\CheckboxColumn;
 ?>
 
 <?php
@@ -22,19 +23,42 @@ $columns = [
     'pid',
     'name',
     'lname',
-    'sex'
+    'sex',
+    [
+        'class' => 'kartik\grid\CheckboxColumn',
+        //'order' => DynaGrid::ORDER_FIX_RIGHT
+    ],
 ];
 
 
 echo DynaGrid::widget([
+   
     'columns' => $columns,
     'storage' => DynaGrid::TYPE_COOKIE,
-    'theme' => 'panel-success',
+    //'theme' => 'panel-success',
     'gridOptions' => [
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'panel' => ['heading' => '<h3 class="panel-title"></h3>'],
     ],
-    'options' => ['id' => 'dynagrid-1'] // a unique identifier is important
+    'options' => ['id' => 'mygrid'] // a unique identifier is important
 ]);
 ?>
+<button id="save">save</button>
+<?php
+    $this->registerJs("
+        $('#save').click(function () {
+            $('.kv-grid-table').find('tr').each(function () {
+                var row = $(this);
+                if (row.find('input[type=\"checkbox\"]').is(':checked')) 
+                {
+                    alert(row.find('input[type=\"checkbox\"]').val());
+                }
+            });
+        });
+
+    ");
+    
+    
+    ?>
+  
