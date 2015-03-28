@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'การคัดกรอง', '
 $this->params['breadcrumbs'][] = ['label' => 'ความครอบคลุมการตรวจคัดกรองมะเร็งปากมดลูกในสตรี 30-60 ปี', 'url' => ['screen/report2']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
-if(!isset($rawData[0])){
+if (!isset($rawData[0])) {
     return;
 }
 
