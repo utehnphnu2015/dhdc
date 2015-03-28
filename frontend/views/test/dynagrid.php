@@ -46,6 +46,7 @@ echo DynaGrid::widget([
 ?>
 <button id="save">save</button>
 <?php
+    
     $this->registerJs("
         $('#save').click(function () {
             $('.kv-grid-table').find('tr').each(function () {
