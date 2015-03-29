@@ -37,6 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'file_name',
                 'format' => 'raw',
                 'value' => function ($data) {
+                    if($data->note3==='import all'){
+                      return Html::a($data->file_name, array('detail2', 'filename' => $data->file_name));  
+                    }
                     return Html::a($data->file_name, array('view', 'id' => $data->id));
                 },
                     ],
