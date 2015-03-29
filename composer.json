@@ -12,7 +12,7 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
@@ -20,15 +20,14 @@
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-icons": "dev-master",
         "miloschuman/yii2-highcharts-widget": "dev-master",
-        "kartik-v/yii2-grid": "*",
-        "kartik-v/yii2-krajee-base": "*",
-        "kartik-v/yii2-mpdf": "*",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-krajee-base": "@dev",
+        "kartik-v/yii2-mpdf": "@dev",
         "kartik-v/yii2-widgets": "*",
-        "kartik-v/dependent-dropdown": "*",
+        "kartik-v/dependent-dropdown": "dev-master",
         "kartik-v/yii2-widget-timepicker": "*",
         "linslin/yii2-curl": "*",
-        "2amigos/yii2-google-maps-library": "*",
-        "kartik-v/yii2-dynagrid": "*"
+        "2amigos/yii2-google-maps-library": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

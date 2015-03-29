@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'การคัดกรอง', '
 $this->params['breadcrumbs'][] = ['label' => 'ความครอบคลุมการตรวจคัดกรองมะเร็งปากมดลูกในสตรี 30-60 ปี', 'url' => ['screen/report2']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
-if (!isset($rawData[0])) {
+if(!isset($rawData[0])){
     return;
 }
 
@@ -56,14 +56,14 @@ echo \kartik\grid\GridView::widget([
             'label' => 'ผลงาน',
             'value' => function($model) {
                 if ($model['result'] === 'y') {
-                    return Html::encode('ผ่านเกณฑ์');
+                    return Html::encode('ผ่าน');
                 } elseif ($model['result'] === 'n') {
                     return Html::encode('ไม่ผ่าน');
                 } else {
                     return Html::encode('NA');
                 }
             },
-            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ผ่านเกณฑ์', 'n' => 'ไม่ผ่าน'], ['class' => 'form-control'])
+            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ผ่าน', 'n' => 'ไม่ผ่าน'], ['class' => 'form-control'])
         ]
     ]
 ]);

@@ -1,11 +1,9 @@
 <?php
-
 /*
  * เปลี่ยน  '/n' เป็น /r/n  ใน LOAD DATA
  * เปลี่ยน  $ext == 'txt'  เป็น  strtolower($ext) == 'txt'
  * message  'admin do import all'  เป็น  'import all'
  */
-
 namespace frontend\controllers;
 
 use yii;
@@ -200,9 +198,6 @@ class AjaxController extends \yii\web\Controller {
         ini_set('max_execution_time', 0);
 
         $filefortythree = "fortythree/$fortythree";
-     
-        $file_size = number_format(filesize($filefortythree)/(1024*1024),3);
-        $file_size = strval($file_size);
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
             $zip->extractTo("fortythree");
@@ -257,7 +252,6 @@ class AjaxController extends \yii\web\Controller {
 
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
-        $upload->file_size = $file_size;
         $fff = explode('_', $fortythree);
         $upload->hospcode = $fff[1];
         $upload->upload_date = date('Ymd');
@@ -303,10 +297,6 @@ class AjaxController extends \yii\web\Controller {
 
         $rootpath = \Yii::getAlias('@webroot') . "/fortythree/";
         $filefortythree = $rootpath . $fortythree;
-        
-        $file_size = number_format(filesize($filefortythree)/(1024*1024),3);
-        $file_size = strval($file_size);
-        
         $zip = new \ZipArchive();
         if ($zip->open($filefortythree) === TRUE) {
             $zip->extractTo($rootpath);
@@ -323,7 +313,6 @@ class AjaxController extends \yii\web\Controller {
 
         $cfmodel = new SysCountImport();
         $cfmodel->import_date = date('YmdHis');
-
         $cfmodel->filename = $fortythree;
         $cfmodel->upload_date = $upload_date;
         $cfmodel->upload_time = $upload_time;
@@ -361,7 +350,6 @@ class AjaxController extends \yii\web\Controller {
 
         $upload = new UploadFortythree;
         $upload->file_name = $fortythree;
-        $upload->file_size = $file_size;
         $fff = explode('_', $fortythree);
         $upload->hospcode = $fff[1];
         $upload->upload_date = date('Ymd');

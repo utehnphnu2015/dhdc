@@ -15,11 +15,6 @@
             ?>
             <tr>
                 <td><div id="<?= $f[1] ?>"><?= $f[1] ?></div></td>
-                <td>
-                    <?php 
-                    echo number_format(filesize($filename)/(1024*1024),3)." MB";
-                    ?>
-                </td>
                 <td><button class="<?= $f[1] ?>" onclick="$(this).hide();
                         excec('<?= $f[1] ?>')">นำเข้า</button></td>
                 <td></td>

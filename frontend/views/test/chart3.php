@@ -28,7 +28,7 @@ $main_data = [];
 foreach ($rawData as $data) {
     $main_data[] = [
         'name' => $data['hosname'],
-        'y' => $data['total'] * 1,
+        'y' => $data['total'] * 1, 
         'drilldown' => $data['hoscode']
     ];
 }
@@ -48,14 +48,17 @@ where p.HOSPCODE = h.hoscode and p.TYPEAREA=4) as type4
 $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 $sub_data = [];
 foreach ($rawData as $data) {
-
-    $sub_data[] = [
-        'id' => $data['hoscode'],
-        'name' => $data['hosname'],
-        'data' => [['type1', $data['type1'] * 1], ['type2', $data['type2'] * 1], ['type3', $data['type3'] * 1], ['type4', $data['type4'] * 1]]
-    ];
+    
+$sub_data[] = [
+    'id' => $data['hoscode'],
+    'name' => $data['hosname'],
+    'data' => [['type1',$data['type1']*1],['type2', $data['type2']*1],['type3',$data['type3']*1],['type4',$data['type4']*1]]
+];
+    
 }
 $sub = json_encode($sub_data);
+
+
 ?>
 
 
@@ -104,76 +107,5 @@ $this->registerJs("$(function () {
             
         }
     });
-});", yii\web\View::POS_END);
-?>
-<div id="pie"></div>
-<?php
-$pie_data = [];
-
-$pie_data[] = [
-    'name' => 'Chrome',
-    'y' => 22
-];
-
-$pie_data[] = [
-    'name' => 'Firefox',
-    'y' => 19,
-    'sliced' => true,
-    'selected' => true
-];
-
-
-$pie_data[] = [
-    'name' => 'IE',
-    'y' => 9,
-    
-   
-];
-
-
-$pie_data[] = [
-    'name' => 'Safari',
-    'y' => 9,
-    
-   
-];
-
-
-$pie_data = json_encode($pie_data);
-
-
-$this->registerJs("$(function () {
-    $('#pie').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text: 'Browser market shares at a specific website, 2014'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Browser share',
-            data: $pie_data
-        }]
-    });
-});
-", yii\web\View::POS_END);
+});",  yii\web\View::POS_END);
 ?>
