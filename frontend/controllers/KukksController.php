@@ -72,7 +72,7 @@ from chospital_amp h ORDER BY chronic DESC";
         ]);
     }
     
-        public function actionReport2() {//
+        public function actionReport2() {//สัดส่วน
         
 
         $sql = "select care_team.hoscode,care_team.hosname,care_team.pop,care_team.doctor,
@@ -81,13 +81,13 @@ concat('1 : ',round((care_team.pop/care_team.doctor),0)) as raio from
 (select count(distinct CID) 
 from person p 
 where p.DISCHARGE='9' 
-and p.TYPEAREA in ('1','3')
+and p.TYPEAREA in ('1','3','5')
 and p.HOSPCODE=h.hoscode
 ) as pop,
 (select count(distinct CID) as doc
 from provider pv
-where pv.CID is not null and pv.PROVIDERTYPE in ('03','04','05','06') 
-and pv.OUTDATE is null and pv.MOVETO is NULL and pv.HOSPCODE=h.hoscode) as doctor
+where (pv.CID is not null or pv.CID != '') and pv.PROVIDERTYPE in ('03','04','05','06') 
+and (pv.OUTDATE is null or pv.OUTDATE ='') and (pv.MOVETO is NULL or pv.MOVETO = '') and pv.HOSPCODE=h.hoscode) as doctor
 from chospital_amp h 
 ) as care_team";
 
@@ -113,7 +113,7 @@ from chospital_amp h
     }
     
     
-            public function actionReport3() {//
+            public function actionReport3() {//อสม
         
 
         $sql = "select  h.hoscode,h.hosname,t.`จำนวนหลังคาเรือน`  ,t.`จำนวน อสม.`,t.`จำนวน อสม.ต่อหลังคาเรือน` from chospital_amp h 
@@ -171,7 +171,7 @@ $sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/
 count(distinct p.CID)
 FROM
 person as p
-where  p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') and p.HOSPCODE=h.hoscode and (TIMESTAMPDIFF(YEAR,p.birth,'$date2')>= 60)) as target,
+where  p.NATION='099' and p.DISCHARGE='9' and p.TYPEAREA in ('1','3') and p.HOSPCODE=h.hoscode and (TIMESTAMPDIFF(YEAR,p.birth,'2014-09-30')>= 60)) as target,
 (select count(distinct hhv.CID) as num from 
 (SELECT
 comserv.HOSPCODE,
@@ -185,7 +185,7 @@ community_service as comserv
 ,person as p
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
 and comserv.DATE_SERV between '$date1' and '$date2' 
-and comserv.COMSERVICE like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,'$date2')>= 60)
+and upper(comserv.COMSERVICE) like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,'2014-09-30')>= 60)
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as hv
 from chospital_amp h order by h.hoscode  ) as temp";
 
@@ -243,7 +243,7 @@ community_service as comserv
 ,person as p
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
 and comserv.DATE_SERV between '$date1' and '$date2'
-and comserv.COMSERVICE like '1A20%'
+and upper(comserv.COMSERVICE) like '1A20%'
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as 'hv'
 from chospital_amp h order by h.hoscode) as temp";
 

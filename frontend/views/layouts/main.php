@@ -73,7 +73,7 @@ AppAsset::register($this);
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> สุขภาพจิต', 'url' => ['mind/index']];
 
-            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> หมอประจำครอบครัว', 'url' => ['kukks/index']];
+            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ทีมหมอครอบครัว', 'url' => ['kukks/index']];
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> Custom-Report', 'url' => ['stimusoft/index']];
 

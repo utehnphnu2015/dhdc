@@ -1,5 +1,5 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทีมหมอครอบครัว', 'url' => ['kukks/index']];
 $this->params['breadcrumbs'][] = 'หญิงตั้งครรภ์ได้รับการเยี่ยมบ้าน';
 ?>
 

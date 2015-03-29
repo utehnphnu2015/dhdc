@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h3>หมวดรายงาน-หมอประจำครอบครัว</h3>
+<h3>หมวดรายงาน-ทีมหมอครอบครัว</h3>
 <div class="alert alert-warning">
     <?php
     $model = frontend\models\SysEventLog::find()->orderBy('id DESC')->one();
@@ -32,7 +32,7 @@
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('4) ผู้สูงอายุที่ได้รับการเยี่ยมบ้าน', ['kukks/report4']);
+    echo \yii\helpers\Html::a('4) ผู้สูงอายุ60ปีขึ้นไปได้รับการเยี่ยมบ้าน', ['kukks/report4']);
     ?>
 </p>
 <p>

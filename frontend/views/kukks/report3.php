@@ -1,5 +1,5 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทีมหมอครอบครัว', 'url' => ['kukks/index']];
 $this->params['breadcrumbs'][] = 'จำนวน อสม.ต่อหลังคาเรือน';
 ?>
 

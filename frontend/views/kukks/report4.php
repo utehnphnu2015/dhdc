@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 
-$this->params['breadcrumbs'][] = ['label' => 'หมอประจำครอบครัว', 'url' => ['kukks/index']];
-$this->params['breadcrumbs'][] = 'ผู้สูงอายุได้รับการเยี่ยมบ้าน';
+$this->params['breadcrumbs'][] = ['label' => 'ทีมหมอครอบครัว', 'url' => ['kukks/index']];
+$this->params['breadcrumbs'][] = 'ผู้สูงอายุ60ปีขึ้นไปได้รับการเยี่ยมบ้าน';
 ?>
 
 <div class='well'>
