@@ -68,5 +68,9 @@ $rawData = Yii::$app->db->createCommand($sql)->queryAll();
             'rawData'=>$rawData
         ]);
     }
+    public function actionBatRatCat(){
+        //เรียกใช้แบบ ndex.php?r=bat-rat-cat
+        echo "aaa";
+    }
 
 }
