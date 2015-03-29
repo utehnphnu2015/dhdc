@@ -20,9 +20,9 @@ class TestController extends \yii\web\Controller {
     public function actionRpt2() {
         $sql = "select cid ,name,lname,sex from person limit 100 ";
 
-$rawData = Yii::$app->db->createCommand($sql)->queryAll();
-        return $this->render('rpt2',[
-            'rawData'=>$rawData
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        return $this->render('rpt2', [
+                    'rawData' => $rawData
         ]);
     }
 
@@ -54,23 +54,27 @@ $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
     public function actionFilter() {
 
-      
+
 
         return $this->render('filter');
     }
-    
-    public function actionDynagrid(){
-        
+
+    public function actionDynagrid() {
+
         $sql = "select hospcode,pid,sex,name,lname from person limit 100";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
-        
-        return $this->render('dynagrid',[
-            'rawData'=>$rawData
+
+        return $this->render('dynagrid', [
+                    'rawData' => $rawData
         ]);
     }
-    public function actionBatRatCat(){
-        //เรียกใช้แบบ ndex.php?r=bat-rat-cat
-        echo "aaa";
+
+    public function actionBatRatCat() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $rawData = ['some', 'array', 'of', 'data' => ['associative', 'array']];
+        $sql = "select hospcode,pid,sex,name,lname from person limit 3";
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        return $rawData;
     }
 
 }
