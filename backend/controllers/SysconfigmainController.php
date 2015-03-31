@@ -86,6 +86,20 @@ class SysconfigmainController extends Controller {
 
         return;
     }
+    
+      function add_ctambon() {
+        $cfg_main = Sysconfigmain::find()->one();
+        
+        $sql = "DROP TABLE IF EXISTS cctambon_amp;";
+        \yii::$app->db->createCommand($sql)->execute();
+
+        echo $sql = "CREATE TABLE ctambon_amp SELECT * from ctambon tb 
+                WHERE tb.ampurcode = '$cfg_main->provcode$cfg_main->distcode'";
+
+        \yii::$app->db->createCommand($sql)->execute();
+
+        return;
+    }
 
     /**
      * Lists all Sysconfigmain models.
@@ -124,6 +138,7 @@ class SysconfigmainController extends Controller {
             $this->adjust($model->district_code);
             $this->add_hospital();
             $this->add_cvillage();
+            $this->add_ctambon();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -147,6 +162,7 @@ class SysconfigmainController extends Controller {
             $this->adjust($model->district_code);
             $this->add_hospital();
             $this->add_cvillage();
+            $this->add_ctambon();
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
