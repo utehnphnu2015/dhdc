@@ -3,22 +3,18 @@
 <p>Download and execute !!!</p>
 <ul>
 <?php
-if ($handle = opendir('.')) {
-    while (false !== ($entry = readdir($handle))) {
-
-
-        if ($entry != "." && $entry != "..") {
-            $p = pathinfo($entry);
-
-            $ext = isset($p['extension']) ? strtolower($p['extension']) : '';
-            if ($ext == 'sql') {
-                ?>
-    <li><a href="<?= $entry ?>" target="_blank"><?= $entry ?></a></li>
-                <?php
-            }
-        }
+$dir = './';
+$files = scandir($dir);
+sort($files);
+foreach ($files as $file) {
+	$p = pathinfo($file);
+	$ext = isset($p['extension']) ? strtolower($p['extension']) : '';
+	
+    if ($file != '.' && $file != '..' && strtolower($ext)=='sql')  {
+		 
+        echo "<li><a href='$file' target='_blank'>".$file."</a></li>\r\n";
     }
-    closedir($handle);
 }
+
 ?>
 </ul>
