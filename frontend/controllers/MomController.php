@@ -355,6 +355,69 @@ order by distcode,hoscode asc";
                     'date1' => $date1,
                     'date2' => $date2
         ]);
+    } // 2500g
+    public function actionIndivReport2500($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
+        $sql = "select labor.hospcode,anc1.pid,concat(person.name,'  ',person.lname) as fullname,labor.bdate,total1,total2,total3,total4,total5,if((total1+total2+total3+total4+total5)=5,'y','n') as result
+from labor 
+left join 
+(select anc1.hospcode,anc1.pid,anc1.gravida,count(distinct anc1.pid) as total1 
+from anc anc1
+where anc1.ga <= 12  
+group by anc1.hospcode,anc1.pid  ) as anc1
+on labor.hospcode = anc1.hospcode and labor.pid = anc1.pid
+left join 
+(select anc2.hospcode,anc2.pid,anc2.gravida,count(distinct anc2.pid) as total2 
+from anc anc2
+where anc2.ga between 16 and 20 
+group by anc2.hospcode,anc2.pid  ) as anc2
+on anc1.hospcode = anc2.hospcode and anc1.pid = anc2.pid and anc1.gravida = anc2.gravida
+left join 
+(select anc3.hospcode,anc3.pid,anc3.gravida,count(distinct anc3.pid) as total3 
+from anc anc3
+where anc3.ga between 24 and 28
+group by anc3.hospcode,anc3.pid  ) as anc3
+on anc1.hospcode = anc3.hospcode and anc1.pid = anc3.pid and anc1.gravida = anc3.gravida
+left join 
+(select anc4.hospcode,anc4.pid,anc4.gravida,count(distinct anc4.pid) as total4 
+from anc anc4
+where anc4.ga between 30 and 34
+group by anc4.hospcode,anc4.pid  ) as anc4
+on anc1.hospcode = anc4.hospcode and anc1.pid = anc4.pid and anc1.gravida = anc4.gravida
+left join 
+(select anc5.hospcode,anc5.pid,anc5.gravida,count(distinct anc5.pid) as total5 
+from anc anc5
+where anc5.ga between 36 and 40 
+group by anc5.hospcode,anc5.pid  ) as anc5
+on anc1.hospcode = anc5.hospcode and anc1.pid = anc5.pid and anc1.gravida = anc5.gravida
+
+inner join person on person.hospcode = labor.hospcode and person.pid = labor.pid 
+where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
+             and labor.bdate between  '$date1' and '$date2' 
+             and labor.hospcode = $hospcode    
+";
+        // echo $sql;
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //print_r($rawData);
+        //return;
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        return $this->render('indivreport2500', [
+                    'rawData' => $rawData,
+                    'sql' => $sql,
+        ]);
     }
 
+// indiv2500g
+    
 }

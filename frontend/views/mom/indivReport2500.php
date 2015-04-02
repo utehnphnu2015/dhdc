@@ -5,8 +5,8 @@
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 
-$this->params['breadcrumbs'][] = ['label' => 'สร้างเสริมภูมิคุ้มกันโรค', 'url' => ['epi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'เด็กอายุ 1 ปีได้รับวัคซีน BCG', 'url' => ['epi/reportmmr']];
+$this->params['breadcrumbs'][] = ['label' => 'แม่และเด็ก', 'url' => ['mom/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ทารกแรกเกิดน้ำหนักน้อยกว่า 2500 กรัม', 'url' => ['mom/report4']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
 
