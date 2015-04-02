@@ -71,14 +71,14 @@ echo \kartik\grid\GridView::widget([
             'label' => 'ผลงาน',
             'value' => function($model) {
                 if ($model['result'] === 'y') {
-                    return Html::encode('ผ่าน');
+                    return Html::encode('ได้รับ');
                 } elseif ($model['result'] === 'n') {
-                    return Html::encode('ไม่ผ่าน');
+                    return Html::encode('ไม่ได้รับ');
                 } else {
                     return Html::encode('NA');
                 }
             },
-            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ผ่าน', 'n' => 'ไม่ผ่าน'], ['class' => 'form-control'])
+            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ได้รับ', 'n' => 'ไม่ได้รับ'], ['class' => 'form-control'])
         ]
     ]
 ]);
