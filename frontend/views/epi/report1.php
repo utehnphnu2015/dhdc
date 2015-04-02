@@ -59,39 +59,43 @@ echo \kartik\grid\GridView::widget([
     'columns' => [
         [
             'attribute' => 'hospcode',
-            'label'=>'รหัสสถานบริการ'
+            'label' => 'รหัสสถานบริการ'
         ],
         [
             'attribute' => 'hospname',
-            'label'=>'สถานบริการ'
-        ],
-        [
-            'attribute' => 'target',
-            'label'=>'เป้าหมาย(คน)'
-        ],
-        [
-            'attribute' => 'result',
-            'label'=>'ผลงาน(คน)'
-        ],
-         [
-            'class' => '\kartik\grid\FormulaColumn',
-            'header' => 'ร้อยละ',
-            'value' => function ($model, $key, $index, $widget) {
-                $p = compact('model', 'key', 'index');
-                // เขียนสูตร
-                if ($widget->col(2, $p) > 0) {
-                    $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
-                    $persent = number_format($persent, 2);
-                    return $persent;
-                }
+            'label' => 'สถานบริการ',
+            'format' => 'raw',
+            'value' => function($model) {
+                return Html::a(Html::encode($model['hospname']), ['epi/indiv-report-dtp5', 'hospcode' => $model['hospcode']]);
             }
-        ]
-    ]
-]);
-?>
+                ],
+                [
+                    'attribute' => 'target',
+                    'label' => 'เป้าหมาย(คน)'
+                ],
+                [
+                    'attribute' => 'result',
+                    'label' => 'ผลงาน(คน)'
+                ],
+                [
+                    'class' => '\kartik\grid\FormulaColumn',
+                    'header' => 'ร้อยละ',
+                    'value' => function ($model, $key, $index, $widget) {
+                        $p = compact('model', 'key', 'index');
+                        // เขียนสูตร
+                        if ($widget->col(2, $p) > 0) {
+                            $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
+                            $persent = number_format($persent, 2);
+                            return $persent;
+                        }
+                    }
+                ]
+            ]
+        ]);
+        ?>
 
-<?php
-$script = <<< JS
+        <?php
+        $script = <<< JS
 
 $(function(){
     $("label[title='Show all data']").hide();
@@ -102,8 +106,8 @@ $('#btn_sql').on('click', function(e) {
    $('#sql').toggle();
 });
 JS;
-$this->registerJs($script);
-?>
+        $this->registerJs($script);
+        ?>
 
 
 

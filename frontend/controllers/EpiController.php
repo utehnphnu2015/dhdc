@@ -1,16 +1,17 @@
 <?php
 
 namespace frontend\controllers;
+
 use yii;
 
-class EpiController extends \yii\web\Controller
-{
-     public $enableCsrfValidation = false;
-    public function actionIndex()
-    {
+class EpiController extends \yii\web\Controller {
+
+    public $enableCsrfValidation = false;
+
+    public function actionIndex() {
         return $this->render('index');
     }
-    
+
     public function actionReport1() {//
         $bdg_date = '2014-09-30';
         $date1 = "2014-10-01";
@@ -60,9 +61,47 @@ order by distcode,hoscode asc;";
                     'date1' => $date1,
                     'date2' => $date2
         ]);
-    }// จบ report1 (dtp5)
-    
-        public function actionReportbcg() {//
+    }
+
+// จบ report1 (dtp5)
+
+    public function actionIndivReportDtp5($hospcode = null, $date1 = '2009-10-01', $date2 = '2015-04-02') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
+        $sql = "select distinct person.hospcode,person.pid,concat(person.name,'  ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
+ifnull(TIMESTAMPDIFF(MONTH,person.birth,epi.date_serv),0) as age_y,epi.date_serv,
+if((select count(*) from epi e where e.vaccinetype='035' and concat(e.pid,e.hospcode)=concat(person.pid,person.hospcode))>0,'y','n') as result from person  
+          left join epi on epi.hospcode = person.hospcode and epi.pid = person.pid  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
+           and (person.birth BETWEEN '$date1' and '$date2')  
+ and person.hospcode = '$hospcode' 
+group by person.hospcode,person.pid
+order by person.pid
+";
+       //echo $sql;
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //print_r($rawData);
+        //return;
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        return $this->render('indivreportdtp5', [
+                    'rawData' => $rawData,
+                    'sql' => $sql,
+        ]);
+    }
+
+// indivdtp5
+
+    public function actionReportbcg() {//
         $bdg_date = '2014-09-30';
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
@@ -111,9 +150,11 @@ order by distcode,hoscode asc;";
                     'date1' => $date1,
                     'date2' => $date2
         ]);
-    }// จบ reportbcg
-    
-        public function actionIndivReportBcg($hospcode = null, $date1 = '2014-10-01',$date2 = '2015-04-02') {
+    }
+
+// จบ reportbcg
+
+    public function actionIndivReportBcg($hospcode = null, $date1 = '2014-10-01', $date2 = '2015-04-02') {
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
@@ -130,7 +171,7 @@ if((select count(*) from epi e where e.vaccinetype='010' and concat(e.pid,e.hosp
 group by person.hospcode,person.pid
 order by person.pid
 ";
-  //echo $sql;
+        //echo $sql;
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
@@ -145,9 +186,11 @@ order by person.pid
                     'rawData' => $rawData,
                     'sql' => $sql,
         ]);
-    }// indivbcg
-    
-        public function actionReportmmr() {//
+    }
+
+// indivbcg
+
+    public function actionReportmmr() {//
         $bdg_date = '2014-09-30';
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
@@ -196,9 +239,11 @@ order by distcode,hoscode asc;";
                     'date1' => $date1,
                     'date2' => $date2
         ]);
-    }// จบ reportmmr
-    
-            public function actionIndivReportMmr($hospcode = null, $date1 = '2014-10-01',$date2 = '2015-04-02') {
+    }
+
+// จบ reportmmr
+
+    public function actionIndivReportMmr($hospcode = null, $date1 = '2014-10-01', $date2 = '2015-04-02') {
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
@@ -215,7 +260,7 @@ if((select count(*) from epi e where e.vaccinetype='061' and concat(e.pid,e.hosp
 group by person.hospcode,person.pid
 order by person.pid
 ";
- // echo $sql;
+        // echo $sql;
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
@@ -226,14 +271,15 @@ order by person.pid
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
-        return $this->render('indivreportbcg', [
+        return $this->render('indivreportmmr', [
                     'rawData' => $rawData,
                     'sql' => $sql,
         ]);
-    }// indivmmr
-    
+    }
+
+// indivmmr
+
     public function actionReport2() {//
-        
         $sql = "SELECT p.HOSPCODE as hospcode,c.hosname as hospname,
 count(DISTINCT p.pid,p.HOSPCODE) as 'dtc_all' ,
 sum(CASE WHEN p.BIRTH BETWEEN '1965-01-01' and '1995-12-31' and epi.HOSPCODE=epi.VACCINEPLACE THEN '1' ELSE '0' END) AS 'intarget_inhos',
@@ -277,10 +323,8 @@ group by p.HOSPCODE;";
 
                     'dataProvider' => $dataProvider,
                     'sql' => $sql,
-                    
         ]);
-    }// จบ report 2
-    
-    
+    }
 
+// จบ report 2
 }
