@@ -83,7 +83,6 @@ order by distcode,hoscode asc;";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -155,7 +154,6 @@ where person.discharge = '9' and person.typearea in ('1', '3') and person.nation
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -211,7 +209,6 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -256,7 +253,6 @@ order by labor.hospcode,labor.bdate
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -297,7 +293,6 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -344,7 +339,6 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -387,7 +381,6 @@ and person.hospcode = $hospcode
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
