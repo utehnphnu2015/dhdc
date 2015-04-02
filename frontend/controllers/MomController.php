@@ -387,9 +387,7 @@ and person.hospcode = $hospcode
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
-            if (!count($rawData) > 0) {
-                throw new \yii\web\ConflictHttpException("ไม่มีข้อมูล");
-            }
+           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }

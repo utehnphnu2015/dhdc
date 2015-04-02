@@ -25,7 +25,7 @@
 
 <p>
     <?php
-    echo \yii\helpers\Html::a('4) ทารกแรกเกิดน้ำหนักน้อยกว่า 2500 กรัม', ['mom/report4']);
+    echo \yii\helpers\Html::a('3) ทารกแรกเกิดน้ำหนักน้อยกว่า 2500 กรัม', ['mom/report4']);
     ?>
 </p>
 
