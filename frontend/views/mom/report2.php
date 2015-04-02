@@ -54,8 +54,20 @@ echo \kartik\grid\GridView::widget([
         'after' => 'โดย ' . $dev
     ],
     'columns' => [
-        'hospcode',
-        'hospname',
+        [
+            'attribute' => 'hospcode',
+            'label' => 'รหัสสถานบริการ'
+        ],
+        [
+                'attribute' => 'hospname',
+                'label' => 'สถานบริการ',
+                'format' => 'raw',
+                'value'=>function($model){
+                    return Html::a(Html::encode($model['hospname']), ['mom/indiv-report-12wks','hospcode'=>$model['hospcode']]);
+                
+                    
+                }
+            ],
         [
             'attribute' => 'target',
             'header' => 'เป้าหมาย(คน)'

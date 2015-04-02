@@ -30,7 +30,7 @@ INNER JOIN person ON person.hospcode = anc.hospcode AND person.pid = anc.pid
 WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
       and labor.btype<>'6'   and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY person.hospcode  ) as t
-where t.hospcode =h.hoscode ) as LaborTarget,
+where t.hospcode =h.hoscode ) as target,
 
 ( select  total from
 (
@@ -72,7 +72,7 @@ WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation
              and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY labor.hospcode
 ) as a5
-where a5.hospcode = h.hoscode) as 5timesResult
+where a5.hospcode = h.hoscode) as result
 
 
 from chospital_amp h
@@ -119,7 +119,7 @@ INNER JOIN person ON person.hospcode = anc.hospcode AND person.pid = anc.pid
 WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
       and labor.btype<>'6'   and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY person.hospcode  ) as t
-where t.hospcode =h.hoscode ) as LaborTarget,
+where t.hospcode =h.hoscode ) as target,
 
 ( select  total from
 (
@@ -136,7 +136,7 @@ WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation
       and labor.btype<>'6'   and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY labor.hospcode
 ) as 12wks
-where 12wks.hospcode = h.hoscode) as 12wksResult
+where 12wks.hospcode = h.hoscode) as result
 
 from chospital_amp h
 

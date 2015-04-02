@@ -5,8 +5,8 @@
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 
-$this->params['breadcrumbs'][] = ['label' => 'สร้างเสริมภูมิคุ้มกันโรค', 'url' => ['epi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'เด็กอายุ 1 ปีได้รับวัคซีน BCG', 'url' => ['epi/reportbcg']];
+$this->params['breadcrumbs'][] = ['label' => 'แม่และเด็ก', 'url' => ['mom/index']];
+$this->params['breadcrumbs'][] = ['label' => 'หญิงคลอดได้รับการฝากครรภ์ครั้งแรกก่อน 12 สัปดาห์', 'url' => ['mom/report3']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
 
@@ -42,30 +42,11 @@ echo \kartik\grid\GridView::widget([
     'floatHeader' => true,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
-        [
-            'attribute' => 'hospcode',
-            'label' => 'สถานบริการ'
-        ],
-        [
-            'attribute' => 'pid',
-            'label' => 'รหัสบุคคล'
-        ],
-        [
-            'attribute' => 'fullname',
-            'label' => 'ชื่อ - นามสกุล'
-        ],
-        [
-            'attribute' => 'age_y',
-            'label' => 'อายุ (เดือน)'
-        ],
-        [
-            'attribute' => 'sex',
-            'label' => 'เพศ'
-        ],
-        [
-            'attribute' => 'date_serv',
-            'label' => 'วันที่รับบริการ'
-        ],
+        'hospcode',
+        'pid',
+        'fullname',
+        'age_y',
+        'sex',
         [
             'attribute' => 'result',
             'label' => 'ผลงาน',

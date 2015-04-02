@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = 'หญิงคลอดได้รับก�
                 'changeMonth' => true,
                 'changeYear' => true,
             ],
-            
         ]);
         ?>
         ถึง:
@@ -40,8 +39,8 @@ $this->params['breadcrumbs'][] = 'หญิงคลอดได้รับก�
 <?php
 if (isset($dataProvider))
     $dev = \yii\helpers\Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']);
-    
-    
+
+
 //echo yii\grid\GridView::widget([
 echo \kartik\grid\GridView::widget([
     'dataProvider' => $dataProvider,
@@ -54,39 +53,46 @@ echo \kartik\grid\GridView::widget([
         'after' => 'โดย ' . $dev
     ],
     'columns' => [
-        'hospcode',
-        'hospname',
         [
-            'attribute' => 'target',
-            'header' => 'เป้าหมาย(คน) '
+            'attribute' => 'hospcode',
+            'label' => 'รหัสสถานบริการ'
         ],
         [
-            'attribute' => 'result',
-            'header' => 'ผลงาน(คน)'
-        ],
-       
-        [
-            'class' => '\kartik\grid\FormulaColumn',
-            'header' => 'ร้อยละ',
-            'value' => function ($model, $key, $index, $widget) {
-                $p = compact('model', 'key', 'index');
-                // เขียนสูตร
-                $target=$widget->col(2, $p);
-                if ($target > 0) {
-                    $persent = $widget->col(3, $p) / $target * 100;
-                    $persent = number_format($persent, 2);
-                    return $persent;
-                }
+            'attribute' => 'hospname',
+            'label' => 'สถานบริการ',
+            'format' => 'raw',
+            'value' => function($model) {
+                return Html::a(Html::encode($model['hospname']), ['mom/indiv-report-5times', 'hospcode' => $model['hospcode']]);
             }
-        ]
-    ]
-    
+                ],
+                [
+                    'attribute' => 'target',
+                    'header' => 'เป้าหมาย(คน) '
+                ],
+                [
+                    'attribute' => 'result',
+                    'header' => 'ผลงาน(คน)'
+                ],
+                [
+                    'class' => '\kartik\grid\FormulaColumn',
+                    'header' => 'ร้อยละ',
+                    'value' => function ($model, $key, $index, $widget) {
+                        $p = compact('model', 'key', 'index');
+                        // เขียนสูตร
+                        $target = $widget->col(2, $p);
+                        if ($target > 0) {
+                            $persent = $widget->col(3, $p) / $target * 100;
+                            $persent = number_format($persent, 2);
+                            return $persent;
+                        }
+                    }
+                ]
+            ]
+        ]);
+        ?>
 
-]);
-?>
-
-<?php
-$script = <<< JS
+        <?php
+        $script = <<< JS
 $(function(){
     $("label[title='Show all data']").hide();
 });
@@ -96,8 +102,8 @@ $('#btn_sql').on('click', function(e) {
    $('#sql').toggle();
 });
 JS;
-$this->registerJs($script);
-?>
+        $this->registerJs($script);
+        ?>
 
 
 
