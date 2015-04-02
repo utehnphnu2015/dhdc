@@ -1,4 +1,8 @@
 <?php
+
+use yii\helpers\Html;
+?>
+<?php
 $this->params['breadcrumbs'][] = ['label' => 'แม่และเด็ก', 'url' => ['mom/index']];
 $this->params['breadcrumbs'][] = 'หญิงคลอดได้รับการฝากครรภ์ครบ 5 ครั้งตามเกณฑ์';
 ?>
@@ -62,7 +66,7 @@ echo \kartik\grid\GridView::widget([
             'label' => 'สถานบริการ',
             'format' => 'raw',
             'value' => function($model) {
-                return Html::a(Html::encode($model['hospname']), ['mom/indiv-report-5times', 'hospcode' => $model['hospcode']]);
+                return Html::a(Html::encode($model['hospname']), ['mom/indiv-report5times', 'hospcode' => $model['hospcode']]);
             }
                 ],
                 [

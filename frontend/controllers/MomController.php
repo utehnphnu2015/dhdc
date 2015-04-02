@@ -100,6 +100,42 @@ order by distcode,hoscode asc;";
                     'date2' => $date2
         ]);
     }
+    // 5times
+    public function actionIndivReport5times($hospcode = null, $date1 = '2014-10-01', $date2 = '2015-04-02') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
+        $sql = "select distinct person.hospcode,person.pid,concat(person.name,'  ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
+TIMESTAMPDIFF(YEAR,person.birth,epi.date_serv) as age_y,epi.date_serv,
+if((select count(*) from epi e where e.vaccinetype='061' and concat(e.pid,e.hospcode)=concat(person.pid,person.hospcode))>0,'y','n') as result from person  
+          left join epi on epi.hospcode = person.hospcode and epi.pid = person.pid  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
+           and (person.birth BETWEEN '$date1' and '$date2')  
+ and person.hospcode = $hospcode 
+group by person.hospcode,person.pid
+order by person.pid
+";
+        // echo $sql;
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //print_r($rawData);
+        //return;
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        return $this->render('indivreport5times', [
+                    'rawData' => $rawData,
+                    'sql' => $sql,
+        ]);
+    }
+
+// indiv5times
     
     public function  actionReport2(){
         
@@ -162,6 +198,43 @@ order by distcode,hoscode asc";
         ]);
         
     }
+    // 12wks
+    
+    public function actionIndivReport12wks($hospcode = null, $date1 = '2014-10-01', $date2 = '2015-04-02') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
+        $sql = "select distinct person.hospcode,person.pid,concat(person.name,'  ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
+TIMESTAMPDIFF(YEAR,person.birth,epi.date_serv) as age_y,epi.date_serv,
+if((select count(*) from epi e where e.vaccinetype='061' and concat(e.pid,e.hospcode)=concat(person.pid,person.hospcode))>0,'y','n') as result from person  
+          left join epi on epi.hospcode = person.hospcode and epi.pid = person.pid  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
+           and (person.birth BETWEEN '$date1' and '$date2')  
+ and person.hospcode = $hospcode 
+group by person.hospcode,person.pid
+order by person.pid
+";
+        // echo $sql;
+        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //print_r($rawData);
+        //return;
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        return $this->render('indivreport12wks', [
+                    'rawData' => $rawData,
+                    'sql' => $sql,
+        ]);
+    }
+
+// indiv12wks
 
     public function  actionReport3(){
          
