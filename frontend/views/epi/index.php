@@ -18,13 +18,21 @@ use yii\helpers\Html;
 
 <p>
     <?php
-    echo Html::a('1) เด็กอายุ 5 ปีได้รับวัคซีน DTP5', ['report1']);
+    echo Html::a('1) เด็กอายุ 1 ปีได้รับวัคซีน BCG', ['reportbcg']);
     ?>
 </p>
-
 <p>
     <?php
-    echo Html::a('2) ผลงานการรณรงค์ฉีดวัคซีน dTC (อายุ 20-50 ปี)', ['report2']);
+    echo Html::a('2) เด็กอายุ 1 ปีได้รับวัคซีน MMR', ['reportmmr']);
+    ?>
+</p><p>
+    <?php
+    echo Html::a('3) เด็กอายุ 5 ปีได้รับวัคซีน DTP5', ['report1']);
+    ?>
+</p>
+<p>
+    <?php
+    echo Html::a('4) ผลงานการรณรงค์ฉีดวัคซีน dTC (อายุ 20-50 ปี)', ['report2']);
     ?>
 </p>
 
