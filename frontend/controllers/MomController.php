@@ -355,7 +355,10 @@ order by distcode,hoscode asc";
                     'date1' => $date1,
                     'date2' => $date2
         ]);
-    } // 2500g
+    }
+
+// 2500g
+
     public function actionIndivReport2500($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
@@ -372,12 +375,15 @@ where person.discharge = '9' and person.typearea in ('1', '3') and person.nation
 and person.hospcode = $hospcode
 ";
         // echo $sql;
-        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        // $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+            if (!count($rawData) > 0) {
+                throw new \yii\web\ConflictHttpException("ไม่มีข้อมูล");
+            }
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -389,5 +395,4 @@ and person.hospcode = $hospcode
     }
 
 // indiv2500g
-    
 }
