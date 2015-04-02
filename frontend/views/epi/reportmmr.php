@@ -62,9 +62,15 @@ echo \kartik\grid\GridView::widget([
             'label'=>'รหัสสถานบริการ'
         ],
         [
-            'attribute' => 'hospname',
-            'label'=>'สถานบริการ'
-        ],
+                'attribute' => 'hospname',
+                'label' => 'สถานบริการ',
+                'format' => 'raw',
+                'value'=>function($model){
+                    return Html::a(Html::encode($model['hospname']), ['epi/indiv-report-mmr','hospcode'=>$model['hospcode']]);
+                
+                    
+                }
+            ],
         [
             'attribute' => 'target',
             'label'=>'เป้าหมาย(คน)'

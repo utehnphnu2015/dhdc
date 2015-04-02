@@ -5,7 +5,7 @@ $this->params['breadcrumbs'][] = 'ทารกแรกเกิดน้ำห�
 
 <div class='well'>
     <form method="POST">
-        ระหว่าง:
+        เกิดระหว่าง:
         <?php
         echo yii\jui\DatePicker::widget([
             'name' => 'date1',

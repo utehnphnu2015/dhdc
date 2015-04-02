@@ -1,11 +1,11 @@
 <?php
 $this->params['breadcrumbs'][] = ['label' => 'แม่และเด็ก', 'url' => ['mom/index']];
-$this->params['breadcrumbs'][] = 'หญิงมีครรภ์ได้รับการฝากครรภ์ครบ 5 ครั้งตามเกณฑ์';
+$this->params['breadcrumbs'][] = 'หญิงคลอดได้รับการฝากครรภ์ครบ 5 ครั้งตามเกณฑ์';
 ?>
 
 <div class='well'>
     <form method="POST">
-        ระหว่าง:
+        คลอดระหว่าง:
         <?php
         echo yii\jui\DatePicker::widget([
             'name' => 'date1',
