@@ -66,7 +66,7 @@ echo \kartik\grid\GridView::widget([
             'label' => 'สถานบริการ',
             'format' => 'raw',
             'value' => function($model) {
-                return Html::a(Html::encode($model['hospname']), ['mom/indiv-report5times', 'hospcode' => $model['hospcode']]);
+                return Html::a(Html::encode($model['hospname']), ['mom/indiv-report1', 'hospcode' => $model['hospcode']]);
             }
                 ],
                 [

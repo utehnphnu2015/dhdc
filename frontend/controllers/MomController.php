@@ -83,6 +83,7 @@ order by distcode,hoscode asc;";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -102,7 +103,7 @@ order by distcode,hoscode asc;";
     }
 
     // 5times
-    public function actionIndivReport5times($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
+    public function actionIndivReport1($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
@@ -148,17 +149,18 @@ where person.discharge = '9' and person.typearea in ('1', '3') and person.nation
              and labor.hospcode = $hospcode    
 ";
         // echo $sql;
-        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //$rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
-        return $this->render('indivreport5times', [
+        return $this->render('indiv_report1', [
                     'rawData' => $rawData,
                     'sql' => $sql,
         ]);
@@ -209,6 +211,7 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -229,7 +232,7 @@ order by distcode,hoscode asc";
 
     // 12wks
 
-    public function actionIndivReport12wks($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
+    public function actionIndivReport2($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
@@ -247,12 +250,13 @@ WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation
 order by labor.hospcode,labor.bdate 
 ";
         // echo $sql;
-        $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //$rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -293,6 +297,7 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+            
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -339,6 +344,7 @@ order by distcode,hoscode asc";
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+           
         } catch (\yii\db\Exception $e) {
             throw new \yii\web\ConflictHttpException('sql error');
         }
@@ -359,8 +365,8 @@ order by distcode,hoscode asc";
 
 // 2500g
 
-    public function actionIndivReport2500($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
-
+    public function actionIndivReport4($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
+        //ทารกแรกเกิดน้ำหนักน้อยกว่า 2500 กรัม
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
             throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
@@ -388,7 +394,7 @@ and person.hospcode = $hospcode
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
-        return $this->render('indivreport2500', [
+        return $this->render('indiv_report4', [
                     'rawData' => $rawData,
                     'sql' => $sql,
         ]);

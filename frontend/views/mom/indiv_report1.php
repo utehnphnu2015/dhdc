@@ -10,6 +10,10 @@ $this->params['breadcrumbs'][] = ['label' => 'หญิงคลอดได้�
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
 
+if (!count($rawData) > 0) {
+    throw new \yii\web\ConflictHttpException("ไม่มีข้อมูล");
+}
+
 function filter($col) {
     $filterresult = Yii::$app->request->getQueryParam('filterresult', '');
     if (strlen($filterresult) > 0) {
@@ -53,12 +57,10 @@ echo \kartik\grid\GridView::widget([
             'attribute' => 'fullname',
             'label' => 'ชื่อ - นามสกุล'
         ],
-        
         [
             'attribute' => 'bdate',
             'label' => 'วันที่คลอด'
         ],
-
         [
             'attribute' => 'result',
             'label' => 'ผลงาน',
