@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = 'เด็กอายุ 5 ปีได้ร�
 
 <div class='well'>
     <form method="POST">
-        ระหว่าง:
+        เกิดระหว่าง:
         <?php
         echo yii\jui\DatePicker::widget([
             'name' => 'date1',
