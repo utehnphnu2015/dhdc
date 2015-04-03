@@ -10,6 +10,11 @@ $this->params['breadcrumbs'][] = ['label' => 'เด็กอายุ 5 ปี�
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
 
+if (!count($rawData) > 0) {
+    throw new \yii\web\ConflictHttpException("ไม่มีข้อมูล");
+}
+
+
 function filter($col) {
     $filterresult = Yii::$app->request->getQueryParam('filterresult', '');
     if (strlen($filterresult) > 0) {

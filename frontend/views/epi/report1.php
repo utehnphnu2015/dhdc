@@ -61,13 +61,18 @@ echo \kartik\grid\GridView::widget([
             'attribute' => 'hospcode',
             'label' => 'รหัสสถานบริการ'
         ],
-        [
+                [
             'attribute' => 'hospname',
             'label' => 'สถานบริการ',
             'format' => 'raw',
-            'value' => function($model) {
-                return Html::a(Html::encode($model['hospname']), ['epi/indiv-report-dtp5', 'hospcode' => $model['hospcode']]);
-            }
+            'value' => function($model) use($date1,$date2) {
+                return Html::a(Html::encode($model['hospname']), [
+                            'epi/indiv-report-dtp5',
+                            'hospcode' => $model['hospcode'],
+                            'date1' => $date1,
+                            'date2' => $date2
+                ]);
+            }// end value
                 ],
                 [
                     'attribute' => 'target',

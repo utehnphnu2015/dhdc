@@ -82,7 +82,7 @@ if((select count(*) from epi e where e.vaccinetype='035' and concat(e.pid,e.hosp
 group by person.hospcode,person.pid
 order by person.pid
 ";
-       //echo $sql;
+        //echo $sql;
         $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
         //print_r($rawData);
         //return;
@@ -96,6 +96,8 @@ order by person.pid
         return $this->render('indivreportdtp5', [
                     'rawData' => $rawData,
                     'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
         ]);
     }
 
@@ -185,6 +187,8 @@ order by person.pid
         return $this->render('indivreportbcg', [
                     'rawData' => $rawData,
                     'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
         ]);
     }
 
@@ -274,6 +278,8 @@ order by person.pid
         return $this->render('indivreportmmr', [
                     'rawData' => $rawData,
                     'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2            
         ]);
     }
 

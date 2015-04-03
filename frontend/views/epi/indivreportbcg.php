@@ -6,9 +6,14 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'สร้างเสริมภูมิคุ้มกันโรค', 'url' => ['epi/index']];
-$this->params['breadcrumbs'][] = ['label' => 'เด็กอายุ 1 ปีได้รับวัคซีน BCG', 'url' => ['epi/reportmmr']];
+$this->params['breadcrumbs'][] = ['label' => 'เด็กอายุ 1 ปีได้รับวัคซีน BCG', 'url' => ['epi/reportbcg']];
 $this->params['breadcrumbs'][] = 'รายบุคคล';
 $this->title = "DHDC";
+
+if (!count($rawData) > 0) {
+    throw new \yii\web\ConflictHttpException("ไม่มีข้อมูล");
+}
+
 
 function filter($col) {
     $filterresult = Yii::$app->request->getQueryParam('filterresult', '');
