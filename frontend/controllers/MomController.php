@@ -257,7 +257,7 @@ order by labor.hospcode,labor.bdate
             throw new \yii\web\ConflictHttpException('sql error');
         }
 
-        return $this->render('indivreport12wks', [
+        return $this->render('indiv_report2', [
                     'rawData' => $rawData,
                     'sql' => $sql,
         ]);

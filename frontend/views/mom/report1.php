@@ -67,7 +67,7 @@ echo \kartik\grid\GridView::widget([
             'format' => 'raw',
             'value' => function($model) use($date1,$date2) {
                 return Html::a(Html::encode($model['hospname']), [
-                            'mom/indiv-report4',
+                            'mom/indiv-report1',
                             'hospcode' => $model['hospcode'],
                             'date1' => $date1,
                             'date2' => $date2
