@@ -23,35 +23,35 @@ class KukksController extends \yii\web\Controller {
         }
 
         $sql = "select h.hoscode,h.hosname,
-(select COUNT(DISTINCT p_target.cid) from 
-(SELECT
-p.cid,p.HOSPCODE
-FROM
-chronic as c
-join person as p on p.PID=c.PID and p.HOSPCODE=c.HOSPCODE
+(select count(distinct p.CID) as num from 
+chronic as c,
+person as p
+where 
+p.PID=c.PID 
+and p.HOSPCODE=c.HOSPCODE
+and p.DISCHARGE='9'
 and c.TYPEDISCH='03'
-GROUP BY p.CID) as p_target
-where p_target.HOSPCODE=h.hoscode
-GROUP BY p_target.HOSPCODE) as chronic,
-(select count(distinct hhv.CID) as num from 
-(SELECT
-comserv.HOSPCODE,
-comserv.PID,
-comserv.SEQ,
-comserv.DATE_SERV,
-comserv.COMSERVICE,
-p.CID
-FROM
-community_service as comserv
-,person as p
-,chronic as c
-where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
-and p.HOSPCODE=c.HOSPCODE and p.PID=c.PID
-and comserv.DATE_SERV between '$date1' and '$date2' 
-and comserv.COMSERVICE like '1A%'
+and p.TYPEAREA in (1,3)
+and p.HOSPCODE=h.hoscode) as chronic,
+
+(select count(distinct p.CID) as num from 
+chronic as c,
+person as p,
+community_service as com
+where 
+p.PID=c.PID 
+and p.HOSPCODE=c.HOSPCODE
+and com.PID=p.PID
+and com.HOSPCODE=p.HOSPCODE
+and p.DISCHARGE='9'
 and c.TYPEDISCH='03'
-group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as visit
-from chospital_amp h ORDER BY chronic DESC";
+and p.TYPEAREA in (1,3)
+and com.DATE_SERV between '$date1' and '$date2'
+and com.COMSERVICE like '1A%' 
+and p.HOSPCODE=h.hoscode) as visit
+
+from chospital_amp h 
+ORDER BY h.hoscode";
 
 
 
