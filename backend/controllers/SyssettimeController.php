@@ -118,20 +118,7 @@ class SyssettimeController extends Controller {
             $sql .=$this->call("cal_rpt_cervical_cancer_screening", $y);
 
 
-            //เริ่ม indiv
-            $sql.="#เริ่ม cal_indiv_screen_report2\n";
-            $hos = \backend\models\ChospitalAmp::find()->all();
-            foreach ($hos as $value) {
-                $hospcode = $value->hoscode;
-                $sql.=$this->call2("cal_indiv_screen_report2", "2014", $hospcode);
-            }
-            foreach ($hos as $value) {
-                $hospcode = $value->hoscode;
-                $sql.=$this->call2("cal_indiv_screen_report2", "2015", $hospcode);
-            }
-
-            $sql.="#จบ cal_indiv_screen_report2\n";
-            //จบ indiv
+          
 
 
             //จบ ใส่ store
