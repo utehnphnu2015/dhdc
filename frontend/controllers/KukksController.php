@@ -84,14 +84,14 @@ concat('1 : ',round((care_team.pop/care_team.doctor),0)) as raio from
 (select count(distinct CID) 
 from person p 
 where p.DISCHARGE='9' 
-and p.TYPEAREA in ('1','3','5')
+and p.TYPEAREA in ('1','3')
 and p.HOSPCODE=h.hoscode
 ) as pop,
 (select count(distinct CID) as doc
 from provider pv
 where (pv.CID is not null or pv.CID != '') and pv.PROVIDERTYPE in ('03','04','05','06') 
 and (pv.OUTDATE is null or pv.OUTDATE ='') and (pv.MOVETO is NULL or pv.MOVETO = '') and pv.HOSPCODE=h.hoscode) as doctor
-from chospital_amp h 
+from chospital_amp h  where h.hostype='03' 
 ) as care_team";
 
 
