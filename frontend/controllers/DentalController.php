@@ -246,7 +246,7 @@ where (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 and p.HOSPCODE=$hospcode ) ";
 
         $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
         if ($role == 99) {
-            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+            throw new \yii\web\ConflictHttpException('คุณไม่ได้รับอนุญาตให้ใช้งานหน้านี้');
         }
 
 
