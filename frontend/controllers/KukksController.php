@@ -44,9 +44,12 @@ p.CID
 FROM
 community_service as comserv
 ,person as p
+,chronic as c
 where p.PID=comserv.PID and p.HOSPCODE=comserv.HOSPCODE
+and p.HOSPCODE=c.HOSPCODE and p.PID=c.PID
 and comserv.DATE_SERV between '$date1' and '$date2' 
 and comserv.COMSERVICE like '1A%'
+and c.TYPEDISCH='03'
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as visit
 from chospital_amp h ORDER BY chronic DESC";
 
