@@ -96,7 +96,7 @@ echo \kartik\grid\GridView::widget([
         ]
     ]
 ]);
-        //เพิ่ม link รายบุคคล
+
 ?>
 
 <?php
