@@ -54,8 +54,14 @@ echo \kartik\grid\GridView::widget([
         'after' => 'โดย ' . $dev
     ],
     'columns' => [
-        'hoscode',
-        'hosname',
+        [
+            'attribute' => 'hoscode',
+            'header' => 'รหัสหน่วยบริการ'
+        ],
+        [
+            'attribute' => 'hosname',
+            'header' => 'ชื่อหน่วยบริการ'
+        ],
         [
             'attribute' => 'chronic',
             'header' => 'ผู้ป่วยโรคเรื้อรัง(คน)'
