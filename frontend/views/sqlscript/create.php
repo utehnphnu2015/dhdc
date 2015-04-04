@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model frontend\models\Sqlscript */
 
 $this->title = 'เพิ่ม script';
-$this->params['breadcrumbs'][] = ['label' => 'Sqlscripts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'คลัง Script', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sqlscript-create">

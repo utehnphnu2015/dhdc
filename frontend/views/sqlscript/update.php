@@ -6,9 +6,9 @@ use yii\helpers\Html;
 /* @var $model frontend\models\Sqlscript */
 
 $this->title = 'แก้ไข script: ' . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Sqlscripts', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => 'คลัง Script', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'script ที่ '.$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'แก้ไข';
 ?>
 <div class="sqlscript-update">
 

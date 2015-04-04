@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $route_run = \yii\helpers\Url::to(['runquery/index']) ?>
     <form method="post" action="<?= $route_run ?>" class="form form-inline">
 
-        <?= Html::a('<i class="glyphicon glyphicon-upload"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-upload"></i> แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php
         
         echo 
