@@ -126,7 +126,12 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_breast_cancer_screening", $y - 1);
             $this->call("cal_rpt_breast_cancer_screening", $y);
 
-          
+            //รายงาน indiv
+            $hos = ChospitalAmp::find()->all();
+            foreach ($hos as $value) {
+                $hospcode = $value->hoscode;
+                $this->call2("cal_indiv_screen_report2", "2015", $hospcode);
+            }
             
             
             

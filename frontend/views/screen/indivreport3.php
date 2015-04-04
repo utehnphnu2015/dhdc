@@ -52,14 +52,14 @@ echo \kartik\grid\GridView::widget([
             'label' => 'ผลงาน',
             'value' => function($model) {
                 if ($model['result'] === 'y') {
-                    return Html::encode('ผ่านเกณฑ์');
+                    return Html::encode('ผ่าน');
                 } elseif ($model['result'] === 'n') {
                     return Html::encode('ไม่ผ่าน');
                 } else {
                     return Html::encode('NA');
                 }
             },
-            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ผ่านเกณฑ์', 'n' => 'ไม่ผ่าน'], ['class' => 'form-control'])
+            'filter' => Html::dropDownList('filterresult', isset($_GET['filterresult']) ? $_GET['filterresult'] : '', ['' => 'ทั้งหมด', 'y' => 'ผ่าน', 'n' => 'ไม่ผ่าน'], ['class' => 'form-control'])
         ]
     ]
 ]);
@@ -67,8 +67,7 @@ echo \kartik\grid\GridView::widget([
 
 <?php
 $script = <<< JS
-$('#btn_sql').on('click', function(e) {
-    
+$('#btn_sql').on('click', function(e) {    
    $('#sql').toggle();
 });
 JS;
