@@ -34,6 +34,7 @@ $dataProvider = new ArrayDataProvider([
 
     'allModels' => $filteredData,
     'pagination' => false,
+    'pagination' => ['pagesize'=>25],
     'sort' => [
         'attributes' => count($rawData[0]) > 0 ? array_keys($rawData[0]) : array()
         ]]);
