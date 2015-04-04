@@ -43,7 +43,7 @@ class Sqlscript extends \yii\db\ActiveRecord {
             'topic' => 'ชื่อคำสั่ง',
             'sql_script' => 'ชุดคำสั่ง SQL',
             'user' => 'ผู้สร้าง',
-            'd_update' => 'วันที่ปรับปรุง',
+            'd_update' => 'ปรับปรุงเมื่อ',
         ];
     }
 
