@@ -144,6 +144,164 @@ order by h.hoscode";
     }
     
     
+  /*      public function actionIndivReport2() { //รายละเอียดเด็ก 0-2ปี  ตรวจสุขภาพช่องปาก
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        $hospcode = '';
+
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+            $hospcode = $_POST['hospcode'];
+        }
+
+        $sql = "select p.HOSPCODE,p.CID,p.PID,p.PRENAME,p.`NAME`,p.LNAME,cc.DATE_SERV from person p
+        left join (select p.HOSPCODE,p.CID,p.PID,d.DATE_SERV
+        from person as p,
+        dental as d,
+        procedure_opd as pd,
+        diagnosis_opd as dg
+        where
+        d.HOSPCODE=p.HOSPCODE
+        and d.PID=p.PID
+
+        and d.HOSPCODE=pd.HOSPCODE
+        and d.PID=pd.PID
+        and d.SEQ=pd.SEQ
+
+        and dg.HOSPCODE=pd.HOSPCODE
+        and dg.PID=pd.PID
+        and dg.SEQ=pd.SEQ
+
+        and p.DISCHARGE='9'
+        and p.TYPEAREA in ('1','3')
+        and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 ) 
+        and dg.DIAGCODE='Z012'
+        and pd.PROCEDCODE='2330011'
+        and d.DATE_SERV between '$date1' and '$date2' 
+        group by p.CID
+        order by p.HOSPCODE) as cc on cc.PID=p.PID and cc.HOSPCODE=p.HOSPCODE
+        where (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3) limit 100";
+
+if ($hospcode != '') {
+    
+            $sql = "select p.HOSPCODE,p.CID,p.PID,p.PRENAME,p.`NAME`,p.LNAME,cc.DATE_SERV from person p
+left join (select p.HOSPCODE,p.CID,p.PID,d.DATE_SERV
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 ) 
+and dg.DIAGCODE='Z012'
+and pd.PROCEDCODE='2330011'
+and d.DATE_SERV between '$date1' and '$date2' 
+group by p.CID
+order by p.HOSPCODE) as cc on cc.PID=p.PID and cc.HOSPCODE=p.HOSPCODE
+where (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 and p.HOSPCODE=$hospcode ) ";    
+    
+}
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+        return $this->render('Indiv_report2', [
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2,
+                    'hospcode' => $hospcode
+        ]);
+
+
+
+
+
+    }
+    
+    */
+    
+        public function actionIndivReport2($hospcode = null, $date1 = '2014-04-01', $date2 = '2015-04-02') {
+
+        $role = isset(Yii::$app->user->identity->role) ? Yii::$app->user->identity->role : 99;
+        if ($role == 99) {
+            throw new \yii\web\ConflictHttpException('ไม่อนุญาต');
+        }
+
+
+$sql = "select p.HOSPCODE as hospcode,p.CID,p.PID as pid,concat(p.NAME,' ',p.LNAME) as fullname,cc.DATE_SERV as screendate,
+    if(cc.DATE_SERV>1,'y','n') as result from person p
+left join (select p.HOSPCODE,p.CID,p.PID,d.DATE_SERV
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 ) 
+and dg.DIAGCODE='Z012'
+and pd.PROCEDCODE='2330011'
+and d.DATE_SERV between '$date1' and '$date2' 
+group by p.CID
+order by p.HOSPCODE) as cc on cc.PID=p.PID and cc.HOSPCODE=p.HOSPCODE
+where (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2') <=3 and p.HOSPCODE=$hospcode ) "; 
+        
+        // echo $sql;
+        //$rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        //print_r($rawData);
+        //return;
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+
+        return $this->render('indiv_report2', [
+                    'rawData' => $rawData,
+                    'sql' => $sql,
+        ]);
+    }
+
+//Dental report 2 indiv
+    
+    
+    
+    
     
         public function actionReport3() { //เด็ก 0-2ปี  ทา Fluoride
         $date1 = "2014-10-01";

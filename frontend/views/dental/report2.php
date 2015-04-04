@@ -60,7 +60,19 @@ echo \kartik\grid\GridView::widget([
     
     'columns' => [
         'hoscode',
-        'hosname',
+        [
+            'attribute' => 'hosname',
+            'label' => 'สถานบริการ',
+            'format' => 'raw',
+            'value' => function($model) use($date1,$date2) {
+                return Html::a(Html::encode($model['hosname']), [
+                            'dental/indiv-report2',
+                            'hospcode' => $model['hoscode'],
+                            'date1' => $date1,
+                            'date2' => $date2
+                ]);
+            }// end value
+                ],
         [
             'attribute' => 'numA',
             'header' => 'เด็ก0-2 ปี(คน)'
