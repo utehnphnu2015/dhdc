@@ -75,7 +75,7 @@ AppAsset::register($this);
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ทีมหมอครอบครัว', 'url' => ['kukks/index']];
 
-            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> Custom-Report', 'url' => ['stimusoft/index']];
+            //$report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> Custom-Report', 'url' => ['stimusoft/index']];
 
             if (!Yii::$app->user->isGuest) {
                 $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-refresh"></span> คำสั่ง SQL', 'url' => ['runquery/index']];
