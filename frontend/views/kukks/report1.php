@@ -51,7 +51,7 @@ echo \kartik\grid\GridView::widget([
     'panel' => [
         'before' => '',
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-        'after' => 'โดย ' . $dev
+        'after' => 'โดย ' . $dev .'  :: update 04/04/2558'
     ],
     'columns' => [
         [
