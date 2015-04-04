@@ -169,7 +169,7 @@ group by home.HOSPCODE) as home2 on home2.HOSPCODE=h.hoscode
             //$selyear = $_POST['selyear']; //  ตัวนี้เกินมาครับ/อุเทน         
         }
 
-$sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/temp.target),2) as percent from (select h.hoscode,h.hosname,
+/*$sql = "select temp.hoscode,temp.hosname,temp.target,temp.hv,round((temp.hv*100/temp.target),2) as percent from (select h.hoscode,h.hosname,
 (SELECT
 count(distinct p.CID)
 FROM
@@ -191,7 +191,28 @@ and comserv.DATE_SERV between '$date1' and '$date2'
 and upper(comserv.COMSERVICE) like '1A4%' and (TIMESTAMPDIFF(YEAR,p.birth,'2014-09-30')>= 60)
 group by p.CID) as hhv where hhv.HOSPCODE=h.hoscode) as hv
 from chospital_amp h order by h.hoscode  ) as temp";
-
+*/
+        $sql="select h.hoscode,h.hosname,
+(select count(distinct p.CID) as num from 
+person as p
+where 
+p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and (TIMESTAMPDIFF(YEAR,p.birth,'2014-09-30')>= 60)
+and p.HOSPCODE=h.hoscode) as target,
+(select count(distinct p.CID) as num 
+from person as p,
+community_service as com
+where 
+com.PID=p.PID
+and com.HOSPCODE=p.HOSPCODE
+and p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and com.DATE_SERV between '$date1' and '$date2'
+and (TIMESTAMPDIFF(YEAR,p.birth,'$date2')>= 60)
+and upper(com.COMSERVICE) like '1A4%'
+and p.HOSPCODE=h.hoscode) as visit
+from chospital_amp h ";
 
 
         try {
