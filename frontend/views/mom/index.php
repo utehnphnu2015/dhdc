@@ -29,6 +29,18 @@
     ?>
 </p>
 
+<p>
+    <?php
+    echo \yii\helpers\Html::a('4) ภาวะโภชนาการเด็ก 0-5 ปี เป็นปกติ', ['mom/report5']);
+    ?>
+</p>
+
+<p>
+    <?php
+    echo \yii\helpers\Html::a('5) การดูแลหญิงหลังคลอดครบ 3 ครั้งตามเกณฑ์', ['mom/report6']);
+    ?>
+</p>
+
 
 <div class="footerrow" style="padding-top: 60px">
     <div class="alert alert-success">
