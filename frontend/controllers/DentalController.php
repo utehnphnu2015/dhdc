@@ -54,7 +54,7 @@ from
 chospital_amp AS h
 order by h.hoscode";
 
-
+//sql
 
         try {
             $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
