@@ -117,7 +117,7 @@ class UploadfortythreeController extends Controller {
             $model->hospcode = $hos;
             $newname = $upfile->baseName . "." . $upfile->extension;
             $model->file_name = $newname;
-            $model->file_size = strval($upfile->size / 1000000);
+            $model->file_size = strval(number_format($upfile->size /(1024*1024),3));
             $model->note1 = $upfile->baseName;
             $model->note2 = 'รอนำเข้า';
 
@@ -198,6 +198,21 @@ class UploadfortythreeController extends Controller {
         if ($model) {
 
             return $this->render('detail', [
+                        'model' => $model,
+            ]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+      public function actionDetail2($filename) {
+
+        $model = \frontend\models\SysCountImport::find()
+                ->where(['filename' => $filename])
+                ->one();
+        if ($model) {
+
+            return $this->render('detail2', [
                         'model' => $model,
             ]);
         } else {

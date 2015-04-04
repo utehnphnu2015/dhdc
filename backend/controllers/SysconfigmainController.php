@@ -44,60 +44,29 @@ class SysconfigmainController extends Controller {
         $sql = "DROP TABLE IF EXISTS chospital_amp;";
         \yii::$app->db->createCommand($sql)->execute();
 
-        echo $sql = "CREATE TABLE chospital_amp SELECT * from chospital h 
+       echo $sql = "CREATE TABLE chospital_amp SELECT * from chospital h 
                 WHERE h.provcode = $cfg_main->provcode 
                 and h.distcode=$cfg_main->distcode
                 and h.hostype NOT in (01,02,10,13,15,16);";
-
+        
         \yii::$app->db->createCommand($sql)->execute();
-
+        
         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาลส่งเสริมสุขภาพตำบล', 'รพ.สต.');";
-        \yii::$app->db->createCommand($sql)->execute();
-
-        $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาล', 'รพ.');";
-        \yii::$app->db->createCommand($sql)->execute();
-
-        $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'สถานีอนามัย', 'สอ.');";
-        \yii::$app->db->createCommand($sql)->execute();
-
-        $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'ศูนย์สุขภาพชุมชน', 'ศสช.');";
-        \yii::$app->db->createCommand($sql)->execute();
-
-
-
-
-        /*
-          $sql = "delete from chospital_amp where hostype  not in ('03','04','05','06','07','08','09','12','13') ;";
-          \yii::$app->db->createCommand($sql)->execute();
+         \yii::$app->db->createCommand($sql)->execute();
+         
+         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'โรงพยาบาล', 'รพ.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
+         $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'สถานีอนามัย', 'สอ.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
+          $sql = "UPDATE chospital_amp c set c.hosname = REPLACE(c.hosname, 'ศูนย์สุขภาพชุมชน', 'ศสช.');";
+         \yii::$app->db->createCommand($sql)->execute();
+         
+         /*
+         $sql = "delete from chospital_amp where hostype  not in ('03','04','05','06','07','08','09','12','13') ;";
+         \yii::$app->db->createCommand($sql)->execute();
          */
-        return;
-    }
-
-    function add_cvillage() {
-        $cfg_main = Sysconfigmain::find()->one();
-        
-        $sql = "DROP TABLE IF EXISTS cvillage_amp;";
-        \yii::$app->db->createCommand($sql)->execute();
-
-        echo $sql = "CREATE TABLE cvillage_amp SELECT * from cvillage v 
-                WHERE v.ampurcode = '$cfg_main->provcode$cfg_main->distcode'";
-
-        \yii::$app->db->createCommand($sql)->execute();
-
-        return;
-    }
-    
-      function add_ctambon() {
-        $cfg_main = Sysconfigmain::find()->one();
-        
-        $sql = "DROP TABLE IF EXISTS cctambon_amp;";
-        \yii::$app->db->createCommand($sql)->execute();
-
-        echo $sql = "CREATE TABLE ctambon_amp SELECT * from ctambon tb 
-                WHERE tb.ampurcode = '$cfg_main->provcode$cfg_main->distcode'";
-
-        \yii::$app->db->createCommand($sql)->execute();
-
         return;
     }
 
@@ -137,8 +106,6 @@ class SysconfigmainController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->adjust($model->district_code);
             $this->add_hospital();
-            $this->add_cvillage();
-            $this->add_ctambon();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -161,8 +128,6 @@ class SysconfigmainController extends Controller {
 
             $this->adjust($model->district_code);
             $this->add_hospital();
-            $this->add_cvillage();
-            $this->add_ctambon();
 
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

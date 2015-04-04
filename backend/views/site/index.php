@@ -187,16 +187,7 @@ $this->title = 'DHDC Backend';
 
             </div>
             
-                <div class="col-sm-4">
-                <?php
-                //$route = Yii::$app->urlManager->createUrl(['site/checkfile','param'=>'value']);
-                $route = yii\helpers\Url::to(['site/checkfile','param'=>'value']);
-                ?>
-                <a class="btn btn-success btn-xlarge" href="#" id="btn_indiv"> 
-                    <i class="glyphicon glyphicon-refresh"></i> ประมวลผลรายบุคคล  
-                </a>
-
-            </div>
+             
 
         </div>
 
@@ -211,7 +202,7 @@ $this->title = 'DHDC Backend';
 $route_chk_update = Yii::$app->urlManager->createUrl('update/checkver');
 $route_process_report = Yii::$app->urlManager->createUrl('execute/processreport');
 $route_file_count = Yii::$app->urlManager->createUrl('execute/filecount');
-$route_indiv_exec = yii\helpers\Url::to(['indiv/exec','selyear'=>'2015']);
+
 
 
 
@@ -258,17 +249,7 @@ $('#btn_count_all').on('click', function(e) {
     });
 });
         
-        $('#btn_indiv').on('click', function(e) {                
-    
-    $('#res').toggle();          
-    $.ajax({
-       url: "$route_indiv_exec",       
-       success: function(data) {
-            $('#res').toggle();               
-            alert(data+' สำเร็จ');            
-       }
-    });
-});
+
         
         
 JS;

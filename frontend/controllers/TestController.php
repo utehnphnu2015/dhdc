@@ -58,5 +58,15 @@ $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
         return $this->render('filter');
     }
+    
+    public function actionDynagrid(){
+        
+        $sql = "select hospcode,pid,sex,name,lname from person limit 100";
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        
+        return $this->render('dynagrid',[
+            'rawData'=>$rawData
+        ]);
+    }
 
 }

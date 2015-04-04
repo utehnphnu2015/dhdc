@@ -49,11 +49,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "กำลังนำเข้า";
             } else {
                 echo "นำเข้าแล้ว ";
-                echo Html::a('รายละเอียด', ['detail',
-                    'filename' => $model->file_name,
-                    'upload_date' => $model->upload_date,
-                    'upload_time' => $model->upload_time
-                ]);
+                if ($model->note3 === "import all") {
+                     echo Html::a('รายละเอียด', ['detail2',
+                        'filename' => $model->file_name,
+                        
+                    ]);
+                } else {
+                    echo Html::a('รายละเอียด', ['detail',
+                        'filename' => $model->file_name,
+                        'upload_date' => $model->upload_date,
+                        'upload_time' => $model->upload_time
+                    ]);
+                }
             }
             ?>
         </div>    
