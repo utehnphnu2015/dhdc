@@ -29,7 +29,9 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
 </form>
 
 <hr>
-<div style="overflow: auto">
+<?php if(isset($_POST['script_name'])): ?>
+<div class="alert alert-warning"><?=$_POST['script_name']?></div>
+<?php endif; ?>
     <?php
     if (isset($dataProvider))
     //echo yii\grid\GridView::widget([
@@ -47,7 +49,7 @@ $route = Yii::$app->urlManager->createUrl('runquery/result');
             ],
         ]);
     ?>
-</div>
+
 
 <?php
 $script = <<< JS

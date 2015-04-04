@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('เพิ่ม SQL', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <i class="glyphicon glyphicon-refresh"></i>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -32,6 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'd_update',
 
             ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label'=>'',
+                'format'=>'raw',
+                'value'=> function ($model){
+                    $route_run = \yii\helpers\Url::to(['runquery/index']);
+                    $html = "<form method=\"post\" action='$route_run'>
+                                <input type='hidden' name ='script_name' value=\"$model->topic\">
+                                <input type='hidden' name='sql_code' value=\"$model->sql_script\">
+                                <button class='btn btn-danger'>
+                                    <i class=\"glyphicon glyphicon-play\"></i>
+                                </button>
+                            </form>";
+                    return $html;
+                   
+                }
+            ]
         ],
     ]); ?>
 

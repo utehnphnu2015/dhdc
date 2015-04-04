@@ -25,9 +25,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         
-        <input type="submit" name='testrun' value="ทดสอบ" class="btn btn-danger">
-    
-        
+               
         <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'บันทึก', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     
     </div>
