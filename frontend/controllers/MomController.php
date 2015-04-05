@@ -390,6 +390,194 @@ and person.hospcode = $hospcode
                     'sql' => $sql,
         ]);
     }
+    
+    public function actionReport5() {
+
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select  h.hoscode as hospcode ,h.hosname as hospname,child.total as target,dev.total as result 
+from chospital_amp h
+left join
+         (select person.hospcode,count(distinct person.pid) as total
+           from person
+           where  person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
+           and (person.birth between date_add('$date1',interval -71 month) and date_add('$date2',interval -0 month))
+           group by person.hospcode ) child
+on h.hoscode = child.hospcode
+left join
+         (select n.hospcode,count(distinct person.pid) as total
+           from nutrition n inner join person on n.hospcode=person.hospcode and n.pid=person.pid  
+           where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' 
+           and n.childdevelop = '1' and n.date_serv between '2014-10-01' and '$date2'
+           and (person.birth between date_add('$date1',interval -71 month) and date_add('2015-09-30',interval -0 month))
+           group by n.hospcode
+          ) dev
+on h.hoscode = dev.hospcode
+
+group by hoscode";
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report5', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
+    
+    public function actionReport6() {
+
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select h.hoscode as hospcode ,h.hosname as hospname,
+(select count(distinct cid) as num 
+from 
+(select
+p.hospcode,p.cid,p.pid,p.prename,p.name,p.lname,
+la.lmp,la.bdate,la.btype,
+(select po_date 
+from 
+(select
+l.hospcode,
+l.pid,
+
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where  (l.hospcode = po.hospcode 
+and l.pid = po.pid)) as a2
+where a2.po_date between '1' and '7' and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no1,
+(select po_date 
+from 
+(select
+l.hospcode,l.pid,
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where  (l.hospcode = po.hospcode and l.pid = po.pid)) as a2
+where a2.po_date between '8' and '15'   and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no2,
+(select po_date 
+from 
+(select l.hospcode,l.pid,
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where  (l.hospcode = po.hospcode and l.pid = po.pid)) as a2
+where a2.po_date between '16' and '42'    and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no3
+from
+labor as la
+,person as p 
+where  la.pid = p.pid and p.hospcode = la.hospcode
+and la.bdate between '2014-10-01' and '2015-09-30'
+and p.nation='099' and p.discharge='9' and p.typearea in ('1','3') and la.btype<>'6'
+order by p.hospcode 
+) as ppc3t where ppc3t.hospcode=h.hoscode
+) as target,
+(
+select count(distinct cid) as num 
+from 
+(select
+p.hospcode,p.cid,p.pid,p.prename,p.name,p.lname,
+la.lmp,la.bdate,la.btype,
+(select po_date 
+from 
+(select
+l.hospcode,
+l.pid,
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where (l.hospcode = po.hospcode and l.pid = po.pid)) as a2
+where a2.po_date between '1' and '7' and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no1,
+(select po_date 
+from 
+(select
+l.hospcode,l.pid,
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where  (l.hospcode = po.hospcode and l.pid = po.pid)) as a2
+where a2.po_date between '8' and '15'   and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no2,
+(select po_date 
+from 
+(select 
+l.hospcode,
+l.pid,
+datediff(po.ppcare,l.bdate) as po_date
+from
+labor as l,
+postnatal as po 
+where (l.hospcode = po.hospcode and l.pid = po.pid)) as a2
+where a2.po_date between '16' and '42'    and a2.pid=p.pid and a2.hospcode=p.hospcode
+group by a2.pid
+) as ppc_no3
+from
+labor as la
+,person as p 
+where  (la.pid = p.pid  and p.hospcode = la.hospcode)
+and la.bdate between '$date1' and '$date2'
+and p.nation='099' and p.discharge='9' and p.typearea in ('1','3') and la.btype<>'6'
+order by p.hospcode 
+) as ppc3 where ppc3.hospcode=h.hoscode
+and ppc_no1 is not null and ppc_no2 is not null and ppc_no3 is not null 
+) as result
+from chospital_amp h";
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report6', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
 
 // indiv2500g
 }
