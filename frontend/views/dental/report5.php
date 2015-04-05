@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'Dental', 'url' => ['dental/index']];
-$this->params['breadcrumbs'][] = 'หญิงตั้งครรภ์ได้รับการตรวจสุขภาพช่องปาก';
+$this->params['breadcrumbs'][] = 'จำนวนหญิงตั้งครรภ์ที่ได้รับบริการส่งเสริมป้องกันและรักษา';
 ?>
 
 <div class='well'>
