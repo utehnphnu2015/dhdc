@@ -28,7 +28,7 @@
         echo \yii\helpers\Html::a('2) จำนวนหญิงตั้งครรภ์ที่มีปัญหาสุขภาพช่องปาก  <span class="label label-success">update 05-04-58</span> ', ['dental/report4'], ['class' => 'list-group-item']);
         ?>  
         <?php
-        echo \yii\helpers\Html::a('3) จำนวนหญิงตั้งครรภ์ที่ได้รับบริการส่งเสริมป้องกันและรักษา  <span class="label label-success">update 05-04-58</span> ', ['dental/report4'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('3) จำนวนหญิงตั้งครรภ์ที่ได้รับบริการส่งเสริมป้องกันและรักษา  <span class="label label-success">update 05-04-58</span> ', ['dental/report5'], ['class' => 'list-group-item']);
         ?>         
     </div>
     <div class="panel-heading">
