@@ -42,6 +42,11 @@
     <div class="panel-heading">
         ทันตกรรมกลุ่มเด็กอายุ 3 - 5 ปี
     </div>
+    <div class="list-group">
+         <?php
+        echo \yii\helpers\Html::a('1) ร้อยละเด็ก 3 - 5 ปี ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report2'], ['class' => 'list-group-item']);
+        ?>       
+    </div>
     <div class="panel-heading">
         ทันตกรรมเด็กนักเรียนระดับชั้นประถม 1 - 6
     </div>
