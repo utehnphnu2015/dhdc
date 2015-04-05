@@ -69,7 +69,7 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'target',
-            'header' => 'มีปัญหาสุขภาพช่องปาก(คน)'
+            'header' => 'จำนวนหญิงตั้งครรภ์(คน)'
         ],
         [
             'attribute' => 'EXTRACT',

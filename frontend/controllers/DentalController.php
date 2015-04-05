@@ -368,28 +368,15 @@ order by h.hoscode";
             $date2 = $_POST['date2'];
         }
 
-        $sql = "select
-h.hoscode,
-h.hosname,
-(select
-count(distinct p.PID) as num
-FROM
-dental as d,
-anc as a,  
-person as p ,
-procedure_opd as pd  
-where
-d.PID = a.PID 
-and d.SEQ = a.SEQ 
-and d.HOSPCODE = a.HOSPCODE
-and a.HOSPCODE = p.HOSPCODE 
-and p.PID = a.PID
-and d.SEQ = pd.SEQ  
-and d.PID=pd.PID 
-and pd.PROCEDCODE='2330011'
-and d.DATE_SERV between '$date1' and '$date2'
-and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3')
-and (d.NEED_PFILLING > 0 or d.NEED_PEXTRACT > 0 or d.GUM>0)
+        $sql = "select h.hoscode,h.hosname,
+(select count(distinct p.CID) as num
+from
+anc as a,
+person as p 
+where a.PID = p.PID 
+and p.HOSPCODE = a.HOSPCODE
+and p.NATION='099' and p.DISCHARGE='9' and a.GA between 4 and 45 and p.TYPEAREA in ('1','3') 
+and a.DATE_SERV between '$date1' and '$date2'  
 and p.HOSPCODE=h.hoscode) as target,
 
 (select count(distinct p.CID) as num
