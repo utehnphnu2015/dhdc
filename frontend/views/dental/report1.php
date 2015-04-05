@@ -59,8 +59,14 @@ echo \kartik\grid\GridView::widget([
     ],
     
     'columns' => [
-        'hoscode',
-        'hosname',
+        [
+            'attribute' => 'hoscode',
+            'header' => 'รหัสหน่วยบริการ'
+        ],
+        [
+            'attribute' => 'hosname',
+            'header' => 'ชื่อหน่วยบริการ'
+        ],
         [
             'attribute' => 'target',
             'header' => 'หญิงตั้งครรภ์(คน)'

@@ -59,8 +59,14 @@ echo \kartik\grid\GridView::widget([
     ],
     
     'columns' => [
-        'hoscode',
-        'hosname',
+        [
+            'attribute' => 'hoscode',
+            'header' => 'รหัสหน่วยบริการ'
+        ],
+        [
+            'attribute' => 'hosname',
+            'header' => 'ชื่อหน่วยบริการ'
+        ],
         [
             'attribute' => 'numA',
             'header' => 'เด็กต่ำกว่า 3 ปีที่จำเป็นต้องทาFluolide(คน)'

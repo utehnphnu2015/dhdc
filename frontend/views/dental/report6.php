@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'Dental', 'url' => ['dental/index']];
-$this->params['breadcrumbs'][] = 'เด็กแรกเกิด - ต่ำกว่า 3 ปี ได้รับการตรวจสุขภาพช่องปาก';
+$this->params['breadcrumbs'][] = 'จำนวนเด็กอายุ 9 - 12 เดือนที่ได้รับการตรวจสุขภาพช่องปาก';
 ?>
 
 <div class='well'>
@@ -55,7 +55,7 @@ echo \kartik\grid\GridView::widget([
     'panel' => [
         'before' => '',
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-        'after' => 'โดย ' . $dev
+        'after' => 'โดย ' . $dev .' update 5/4/2558'
     ],
     
     'columns' => [
@@ -65,31 +65,22 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'hosname',
-            'label' => 'สถานบริการ',
-            'format' => 'raw',
-            'value' => function($model) use($date1,$date2) {
-                return Html::a(Html::encode($model['hosname']), [
-                            'dental/indiv-report2',
-                            'hospcode' => $model['hoscode'],
-                            'date1' => $date1,
-                            'date2' => $date2
-                ]);
-            }// end value
-                ],
-        [
-            'attribute' => 'numA',
-            'header' => 'เด็ก0-2 ปี(คน)'
+            'header' => 'ชื่อหน่วยบริการ'
         ],
         [
-            'attribute' => 'numB',
-            'header' => 'ได้รับการตรวจ(คน)'
+            'attribute' => 'target',
+            'header' => 'เด็ก 9-12 เดือน(คน)'
+        ],
+        [
+            'attribute' => 'result',
+            'header' => 'ได้ตรวจ(คน)'
         ],
         [
             'class' => '\kartik\grid\FormulaColumn',
             'header' => 'ร้อยละ',
             'value' => function ($model, $key, $index, $widget) {
                 $p = compact('model', 'key', 'index');
-                // เขียนสูตร
+                // เขียนสูตร  dd
                 if ($widget->col(2, $p) > 0) {
                     $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
                     $persent = number_format($persent, 2);
@@ -99,7 +90,6 @@ echo \kartik\grid\GridView::widget([
         ]
     ]
 ]);
-//update 04-04-2558
 ?>
 
 <?php

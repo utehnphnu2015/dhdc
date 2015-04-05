@@ -497,6 +497,77 @@ order by h.hoscode";
                     'date2' => $date2
         ]);
     }    
+
+    
+    public function actionReport6() { //เด็ก 0-2ปี  ทา Fluoride
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "SELECT
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and p.NATION='099'
+and (TIMESTAMPDIFF(MONTH,p.BIRTH,'$date2') <13 ) 
+and h.hoscode=p.HOSPCODE ) as target,
+(select count(distinct p.CID) as nump
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and p.NATION='099'
+and (TIMESTAMPDIFF(MONTH,p.BIRTH,'$date2') <13 ) 
+and dg.DIAGCODE='Z012'
+and pd.PROCEDCODE='2330011'
+and d.DATE_SERV between '$date1' and '$date2'
+and h.hoscode=p.HOSPCODE ) as result
+from
+chospital_amp as h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report6', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
+    
     
 
 }

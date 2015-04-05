@@ -32,18 +32,23 @@
         ?>         
     </div>
     <div class="panel-heading">
-        ทันตกรรมในเด็กต่ำกว่า 1 ปี
-    </div> 
-    <div class="panel-heading">
         ทันตกรรมกลุ่มเด็กอายุต่ำกว่า 3 ปี
     </div>
     <div class="list-group">
-
         <?php
-        echo \yii\helpers\Html::a('1) ร้อยละเด็กต่ำกว่า 3 ปี ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report2'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('1) จำนวนเด็กอายุ 9 - 12 เดือนที่ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report6'], ['class' => 'list-group-item']);
         ?>
         <?php
-        echo \yii\helpers\Html::a('2) ร้อยละเด็กต่ำกว่า 3 ปี ที่จำเป็นต้องได้รับการทาFluolideได้รับบริการทาFluolide <span class="label label-success">update 05-04-58</span> ', ['dental/report3'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('2) จำนวนเด็กอายุ 18 เดือนที่ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report7'], ['class' => 'list-group-item']);
+        ?> 
+        <?php
+        echo \yii\helpers\Html::a('3) จำนวนเด็กอายุ 18 เดือนที่ได้รับการแปรงฟันก่อนนอนจากผู้ปกครอง <span class="label label-success">update 05-04-58</span> ', ['dental/report8'], ['class' => 'list-group-item']);
+        ?>        
+        <?php
+        echo \yii\helpers\Html::a('4) ร้อยละเด็กต่ำกว่า 3 ปี ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report2'], ['class' => 'list-group-item']);
+        ?>
+        <?php
+        echo \yii\helpers\Html::a('5) ร้อยละเด็กต่ำกว่า 3 ปี ที่จำเป็นต้องได้รับการทาFluolideได้รับบริการทาFluolide <span class="label label-success">update 05-04-58</span> ', ['dental/report3'], ['class' => 'list-group-item']);
         ?>
     </div>
 
@@ -51,7 +56,7 @@
         ทันตกรรมกลุ่มเด็กอายุ 3 - 5 ปี
     </div>
     <div class="list-group">
-         <?php
+        <?php
         echo \yii\helpers\Html::a('1) ร้อยละเด็ก 3 - 5 ปี ได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report2'], ['class' => 'list-group-item']);
         ?>       
     </div>
