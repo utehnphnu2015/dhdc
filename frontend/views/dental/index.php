@@ -22,10 +22,18 @@
     <div class="list-group">
 
         <?php
-        echo \yii\helpers\Html::a('1) ร้อยละหญิงตั้งครรภ์ได้รับการตรวจสุขภาพช่องปาก  <span class="label label-success">update 05-04-58</span> ', ['dental/report1'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('1) จำนวนหญิงตั้งครรภ์ได้รับการตรวจสุขภาพช่องปาก  <span class="label label-success">update 05-04-58</span> ', ['dental/report1'], ['class' => 'list-group-item']);
         ?>
+        <?php
+        echo \yii\helpers\Html::a('2) จำนวนหญิงตั้งครรภ์ที่มีปัญหาสุขภาพช่องปาก  <span class="label label-success">update 05-04-58</span> ', ['dental/report4'], ['class' => 'list-group-item']);
+        ?>  
+        <?php
+        echo \yii\helpers\Html::a('3) จำนวนหญิงตั้งครรภ์ที่ได้รับบริการส่งเสริมป้องกันและรักษา  <span class="label label-success">update 05-04-58</span> ', ['dental/report4'], ['class' => 'list-group-item']);
+        ?>         
     </div>
-
+    <div class="panel-heading">
+        ทันตกรรมในเด็กต่ำกว่า 1 ปี
+    </div> 
     <div class="panel-heading">
         ทันตกรรมกลุ่มเด็กอายุต่ำกว่า 3 ปี
     </div>
