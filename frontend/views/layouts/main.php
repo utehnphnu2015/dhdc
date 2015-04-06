@@ -127,6 +127,20 @@ AppAsset::register($this);
             ?>
 
             <div class="container">
+                <?php
+                $process = \backend\models\SysProcessRunning::find()->one();
+                if ($process->is_running === 'true'):
+                    $log_time=\frontend\models\SysEventLog::find()->orderBy(['id'=>SORT_DESC])->one();
+                    $log_time = isset($log_time->start_at)?$log_time->start_at:'NA';
+                ?>
+                <div class="alert alert-warning">
+                    <i class="glyphicon glyphicon-refresh"></i> เวลา <?=$log_time?> กำลังประมวลผลรายงาน
+                    
+                </div>
+                <?php
+                endif;
+                ?>
+                
                 <?=
                 Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
