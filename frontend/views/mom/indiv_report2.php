@@ -45,6 +45,7 @@ echo \kartik\grid\GridView::widget([
     'panel' => ['before' => ''],
     'floatHeader' => true,
     'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
         [
             'attribute' => 'hospcode',
             'label' => 'สถานบริการ'
