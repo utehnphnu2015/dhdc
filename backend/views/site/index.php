@@ -187,16 +187,7 @@ $this->title = 'DHDC Backend';
 
             </div>
             
-                <div class="col-sm-4">
-                <?php
-                //$route = Yii::$app->urlManager->createUrl(['site/checkfile','param'=>'value']);
-                $route = yii\helpers\Url::to(['site/checkfile','param'=>'value']);
-                ?>
-                <a class="btn btn-success btn-xlarge" href="#" id="btn_indiv"> 
-                    <i class="glyphicon glyphicon-refresh"></i> ประมวลผลรายบุคคล  
-                </a>
-
-            </div>
+         
 
         </div>
 
