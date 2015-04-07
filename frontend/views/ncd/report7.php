@@ -86,7 +86,7 @@ echo \kartik\grid\GridView::widget([
 <div class="col-md-12">
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="glyphicon glyphicon-signal"></i> ผู้ป่วยความดันที่ได้ทำการตรวจไต</h3>
+                <h3 class="panel-title"><i class="glyphicon glyphicon-signal"></i> ผู้ป่วยความดันที่มีภาวะแทรกซ้อนทางไต</h3>
             </div>
             <div class="panel-body">
 <?php
