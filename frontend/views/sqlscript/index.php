@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             $html = "<form method=\"post\" action='$route_run'>
                                 <input type='hidden' name ='script_name' value=\"$model->topic\">
                                 <input type='hidden' name='sql_code' value=\"$model->sql_script\">
-                                <button class='btn btn-danger'>
+                                <button class='btn btn-success'>
                                     <i class=\"glyphicon glyphicon-play\"></i>
                                 </button>
                             </form>";

@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
    
     <?= $form->field($model, 'file[]')->fileInput(['multiple' => true]) ?>
 
-    <button class="btn btn-success"><i class="glyphicon glyphicon-upload"></i>Submit</button>
+    <button class="btn btn-success"><i class="glyphicon glyphicon-upload"></i> ตกลง </button>
 
 <?php ActiveForm::end(); ?>
 

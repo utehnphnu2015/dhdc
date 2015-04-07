@@ -1,9 +1,11 @@
 <?php
 
 namespace frontend\controllers;
+use Yii;
 
 class Test2Controller extends \yii\web\Controller {
 
+     public $enableCsrfValidation = false;
     public function actionIndex() {
         return $this->render('index');
     }
@@ -32,6 +34,17 @@ class Test2Controller extends \yii\web\Controller {
 
     public function actionTest3() {
         echo iconv('tis-620','UTF-8',file_get_contents("./txt/test.txt"));
+    }
+    
+    public function actionLoad(){
+        $data=[];
+        if(Yii::$app->request->isPost){
+            $data = Yii::$app->request->post();
+        }
+        
+        return $this->render('load',[
+            'data'=>$data
+        ]);
     }
 
 }
