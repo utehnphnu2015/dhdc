@@ -92,11 +92,11 @@ class ExecuteController extends \yii\web\Controller {
 
             $this->call("merge_newborncare", NULL);
             $this->call("clear_null_hospcode", NULL);
-            $this->call("cal_chart_dial_1", $bdg);
+            //$this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
             $this->call("cal_chart_dial_3", $bdg);
             $this->call("cal_chart_dial_4", NULL);
-            $this->call("cal_chart_dial_5", NULL);
+            //$this->call("cal_chart_dial_5", NULL);
             $this->call("cal_chart_dial_6", NULL);
 
             $this->call("cal_ncd_cholesteral_colorchart", $bdg);
@@ -128,8 +128,9 @@ class ExecuteController extends \yii\web\Controller {
 
            // sos store
            $this->call("cal_chart_dial_7", $bdg); 
-            
-            
+           $this->call("cal_chart_dial_8", $bdg);  
+           $this->call("cal_chart_dial_9", NULL); 
+           
             $this->call("end_process", NULL);
             //
             //จบใส่ store
