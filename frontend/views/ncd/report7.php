@@ -64,7 +64,7 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'result',
-            'header' => 'ผู้ป่วยความดันได้ตรวจไต(คน)'
+            'header' => 'ผู้ป่วยความดันที่มีภาวะแทรกซ้อนทางไต(คน)'
         ],
         [
             'class' => '\kartik\grid\FormulaColumn',
@@ -96,7 +96,7 @@ echo Highcharts::widget([
         'chart'=>[
             'type' => 'column'
         ],
-        'title' => ['text' => 'ผู้ป่วยความดันที่ได้ทำการตรวจไต'],
+        'title' => ['text' => 'ผู้ป่วยความดันที่มีภาวะแทรกซ้อนทางไต'],
         'xAxis' => [
             'categories' => $hospname
         ],
