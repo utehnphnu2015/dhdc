@@ -778,4 +778,104 @@ order by h.hoscode";
         ]);
     }    
     
+    
+    
+        public function actionReport10() { //0-2ปีรับบริการ
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and p.NATION='099'
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')<=2) 
+and h.hoscode=p.HOSPCODE ) as target,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where 
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2) 
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377040','2387040')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2'
+and p.HOSPCODE=h.hoscode ) as PRR,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2) 
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377020','2377021')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as FLIORIDE,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377030')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as SEALANT,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2) 
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377010')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as Prophylaxis
+FROM
+chospital_amp AS h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report10', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }    
+        
+    
+    
 }
