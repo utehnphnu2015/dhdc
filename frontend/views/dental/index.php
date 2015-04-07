@@ -48,7 +48,7 @@
         echo \yii\helpers\Html::a('4) จำนวนเด็กอายุ 0 - 2 ปี ที่ได้รับการตรวจสุขภาพช่องปาก ทั้งหมด <span class="label label-success">update 05-04-58</span> ', ['dental/report9'], ['class' => 'list-group-item']);
         ?>       
         <?php
-        echo \yii\helpers\Html::a('5) จำนวนเด็ก 0-2 ปีที่ได้รับบริการส่งเสริมทันตสุขภาพและทันตกรรมป้องกัน <span class="label label-success">update 05-04-58</span> ', ['dental/report10'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('5) จำนวนเด็ก 0-2 ปีที่ได้รับบริการส่งเสริมทันตสุขภาพและทันตกรรมป้องกัน <span class="label label-success">update 07-04-58</span> ', ['dental/report10'], ['class' => 'list-group-item']);
         ?>  
         <?php
         echo \yii\helpers\Html::a('6) จำนวนผู้ปกครองเด็กอายุ 0-2 ปีได้รับคำแนะนำและฝึกแปรงฟันให้เด็ก <span class="label label-success">update 05-04-58</span> ', ['dental/report11'], ['class' => 'list-group-item']);
