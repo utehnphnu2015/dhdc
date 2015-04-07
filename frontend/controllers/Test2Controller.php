@@ -30,4 +30,8 @@ class Test2Controller extends \yii\web\Controller {
         ]);
     }
 
+    public function actionTest3() {
+        echo iconv('tis-620','UTF-8',file_get_contents("./txt/test.txt"));
+    }
+
 }
