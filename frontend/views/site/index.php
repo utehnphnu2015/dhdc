@@ -37,7 +37,7 @@ $this->registerJsFile('./js/chart_dial.js');
                         gen_dial(obj_div,$base,$result);
                     ");
             ?>
-            <h4>ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรอง<br>เบาหวาน-ความดันโลหิต </h4>
+            <h4>ประชาชนอายุ 35 ปีขึ้นไปได้รับการคัดกรอง<br>ความดันโลหิต </h4>
             <div id="ch1"></div>
         </div>
 
@@ -112,7 +112,7 @@ $this->registerJsFile('./js/chart_dial.js');
                         gen_dial(obj_div,$base,$a);
                     ");
             ?>
-            <h4>หญิงมีครรภ์ได้รับการฝากครรภ์ครบ <br>5 ครั้งตามเกณฑ์ </h4>
+            <h4>หญิงคลอดได้รับการฝากครรภ์ครบ <br>5 ครั้งตามเกณฑ์ </h4>
             <div id="ch4"></div>
         </div>
 
@@ -137,29 +137,24 @@ $this->registerJsFile('./js/chart_dial.js');
                         gen_dial(obj_div,$base,$a);
                     ");
             ?>
-            <h4>หญิงมีครรภ์ได้รับการฝากครรภ์ครั้งแรก<br>ก่อน 12 สัปดาห์</h4>
+            <h4>หญิงคลอดได้รับการฝากครรภ์ครั้งแรก<br>ก่อน 12 สัปดาห์</h4>
             <div id="ch5"></div>
         </div>
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
             
-            $command = Yii::$app->db->createCommand("SELECT sum(target) FROM sys_chart_dial_6");
-            $target = $command->queryScalar();
+            $command = Yii::$app->db->createCommand("SELECT * FROM sys_chart_dial_9");
+                $raw = $command->queryAll(); 
+            //print_r($raw);
+            //return;
             
-            $command = Yii::$app->db->createCommand("SELECT sum(result) FROM sys_chart_dial_6");
-            $result = $command->queryScalar();  
-            
-            $a=0.00;
-            if($target>0){
-                $a = $result/$target*100;
-                $a = number_format($a,2);
-            }
-             $base = 90;
-             
+            $base = $raw[0]['base'];
+            $result = $raw[0]['result'];
+
             $this->registerJs("
-                        var obj_div=$('#ch6');
-                        gen_dial(obj_div,$base,$a);
+                        var obj_div=$('#ch1');
+                        gen_dial(obj_div,$base,$result);
                     ");
             ?>
             <h4><br>เด็กอายุ 5 ปีได้รับวัคซีน DTP5</h4>
