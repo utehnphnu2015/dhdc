@@ -45,7 +45,7 @@ use yii\helpers\Html;
 </p>
 <p>
     <?php
-    echo Html::a('7) ผู้ป่วยความดันที่ได้ทำการตรวจไต', ['ncd/report7']);
+    echo Html::a('7) ผู้ป่วยความดันที่มีภาวะแทรกซ้อนทางไต', ['ncd/report7']);
     ?>
 </p>
 <p>
