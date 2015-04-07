@@ -8,12 +8,14 @@ use frontend\models\SqlscriptSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * SqlscriptController implements the CRUD actions for Sqlscript model.
  */
 class SqlscriptController extends Controller {
-    
+
     public $enableCsrfValidation = false;
 
     public function behaviors() {
@@ -102,6 +104,36 @@ class SqlscriptController extends Controller {
                         'model' => $model,
             ]);
         }
+    }
+
+    public function actionUpload() {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstances($model, 'file');
+
+            if ($model->file && $model->validate()) {
+
+                foreach ($model->file as $file) {
+                    $model_script = new Sqlscript();
+                    if (strtolower($file->extension) === 'txt' || strtolower($file->extension) === 'sql') {
+                        
+                        $model_script->topic = $file->baseName;
+                        $model_script->sql_script = iconv('tis-620','UTF-8',file_get_contents($file->tempName));
+                        
+                        $model_script->user = Yii::$app->user->identity->username;
+                        $model_script->d_update = date('Y-m-d H:i:s');
+                       
+                    }
+                    $model_script->save();
+                    
+                }
+
+                return $this->redirect(['sqlscript/index']);
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
     }
 
     /**
