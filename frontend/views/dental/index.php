@@ -60,10 +60,10 @@
         echo \yii\helpers\Html::a('8) ร้อยละเด็กต่ำกว่า 3 ปี ที่จำเป็นต้องได้รับการทาFluolideได้รับบริการทาFluolide <span class="label label-success">update 05-04-58</span> ', ['dental/report3'], ['class' => 'list-group-item']);
         ?>
         <?php
-        echo \yii\helpers\Html::a('9) จำนวนเด็ก 3 - 5 ปีได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 05-04-58</span> ', ['dental/report12'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('9) จำนวนเด็ก 3 - 5 ปีได้รับการตรวจสุขภาพช่องปาก <span class="label label-success">update 07-04-58</span> ', ['dental/report12'], ['class' => 'list-group-item']);
         ?>        
         <?php
-        echo \yii\helpers\Html::a('10) จำนวนเด็ก 3-5 ปีได้รับบริการ ส่งเสริม ป้องกัน และรักษา <span class="label label-success">update 05-04-58</span> ', ['dental/report13'], ['class' => 'list-group-item']);
+        echo \yii\helpers\Html::a('10) จำนวนเด็ก 3-5 ปีได้รับบริการ ส่งเสริม ป้องกัน และรักษา <span class="label label-success">update 07-04-58</span> ', ['dental/report13'], ['class' => 'list-group-item']);
         ?>
     </div>
 

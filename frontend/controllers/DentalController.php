@@ -935,7 +935,7 @@ order by h.hoscode";
     
     
     
-        public function actionReport12() { //0-2ปีตรวจ
+        public function actionReport12() { //3-5ปีตรวจ
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
@@ -1006,7 +1006,7 @@ order by h.hoscode";
 
     
     
-        public function actionReport13() { //0-2ปี รับบริการ
+        public function actionReport13() { //3-5ปี รับบริการ
         $date1 = "2014-10-01";
         $date2 = date('Y-m-d');
         if (Yii::$app->request->isPost) {
