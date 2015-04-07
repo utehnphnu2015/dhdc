@@ -3,7 +3,7 @@ use miloschuman\highcharts\Highcharts;
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'โรคไม่ติดต่อ', 'url' => ['ncd/index']];
-$this->params['breadcrumbs'][] = 'ผู้ป่วยความดันที่ได้ทำการตรวจไต';
+$this->params['breadcrumbs'][] = 'ผู้ป่วยความดันที่มีภาวะแทรกซ้อนทางไต';
 ?>
 
 <div class='well'>
