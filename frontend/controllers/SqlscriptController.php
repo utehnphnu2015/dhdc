@@ -67,6 +67,12 @@ class SqlscriptController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
+
+        if (!file_exists("txt")) {
+            mkdir('txt', 0777);
+        }
+        chmod("txt", 0777);
+
         $searchModel = new SqlscriptSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -107,6 +113,8 @@ class SqlscriptController extends Controller {
     }
 
     public function actionUpload() {
+
+
         $model = new UploadForm();
 
         if (Yii::$app->request->isPost) {
@@ -116,17 +124,23 @@ class SqlscriptController extends Controller {
 
                 foreach ($model->file as $file) {
                     $model_script = new Sqlscript();
+                    $save_name = '';
                     if (strtolower($file->extension) === 'txt' || strtolower($file->extension) === 'sql') {
                         
-                        $model_script->topic = $file->baseName;
-                        $model_script->sql_script = iconv('tis-620','UTF-8',file_get_contents($file->tempName));
+                        $path = \Yii::getAlias('@webroot') . "/txt/";
+
+                        $fname = iconv('UTF-8', 'tis-620', $file->name);// win
+                        $save_name = $path . $fname;                        
+                        $file->saveAs($save_name);
                         
+                        $model_script->topic = iconv('tis-620', 'UTF-8',$fname);
+                        
+                        $model_script->sql_script = iconv('tis-620', 'UTF-8', file_get_contents($save_name));
+
                         $model_script->user = Yii::$app->user->identity->username;
                         $model_script->d_update = date('Y-m-d H:i:s');
-                       
                     }
                     $model_script->save();
-                    
                 }
 
                 return $this->redirect(['sqlscript/index']);

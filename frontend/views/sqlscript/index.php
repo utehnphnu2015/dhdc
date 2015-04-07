@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i> เพิ่ม SQL', ['create'], ['class' => 'btn btn-success']) ?>
         <a href="<?= \yii\helpers\Url::to(['upload'])?>" class="btn btn-info">
-            <i class="glyphicon glyphicon-file"></i> นำเข้า (.txt)
+            <i class="glyphicon glyphicon-file"></i> นำเข้า
         </a>
     </p>
    
