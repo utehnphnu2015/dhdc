@@ -34,10 +34,3 @@ $sys = Sysconfigmain::find()->one();
     <?= Html::a('Source Code', 'https://github.com/utehnphnu2015/', ['target' => '_blank']) ?>
 </div>
 
-<div class="site-about">
-    <?php
-    $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
-    $ver = explode(',', $ver);
-    ?>
-    
-</div>

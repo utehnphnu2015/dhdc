@@ -75,7 +75,7 @@ AppAsset::register($this);
 
             $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> ทีมหมอครอบครัว', 'url' => ['kukks/index']];
 
-            $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> Custom-Report', 'url' => ['stimusoft/index']];
+            //$report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-file"></span> Custom-Report', 'url' => ['stimusoft/index']];
 
             if (!Yii::$app->user->isGuest) {
                 $report_mnu_itms[] = ['label' => '<span class="glyphicon glyphicon-refresh"></span> คำสั่ง SQL', 'url' => ['runquery/index']];
@@ -127,6 +127,20 @@ AppAsset::register($this);
             ?>
 
             <div class="container">
+                <?php
+                $process = \backend\models\SysProcessRunning::find()->one();
+                if ($process->is_running === 'true'):
+                    $log_time=\frontend\models\SysEventLog::find()->orderBy(['id'=>SORT_DESC])->one();
+                    $log_time = isset($log_time->start_at)?$log_time->start_at:'NA';
+                ?>
+                <div class="alert alert-warning">
+                    <i class="glyphicon glyphicon-refresh"></i> เวลา <?=$log_time?> กำลังประมวลผลรายงาน
+                    
+                </div>
+                <?php
+                endif;
+                ?>
+                
                 <?=
                 Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

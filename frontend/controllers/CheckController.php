@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-class CdController extends \yii\web\Controller
+class CheckController extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
     public function actionIndex()
