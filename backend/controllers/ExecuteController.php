@@ -126,8 +126,8 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_breast_cancer_screening", $y - 1);
             $this->call("cal_rpt_breast_cancer_screening", $y);
 
-           
-            
+           // sos store
+           $this->call("cal_chart_dial_7", $bdg); 
             
             
             $this->call("end_process", NULL);
