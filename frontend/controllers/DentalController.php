@@ -833,7 +833,7 @@ where
 (TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2)  
 and p.PID=pd.PID
 and p.HOSPCODE=pd.HOSPCODE
-and pd.PROCEDCODE in ('2377030')
+and pd.PROCEDCODE in ('2377030','2387030')
 and p.NATION='099' and p.DISCHARGE='9' 
 and pd.DATE_SERV between '$date1' and '$date2' 
 and p.HOSPCODE=h.hoscode ) as SEALANT,
@@ -876,6 +876,262 @@ order by h.hoscode";
         ]);
     }    
         
+        public function actionReport11() { //0-2ปีตรวจ
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and p.NATION='099'
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')<=2) 
+and h.hoscode=p.HOSPCODE ) as target,
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where 
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<=2) 
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE ='2338610'
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as result
+from
+chospital_amp as h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report11', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }
     
+    
+    
+    
+        public function actionReport12() { //0-2ปีตรวจ
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "SELECT
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and p.NATION='099'
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')<6) 
+and h.hoscode=p.HOSPCODE ) as target,
+(select count(distinct p.CID) as nump
+from person as p,
+dental as d,
+procedure_opd as pd,
+diagnosis_opd as dg
+where
+d.HOSPCODE=p.HOSPCODE
+and d.PID=p.PID
+
+and d.HOSPCODE=pd.HOSPCODE
+and d.PID=pd.PID
+and d.SEQ=pd.SEQ
+
+and dg.HOSPCODE=pd.HOSPCODE
+and dg.PID=pd.PID
+and dg.SEQ=pd.SEQ
+
+and p.DISCHARGE='9'
+and p.TYPEAREA in ('1','3')
+and p.NATION='099'
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')<6) 
+and dg.DIAGCODE='Z012'
+and pd.PROCEDCODE='2330011'
+and d.DATE_SERV between '$date1' and '$date2'
+and h.hoscode=p.HOSPCODE ) as result
+from
+chospital_amp as h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report12', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }        
+
+    
+    
+        public function actionReport13() { //0-2ปี รับบริการ
+        $date1 = "2014-10-01";
+        $date2 = date('Y-m-d');
+        if (Yii::$app->request->isPost) {
+            $date1 = $_POST['date1'];
+            $date2 = $_POST['date2'];
+        }
+
+        $sql = "select
+h.hoscode,
+h.hosname,
+(select count(distinct p.CID) as nump
+from person as p
+where p.DISCHARGE='9'
+and p.TYPEAREA in (1,3)
+and p.NATION='099'
+and (TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,'$date2')<6) 
+and h.hoscode=p.HOSPCODE ) as target,
+
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2372700','2382770')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2'  
+and p.HOSPCODE=h.hoscode ) as EXTRACT,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('23771A1','23771A2','23771A3','23771A4','2387179','23871A1',
+'23871A2','23871A3','23871A4','23871B1','23871B2','23871B3','23871B4','23771A1',
+'23771A2','23771A3','23771A4','23871A1','23871A2','23871A3','23871A4','23771B1',
+'23771B2','23771B3','23771B4','23771C1','23771C2','23771C3','23871B1','23871B2',
+'23871B3','23871B4','23871C1','23871C2','23871C3','23871C4','23871U1','2387179',
+'2387179','2387225')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2'  
+and p.HOSPCODE=h.hoscode ) as FILLING,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2387030')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2'  
+and p.HOSPCODE=h.hoscode ) as SEALANT,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377010')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2'  
+and p.HOSPCODE=h.hoscode ) as Prophylaxis,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where 
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)  
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377040','2387040')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as PRR,
+
+(select count(distinct p.CID) as num
+from 
+person as p,
+procedure_opd as pd
+where
+(TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)>=3 and TIMESTAMPDIFF(YEAR,p.BIRTH,pd.DATE_SERV)<6)
+and p.PID=pd.PID
+and p.HOSPCODE=pd.HOSPCODE
+and pd.PROCEDCODE in ('2377020','2377021')
+and p.NATION='099' and p.DISCHARGE='9' 
+and pd.DATE_SERV between '$date1' and '$date2' 
+and p.HOSPCODE=h.hoscode ) as FLIORIDE
+FROM
+chospital_amp AS h
+order by h.hoscode";
+
+
+
+        try {
+            $rawData = \Yii::$app->db->createCommand($sql)->queryAll();
+        } catch (\yii\db\Exception $e) {
+            throw new \yii\web\ConflictHttpException('sql error');
+        }
+        $dataProvider = new \yii\data\ArrayDataProvider([
+            //'key' => 'hoscode',//
+            'allModels' => $rawData,
+            'pagination' => FALSE,
+        ]);
+
+        return $this->render('report13', [
+
+                    'dataProvider' => $dataProvider,
+                    'sql' => $sql,
+                    'date1' => $date1,
+                    'date2' => $date2
+        ]);
+    }        
     
 }

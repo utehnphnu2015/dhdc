@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'Dental', 'url' => ['dental/index']];
-$this->params['breadcrumbs'][] = 'จำนวนเด็ก 0-2 ปีที่ได้รับบริการส่งเสริมทันตสุขภาพและทันตกรรมป้องกัน';
+$this->params['breadcrumbs'][] = 'จำนวนเด็ก 3 - 5 ปีได้รับการตรวจสุขภาพช่องปาก';
 ?>
 
 <div class='well'>
@@ -55,7 +55,7 @@ echo \kartik\grid\GridView::widget([
     'panel' => [
         'before' => '',
         'type' => \kartik\grid\GridView::TYPE_SUCCESS,
-        'after' => 'โดย ' . $dev .' :: update 7/04/2558'
+        'after' => 'โดย ' . $dev .' update 5/4/2558'
     ],
     
     'columns' => [
@@ -69,37 +69,25 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'target',
-            'header' => 'เด็ก 0-2 ปี(คน)'
+            'header' => 'เด็กอายุ 18 เดือน(คน)'
         ],
         [
-            'attribute' => 'PRR',
-            'header' => 'PRR(คน)'
+            'attribute' => 'result',
+            'header' => 'ได้ตรวจ(คน)'
         ],
-        /*[
+        [
             'class' => '\kartik\grid\FormulaColumn',
             'header' => 'ร้อยละ',
             'value' => function ($model, $key, $index, $widget) {
                 $p = compact('model', 'key', 'index');
-                // เขียนสูตร
+                // เขียนสูตร  dd
                 if ($widget->col(2, $p) > 0) {
                     $persent = $widget->col(3, $p) / $widget->col(2, $p) * 100;
                     $persent = number_format($persent, 2);
                     return $persent;
                 }
             }
-        ],*/
-        [
-            'attribute' => 'FLIORIDE',
-            'header' => 'ฟลูออไรด์(คน)'
-        ],
-        [
-            'attribute' => 'SEALANT',
-            'header' => 'เคลือบหลุมร่องฟัน(คน)'
-        ], 
-        [
-            'attribute' => 'Prophylaxis',
-            'header' => 'ทำความสะอาดช่องปาก(คน)'
-        ]                
+        ]
     ]
 ]);
 ?>

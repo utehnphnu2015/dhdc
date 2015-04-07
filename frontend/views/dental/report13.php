@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 
 $this->params['breadcrumbs'][] = ['label' => 'Dental', 'url' => ['dental/index']];
-$this->params['breadcrumbs'][] = 'จำนวนเด็ก 0-2 ปีที่ได้รับบริการส่งเสริมทันตสุขภาพและทันตกรรมป้องกัน';
+$this->params['breadcrumbs'][] = 'จำนวนเด็ก 3-5 ปีได้รับบริการ ส่งเสริม ป้องกัน และรักษา';
 ?>
 
 <div class='well'>
@@ -69,11 +69,11 @@ echo \kartik\grid\GridView::widget([
         ],
         [
             'attribute' => 'target',
-            'header' => 'เด็ก 0-2 ปี(คน)'
+            'header' => 'เด็ก 3-5 ปี(คน)'
         ],
         [
-            'attribute' => 'PRR',
-            'header' => 'PRR(คน)'
+            'attribute' => 'EXTRACT',
+            'header' => 'ถอน(คน)'
         ],
         /*[
             'class' => '\kartik\grid\FormulaColumn',
@@ -89,17 +89,22 @@ echo \kartik\grid\GridView::widget([
             }
         ],*/
         [
-            'attribute' => 'FLIORIDE',
-            'header' => 'ฟลูออไรด์(คน)'
+            'attribute' => 'FILLING',
+            'header' => 'อุด(คน)'
         ],
         [
             'attribute' => 'SEALANT',
             'header' => 'เคลือบหลุมร่องฟัน(คน)'
-        ], 
+        ],
+        
         [
             'attribute' => 'Prophylaxis',
             'header' => 'ทำความสะอาดช่องปาก(คน)'
-        ]                
+        ],  
+        [
+            'attribute' => 'PRR',
+            'header' => 'PRR(คน)'
+        ]              
     ]
 ]);
 ?>
