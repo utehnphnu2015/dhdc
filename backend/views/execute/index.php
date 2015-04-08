@@ -44,7 +44,7 @@ $(document).ready(function() {
 setInterval(function () {
     $("#divtoBlink").css("background-color", function () {
         this.switch = !this.switch
-        return this.switch ? "orange" : "white"
+        return this.switch ? "yellow" : "white"
     });
 }, 1000)
 
