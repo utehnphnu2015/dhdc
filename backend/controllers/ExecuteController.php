@@ -41,7 +41,7 @@ class ExecuteController extends \yii\web\Controller {
         $sql = "call cal_sys_count_all($ym)";
         $this->exec_sql($sql);
     }
-
+    
     public function actionIndex() {
         $time = date('Y-m-d H:i:s');
         $chk_proc = SysCheckProcess::find()->one();
