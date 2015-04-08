@@ -1,7 +1,10 @@
 <?php
 
 namespace backend\controllers;
+
+use Yii;
 use backend\models\ChospitalAmp;
+use backend\models\SysCheckProcess;
 
 class ExecuteController extends \yii\web\Controller {
 
@@ -40,6 +43,12 @@ class ExecuteController extends \yii\web\Controller {
     }
 
     public function actionIndex() {
+        $time = date('Y-m-d H:i:s');
+        $chk_proc = SysCheckProcess::find()->one();
+        $fnc_name = $chk_proc->fnc_name;
+        $fnc_time = $chk_proc->time;
+
+
         $sql = "show processlist;";
         $rawData = $this->query_all($sql);
 
@@ -47,13 +56,25 @@ class ExecuteController extends \yii\web\Controller {
             // 'key' => 'hoscode',
             'allModels' => $rawData,
             'sort' => count($rawData) > 0 ? ['attributes' => array_keys($rawData[0])] : [],
-            'pagination' => [
-                'pageSize' => 15,
-            ],
+            'pagination' => FALSE
         ]);
+
+        if (Yii::$app->request->isPjax) {
+            return $this->renderAjax('index', [
+                        'dataProvider' => $dataProvider,
+                        'sql' => $sql,
+                        'time' => $time,
+                        'fnc_name' => $fnc_name,
+                        'fnc_time' => $fnc_time
+            ]);
+        }
+
         return $this->render('index', [
                     'dataProvider' => $dataProvider,
-                    'sql' => $sql
+                    'sql' => $sql,
+                    'time' => $time,
+                    'fnc_name' => $fnc_name,
+                    'fnc_time' => $fnc_time
         ]);
     }
 
@@ -126,11 +147,11 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_rpt_breast_cancer_screening", $y - 1);
             $this->call("cal_rpt_breast_cancer_screening", $y);
 
-           // sos store
-           $this->call("cal_chart_dial_7", $bdg); 
-           $this->call("cal_chart_dial_8", $bdg);  
-           $this->call("cal_chart_dial_9", NULL); 
-           
+            // sos store
+            $this->call("cal_chart_dial_7", $bdg);
+            $this->call("cal_chart_dial_8", $bdg);
+            $this->call("cal_chart_dial_9", NULL);
+
             $this->call("end_process", NULL);
             //
             //จบใส่ store

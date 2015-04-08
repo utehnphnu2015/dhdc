@@ -1,7 +1,19 @@
 <?php
 /* @var $this yii\web\View */
+
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 ?>
-<h1><?=$sql?></h1>
+
+<?php Pjax::begin(); ?>
+<?= Html::a("Refresh", ['execute/index'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton']) ?>
+<p>Server Time: <span style="background-color: white"><?= $time ?></span></p>
+<p>
+    Current Process: <span style="background-color: white"><?=$fnc_name?></span>
+    Start Time: <span style="background-color: white"><?=$fnc_time?></span>
+</p>
+
+
 
 <?php
 echo kartik\grid\GridView::widget([
@@ -16,9 +28,19 @@ echo kartik\grid\GridView::widget([
     'responsive' => true,
     'hover' => true,
     'panel' => [
-        'before' => '',
+        //'before' => '',
     //'after'=>''
     ]
 ]);
+?>
+<?php Pjax::end(); ?>
+
+<?php
+$script = <<< JS
+$(document).ready(function() {
+    setInterval(function(){ $("#refreshButton").click(); }, 5000);
+});
+JS;
+$this->registerJs($script);
 ?>
 
