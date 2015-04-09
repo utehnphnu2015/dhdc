@@ -27,7 +27,7 @@ $this->title = 'DHDC Backend';
                 $ver = file_get_contents(Yii::getAlias('@version/version.txt'));
                 $ver_db = \backend\models\SysVersion::find()->one();
                 ?>
-                [Your WebApp]=><?=$ver?>,[Your DB]=><?=$ver_db->version?>
+                [Your WebApps]=><?=$ver?><br>[Your Database]=><?=$ver_db->version?>
             </div>
             <font color="yellow"><div id="version_new">Checking new version ...</div></font>
             <div class="row">
