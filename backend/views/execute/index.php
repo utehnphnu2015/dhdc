@@ -7,12 +7,12 @@ use yii\widgets\Pjax;
 <div class="alert alert-material-red-200" style="color: whitesmoke"><h3>ตรวจสอบการทำงานเบื้องหลัง</h3></div>
 <?php Pjax::begin(); ?>
 <?= Html::a("Refresh", ['execute/index'], ['class' => 'btn btn-lg btn-primary', 'id' => 'refreshButton','style'=>'display:none']) ?>
-<p>Server Time: <span style="background-color: white" id="divtoBlink"><?= $time ?></span></p>
-<p>
-    Current Process: <span style="background-color: white"><?=$fnc_name?></span>
-    Start Time: <span style="background-color: white"><?=$fnc_time?></span>
-</p>
-
+<div style="border-bottom: gray solid 1px;padding-bottom: 5px">
+    Server Time: <span style="background-color: white;margin: 15px" id="divtoBlink"><b><?= $time ?></b></span>
+    Current Process: <span style="background-color: white;margin: 15px"><b><?=$fnc_name?></b></span>
+    Start Time: <span style="background-color: white;margin: 15px"><b><?=$fnc_time?></b></span>
+</div>
+<br>
 
 
 <?php
