@@ -104,7 +104,7 @@ $this->title = 'DHDC Backend';
                 $route = Yii::$app->urlManager->createUrl('execute/index');
                 ?>
                 <a class="btn btn-warning btn-xlarge" href="<?= $route ?>"> 
-                    <i class="glyphicon glyphicon-play"></i> MySQL Load
+                    <i class="glyphicon glyphicon-ok"></i> ตรวจสอบ Process
                 </a>
             </div>
             <div class="col-sm-4">
