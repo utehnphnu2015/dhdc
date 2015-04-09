@@ -112,6 +112,7 @@ class ExecuteController extends \yii\web\Controller {
             $bdg = "'" . $bdg . "'";
 
             $this->call("merge_newborncare", NULL);
+            $this->call("clear_upload_error",NULL);
             $this->call("clear_null_hospcode", NULL);
             //$this->call("cal_chart_dial_1", $bdg);
             $this->call("cal_chart_dial_2", $bdg);
@@ -151,6 +152,9 @@ class ExecuteController extends \yii\web\Controller {
             $this->call("cal_chart_dial_7", $bdg);
             $this->call("cal_chart_dial_8", $bdg);
             $this->call("cal_chart_dial_9", NULL);
+            
+            
+           
 
             $this->call("end_process", NULL);
             //

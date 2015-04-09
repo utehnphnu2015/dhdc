@@ -85,6 +85,7 @@ class SyssettimeController extends Controller {
 
             $sql .= $this->call("clear_import_not_success", NULL);
             $sql .= $this->call("clear_null_hospcode", NULL);
+            $sql .= $this->call("clear_upload_error", NULL);
 
             $sql .= $this->call("merge_newborncare", NULL);
             $sql .= $this->call("cal_chart_dial_1", $bdg);
