@@ -75,7 +75,7 @@ order by distcode,hoscode asc;";
         $sql = "select distinct person.hospcode,person.pid,concat(person.name,'  ',person.lname) as fullname,if(person.sex=1,'ชาย','หญิง') as sex,
 ifnull(TIMESTAMPDIFF(MONTH,person.birth,epi.date_serv),0) as age_y,epi.date_serv,
 if((select count(*) from epi e where e.vaccinetype='035' and concat(e.pid,e.hospcode)=concat(person.pid,person.hospcode))>0,'y','n') as result from person  
-          left join epi on epi.hospcode = person.hospcode and epi.pid = person.pid  
+          left join epi on epi.hospcode = person.hospcode and epi.pid = person.pid  and  epi.vaccinetype='035'
            where person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099'  
            and (person.birth BETWEEN '$date1' and '$date2')  
  and person.hospcode = '$hospcode' 
