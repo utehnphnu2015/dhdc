@@ -16,7 +16,7 @@ class Test2Controller extends \yii\web\Controller {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'json' => ['post'],
+                    //'json' => ['post'],
                 ],
             ],
         ];
@@ -70,8 +70,12 @@ class Test2Controller extends \yii\web\Controller {
     }
 
     public function actionJson() {
-        $arr = [['name' => 'tehnn', 'age' => 5]];
-        echo $s = json_encode($arr);
+        $items = [['name' => 'tehnn', 'age' => 5]];
+        //echo $s = json_encode($items);
+        \Yii::$app->response->format = 'json';
+        echo json_encode($items);
+       
+        //return \yii\helpers\Json::encode($items);
     }
 
     public function actionReportGrid3() {

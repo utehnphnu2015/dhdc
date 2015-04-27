@@ -90,7 +90,7 @@ class SysconfigmainController extends Controller {
       function add_ctambon() {
         $cfg_main = Sysconfigmain::find()->one();
         
-        $sql = "DROP TABLE IF EXISTS cctambon_amp;";
+        $sql = "DROP TABLE IF EXISTS ctambon_amp;";
         \yii::$app->db->createCommand($sql)->execute();
 
         echo $sql = "CREATE TABLE ctambon_amp SELECT * from ctambon tb 
