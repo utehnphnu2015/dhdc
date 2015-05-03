@@ -190,7 +190,7 @@ $this->title = 'DHDC Backend';
              <div class="col-sm-4">
                 
                 <a class="btn btn-material-blue-600 btn-xlarge" href="#" id="btn_process_json"> 
-                    <i class="glyphicon glyphicon-cloud-upload"></i> Feed to Mobile  
+                    <i class="glyphicon glyphicon-phone"></i> Feed to Mobile  
                 </a>
 
             </div>
