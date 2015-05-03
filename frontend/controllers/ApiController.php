@@ -16,8 +16,10 @@ class ApiController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index' => ['get'],
-                    'menu' => ['get'],
-                    'report' => ['get'],
+                    'nav-menu' => ['get'],
+                    'report-main' => ['get'],
+                    'raw-data' => ['get'],
+                    'amp-name'=>['GET']
                 ],
             ]
         ];
@@ -72,25 +74,46 @@ class ApiController extends Controller {
         return (isset($codes[$status])) ? $codes[$status] : '';
     }
 
-    public function actionReport($gid = null) {
-
-        $this->setHeader(200);
-        $sql = "select * from mob_report_main";
-        if($gid != null){
-            $sql = "select * from mob_report_main where group_id='$gid'";
-        }
-        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
-
-        return $rawData;
-    }
-
-    public function actionMenu() {
+    public function actionNavMenu() {
 
         $this->setHeader(200);
         $sql = "select * from mob_nav_menu";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
         return $rawData;
+    }
+
+    public function actionReportMain($group_id = NULL) {
+
+        $this->setHeader(200);
+        $sql = "select * from mob_report_main";
+        if ($group_id != NULL) {
+            $sql = "select * from mob_report_main where group_id='$group_id'";
+        }
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+
+        return $rawData;
+    }
+
+    public function actionRawData($report_id = NULL) {
+
+        $this->setHeader(200);
+        $sql = "select * from mob_raw_data";
+        if ($report_id != NULL) {
+            $sql = "select * from mob_raw_data where report_id='$report_id'";
+        }
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+
+        return $rawData;
+    }
+    
+    public function actionAmpName(){
+        $this->setHeader(200);
+        $sql = "SELECT t.district_name as amp from sys_config_main t;";
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+
+        return $rawData;
+        
     }
 
 }

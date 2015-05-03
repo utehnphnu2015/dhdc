@@ -187,6 +187,14 @@ $this->title = 'DHDC Backend';
 
             </div>
             
+             <div class="col-sm-4">
+                
+                <a class="btn btn-material-blue-600 btn-xlarge" href="#" id="btn_process_json"> 
+                    <i class="glyphicon glyphicon-cloud-upload"></i> Feed to Mobile  
+                </a>
+
+            </div>
+            
          
 
         </div>
@@ -203,10 +211,21 @@ $route_chk_update = Yii::$app->urlManager->createUrl('update/checkver');
 $route_process_report = Yii::$app->urlManager->createUrl('execute/processreport');
 $route_file_count = Yii::$app->urlManager->createUrl('execute/filecount');
 $route_indiv_exec = yii\helpers\Url::to(['indiv/exec','selyear'=>'2015']);
-
+$route_process_json = \yii\helpers\Url::to(['execute/process-json']);
 
 
 $script1 = <<< JS
+        
+ $('#btn_process_json').on('click', function () {
+          $('#res').toggle();   
+    $.ajax({
+       url: "$route_process_json",       
+       success: function(data) {
+           $('#res').toggle();               
+            alert(data+' สำเร็จ'); 
+       }
+    });
+ });
         
  setTimeout(function() {
         

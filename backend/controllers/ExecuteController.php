@@ -171,5 +171,10 @@ class ExecuteController extends \yii\web\Controller {
         $sql = " call cal_chart_dial_2($d)";
         $this->exec_sql($sql);
     }
+    
+    public function actionProcessJson(){
+        $sql = " call api_step1_mob_raw_data";
+        $this->exec_sql($sql);
+    }
 
 }
