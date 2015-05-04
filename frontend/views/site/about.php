@@ -20,9 +20,8 @@ $sys = Sysconfigmain::find()->one();
     <p>- <?= Html::a('คุณสุพัฒนา ปิงเมือง', 'https://fb.com/kukks205', ['target' => '_blank']) ?> (รพสต.ผักตบ อ.หนองหาน จ.อุดรธานี) Co-Programmer</p>
     <p>- <?= Html::a('คุณสุจินต์ สุกกล้า', 'https://fb.com/jub.wifi', ['target' => '_blank']) ?> (รพท.ศรีสังวรณ์ สุโขทัย) Co-Programmer</p>
     <p>- <?= Html::a('คุณนครินทร์ เกตุวีระพงศ์', 'https://fb.com/nakharin.knott', ['target' => '_blank']) ?> (รพ.วัดโบสถ์ จ.พิษณุโลก) Co-Programmer</p>
-    <p>- <?= Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Report Programmer & CUT Tool</p>
-    <p>- <?= Html::a('คุณภศล สุริยะ', 'https://www.facebook.com/chondlatitsuriya', ['target' => '_blank']) ?> (รพ.ชาติตระการ จ.พิษณุโลก) Implementor & Custom-Report Programmer</p>
-    <p>- <?= Html::a('คุณจิรชาย นาบุญมี', 'https://www.facebook.com/jodonpeng', ['target' => '_blank']) ?> (สสอ.ร้องกวาง จ.แพร่) Report Programmer</p>
+    <p>- <?= Html::a('คุณศรศักดิ์ สีหะวงษ์', 'https://fb.com/sosplk', ['target' => '_blank']) ?> (สสจ.พิษณุโลก) Co-Programmer</p>
+    <p>- <?= Html::a('คุณภศล สุริยะ', 'https://www.facebook.com/chondlatitsuriya', ['target' => '_blank']) ?> (รพ.ชาติตระการ จ.พิษณุโลก) Custom-Report</p>
     <p>- <?= Html::a('คุณเดชา สายบุญตั้ง', 'https://www.facebook.com/decha.saiboontung', ['target' => '_blank']) ?> (รพ.ด่านซ้าย จ.เลย) Tester</p>
 
 </div>
