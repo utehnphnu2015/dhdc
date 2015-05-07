@@ -181,7 +181,7 @@ where person.discharge = '9' and person.typearea in ('1', '3') and person.nation
 from labor 
 INNER JOIN anc ON labor.hospcode = anc.hospcode AND labor.pid = anc.pid 
 INNER JOIN person ON person.hospcode = anc.hospcode AND person.pid = anc.pid 
-WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
+WHERE person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
       and labor.btype<>'6'   and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY person.hospcode  ) as t
 where t.hospcode =h.hoscode ) as target,
@@ -197,7 +197,7 @@ WHERE anc1.ga <= 12
 GROUP BY anc1.hospcode,anc1.pid  ) as anc1
 ON labor.hospcode = anc1.hospcode AND labor.pid = anc1.pid
 INNER JOIN person ON person.hospcode = labor.hospcode AND person.pid = labor.pid 
-WHERE person.discharge = '9' and person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
+WHERE person.typearea in ('1', '3') and person.nation ='099' and person.sex = '2' 
       and labor.btype<>'6'   and labor.bdate BETWEEN  '$date1' AND '$date2'
 GROUP BY labor.hospcode
 ) as 12wks
