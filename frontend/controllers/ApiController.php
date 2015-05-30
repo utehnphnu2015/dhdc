@@ -19,7 +19,8 @@ class ApiController extends Controller {
                     'nav-menu' => ['get'],
                     'report-main' => ['get'],
                     'raw-data' => ['get'],
-                    'amp-name' => ['GET']
+                    'amp-name' => ['GET'],
+                    'find-emr'=>['GET']
                 ],
             ]
         ];
@@ -115,8 +116,11 @@ class ApiController extends Controller {
         return $rawData;
     }
 
-    public function actionFindEmr($cid = null) {
+    public function actionFindEmr($cid = null) {        
         $this->setHeader(200);
+        if($cid==null){
+            return [['data'=>'null']];
+        }
         $cid = trim($cid);
         $sql = "SELECT p.CID,s.HOSPCODE,s.DATE_SERV,group_concat(DISTINCT dxo.DIAGCODE ORDER BY dxo.DIAGTYPE ASC) as diag,
 GROUP_CONCAT(DISTINCT dgo.DNAME SEPARATOR ' , ') as drug
