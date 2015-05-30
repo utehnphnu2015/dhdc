@@ -118,11 +118,9 @@ class ApiController extends Controller {
 
     public function actionFindEmr($cid = null) {        
         $this->setHeader(200);
-        if($cid==null){
-            return [['data'=>'null']];
-        }
+       
         $cid = trim($cid);
-        $sql = "SELECT p.CID,s.HOSPCODE,s.DATE_SERV,group_concat(DISTINCT dxo.DIAGCODE ORDER BY dxo.DIAGTYPE ASC) as diag,
+        $sql = "SELECT p.CID as cid,s.HOSPCODE as hospcode,s.DATE_SERV as date_serv,group_concat(DISTINCT dxo.DIAGCODE ORDER BY dxo.DIAGTYPE ASC) as diag,
 GROUP_CONCAT(DISTINCT dgo.DNAME SEPARATOR ' , ') as drug
 from service s 
 INNER JOIN person p on p.HOSPCODE = s.HOSPCODE and p.PID = s.PID 
@@ -133,8 +131,11 @@ group by s.SEQ
 ORDER BY s.DATE_SERV DESC
 limit 10";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
-
-        return $rawData;
+        if(count($rawData)>0){
+            return $rawData;
+        }else{
+            return [['cid'=>'','hospcode'=>'','date_serv'=>'','diag'=>'','drug'=>'']];
+        }
     }
 
 // end emr
