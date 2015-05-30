@@ -19,7 +19,7 @@ class ApiController extends Controller {
                     'nav-menu' => ['get'],
                     'report-main' => ['get'],
                     'raw-data' => ['get'],
-                    'amp-name'=>['GET']
+                    'amp-name' => ['GET']
                 ],
             ]
         ];
@@ -106,14 +106,32 @@ class ApiController extends Controller {
 
         return $rawData;
     }
-    
-    public function actionAmpName(){
+
+    public function actionAmpName() {
         $this->setHeader(200);
         $sql = "SELECT t.district_name as amp from sys_config_main t;";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
         return $rawData;
-        
     }
 
+    public function actionFindEmr($cid = null) {
+        $this->setHeader(200);
+        $cid = trim($cid);
+        $sql = "SELECT p.CID,s.HOSPCODE,s.DATE_SERV,group_concat(DISTINCT dxo.DIAGCODE ORDER BY dxo.DIAGTYPE ASC) as diag,
+GROUP_CONCAT(DISTINCT dgo.DNAME SEPARATOR ' , ') as drug
+from service s 
+INNER JOIN person p on p.HOSPCODE = s.HOSPCODE and p.PID = s.PID 
+left join diagnosis_opd dxo on dxo.HOSPCODE = s.HOSPCODE and dxo.PID = s.PID and dxo.SEQ=s.SEQ
+left join drug_opd dgo on dgo.HOSPCODE=s.HOSPCODE and dgo.PID=s.PID and dgo.SEQ=s.SEQ
+where p.CID = '$cid' 
+group by s.SEQ
+ORDER BY s.DATE_SERV DESC
+limit 10";
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+
+        return $rawData;
+    }
+
+// end emr
 }
