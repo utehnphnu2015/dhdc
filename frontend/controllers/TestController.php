@@ -20,9 +20,9 @@ class TestController extends \yii\web\Controller {
     public function actionRpt2() {
         $sql = "select cid ,name,lname,sex from person limit 100 ";
 
-$rawData = Yii::$app->db->createCommand($sql)->queryAll();
-        return $this->render('rpt2',[
-            'rawData'=>$rawData
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        return $this->render('rpt2', [
+                    'rawData' => $rawData
         ]);
     }
 
@@ -54,19 +54,50 @@ $rawData = Yii::$app->db->createCommand($sql)->queryAll();
 
     public function actionFilter() {
 
-      
+
 
         return $this->render('filter');
     }
-    
-    public function actionDynagrid(){
-        
+
+    public function actionDynagrid() {
+
         $sql = "select hospcode,pid,sex,name,lname from person limit 100";
         $rawData = Yii::$app->db->createCommand($sql)->queryAll();
-        
-        return $this->render('dynagrid',[
-            'rawData'=>$rawData
+
+        return $this->render('dynagrid', [
+                    'rawData' => $rawData
         ]);
+    }
+
+    public function actionJsonTest1() {
+       
+        $rawData = [
+            ['name' => 'tehn','age'=>35],[ 'name' => 'jeab'], ['name' => 'นาเดียร'],
+            
+        ];
+        return $this->json($rawData);
+        //$this->print_r($rawData);
+    }
+
+    public function actionJsonTest2() {
+       
+        $sql = "select * from mob_nav_menu";
+        $rawData = Yii::$app->db->createCommand($sql)->queryAll();
+        return $this->json($rawData);
+        //$this->print_r($rawData);
+        
+    }
+
+    function print_r($rawData) {
+        echo "<pre>";
+        print_r($rawData);
+        echo "</pre>";
+    }
+    
+    function json($rawData){
+         Yii::$app->response->format = 'json';        
+        header('X-Powered-By: ' . "UTEHN PHNU");
+        return $rawData;
     }
 
 }
