@@ -488,3 +488,81 @@ Stack trace:
     ]
     'argc' => 2
 ]
+2015-12-12 17:23:16 [-][-][-][error][yii\console\Exception] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "init".' in E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Module.php:461
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(167): yii\base\Module->runAction('init', Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(143): yii\console\Application->runAction('init', Array)
+#2 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#4 {main}
+
+Next exception 'yii\console\Exception' with message 'Unknown command "init".' in E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php:169
+Stack trace:
+#0 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\console\Application.php(143): yii\console\Application->runAction('init', Array)
+#1 E:\xampp\htdocs\dhdc\vendor\yiisoft\yii2\base\Application.php(375): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 E:\xampp\htdocs\dhdc\yii(31): yii\base\Application->run()
+#3 {main}
+2015-12-12 17:23:16 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\utehn\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'DESKTOP-KRGM2JO'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'GDAL_DATA' => 'C:\\Program Files\\PostgreSQL\\9.3\\gdal-data'
+    'GEOSERVER_DATA_DIR' => 'C:\\Program Files (x86)\\GeoServer 2.8.0\\data_dir'
+    'GEOSERVER_HOME' => 'C:\\Program Files (x86)\\GeoServer 2.8.0'
+    'Grande' => 'C:\\Program Files (x86)\\Fuji Xerox\\DocuPrint SSW2\\SimpleMonitor for AP'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\utehn'
+    'JAVA_HOME' => 'C:\\Program Files\\Java\\jdk1.7.0_79'
+    'LOCALAPPDATA' => 'C:\\Users\\utehn\\AppData\\Local'
+    'LOGONSERVER' => '\\\\DESKTOP-KRGM2JO'
+    'MOZ_PLUGIN_PATH' => 'C:\\Program Files (x86)\\PDFlite\\'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;E:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\Windows Live\\Shared;C:\\Users\\utehn\\AppData\\Roaming\\npm'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'POSTGIS_ENABLE_OUTDB_RASTERS' => '1'
+    'POSTGIS_GDAL_ENABLED_DRIVERS' => 'GTiff PNG JPEG GIF XYZ DTED USGSDEM AAIGrid'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\utehn\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\utehn\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'DESKTOP-KRGM2JO'
+    'USERDOMAIN_ROAMINGPROFILE' => 'DESKTOP-KRGM2JO'
+    'USERNAME' => 'utehn'
+    'USERPROFILE' => 'C:\\Users\\utehn'
+    'VBOX_MSI_INSTALL_PATH' => 'C:\\Program Files\\Oracle\\VirtualBox\\'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\xampp\\htdocs\\dhdc\\'
+    'PHP_SELF' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_NAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'SCRIPT_FILENAME' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'PATH_TRANSLATED' => 'E:\\xampp\\htdocs\\dhdc\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1449937396.1249
+    'REQUEST_TIME' => 1449937396
+    'argv' => [
+        0 => 'E:\\xampp\\htdocs\\dhdc\\yii'
+        1 => 'init'
+    ]
+    'argc' => 2
+]

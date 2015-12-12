@@ -27,7 +27,8 @@
         "kartik-v/dependent-dropdown": "dev-master",
         "kartik-v/yii2-widget-timepicker": "*",
         "linslin/yii2-curl": "*",
-        "2amigos/yii2-google-maps-library": "*"
+        "2amigos/yii2-google-maps-library": "*",
+		 "bower-asset/jquery": "@stable"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
