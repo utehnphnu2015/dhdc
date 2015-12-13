@@ -91,11 +91,11 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => '<span class="glyphicon glyphicon-floppy-open"></span> นำเข้าข้อมูล', 'url' => ['/uploadfortythree/index']],
                 ['label' =>
-                    '<span class="glyphicon glyphicon-folder-open"></span> ปริมาณข้อมูล',
+                    '<span class="glyphicon glyphicon-folder-open"></span> คุณภาพข้อมูล',
                     'url' => ['syscountall/index']
                 ],
                 ['label' =>
-                    '<span class="glyphicon glyphicon-list-alt"></span> รายงานข้อมูลผลงาน',
+                    '<span class="glyphicon glyphicon-list-alt"></span> ประมวลผลรายงาน',
                     'items' => $report_mnu_itms
                 ],
                 ['label' => '<span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน ' . $username,
