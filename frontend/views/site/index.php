@@ -1,6 +1,7 @@
 <?php
 
 use miloschuman\highcharts\Highcharts;
+use yii\data\Pagination;
 
 $this->title = "District HDC";
 ?>
@@ -9,7 +10,7 @@ $this->title = "District HDC";
     Highcharts::widget([
         'scripts' => [
             'highcharts-more',
-            //'themes/grid'
+            'themes/grid',
             //'modules/exporting',
             'modules/solid-gauge',
         ]
@@ -27,12 +28,13 @@ $this->registerJsFile($dir_web . '/js/chart-donut.js', ['depends' => [\yii\web\J
 
         <div class="col-lg-4" style="text-align: center;">
             <?php
+            $t = 'person';
             $this->registerJs("
-                        var obj_div=$('#ch1');
-                        gen_donut(obj_div,'แฟ้ม PERSON',98);
+                        var obj_div=$('#$t');
+                        gen_donut(obj_div,'แฟ้ม $t',98);
                     ");
             ?>           
-            <div id="ch1" style="width: 300px; height: 200px; float: left"></div>
+            <div id="<?= $t ?>" style="width: 300px; height: 200px; float: left"></div>
         </div>
 
         <div class="col-lg-4" style="text-align: center;">
@@ -93,6 +95,18 @@ $this->registerJsFile($dir_web . '/js/chart-donut.js', ['depends' => [\yii\web\J
 
 
     </div>
+
+
+    <?php
+    $pagination = new Pagination([
+        'totalCount' => 43
+        , 'pageSize' => 6
+    ]);
+
+    echo \yii\widgets\LinkPager::widget([
+        'pagination' => $pagination,
+    ]);
+    ?>
 
 
 
